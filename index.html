@@ -56,6 +56,9 @@
     .nav-link:hover::after{width:100%}
     .nav-cta{padding:12px 22px; background:var(--gradient-hero); border-radius:50px; color:white; font-weight:800; font-size:15px; letter-spacing:0.025em; box-shadow:0 14px 30px rgba(59,130,246,0.35); transition:all 0.2s ease}
 
+    /* ADDED: gold nav button for whitepaper */
+    .nav-whitepaper{padding:10px 18px; background:var(--gradient-gold); border-radius:50px; color:white; font-weight:800; font-size:14px; letter-spacing:0.02em; box-shadow:0 12px 28px rgba(245,158,11,0.25); text-decoration:none}
+
     /* Hamburger for tablet & mobile */
     .hamburger{
       display:none;
@@ -108,6 +111,10 @@
     .btn-primary:hover{transform:translateY(-6px) scale(1.05); box-shadow:0 40px 80px rgba(59,130,246,0.6)}
     .btn-secondary{background:transparent; color:var(--slate-50); border:2px solid rgba(255,255,255,0.3); backdrop-filter:blur(20px)}
     .btn-secondary:hover{border-color:var(--blue-500); background:var(--glass-hover); transform:translateY(-4px)}
+
+    /* ADDED: whitepaper button style */
+    .btn-whitepaper{background:var(--gradient-gold); color:white; box-shadow:0 20px 40px rgba(245,158,11,0.25)}
+    .btn-whitepaper:hover{transform:translateY(-6px) scale(1.03); box-shadow:0 40px 80px rgba(245,158,11,0.35)}
 
     /* Floating Feature Cards */
     .hero-visual{position:relative; height:500px; margin-top:100px}
@@ -220,6 +227,12 @@
           <a href="#tokenomics" class="nav-link">Tokenomics</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#contact" class="nav-link">Contact</a>
+
+          <!-- ADDED: Read Whitepaper link in header (desktop) -->
+          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
+             target="_blank" rel="noopener noreferrer"
+             class="nav-whitepaper" aria-label="Read the ASRD whitepaper">📄 Whitepaper</a>
+
           <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="nav-cta">Buy ASRD</a>
         </nav>
 
@@ -251,6 +264,13 @@
           <a href="#tokenomics" data-close>Tokenomics</a>
           <a href="#about" data-close>About</a>
           <a href="#contact" data-close>Contact</a>
+
+          <!-- ADDED: mobile whitepaper link -->
+          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
+             target="_blank" rel="noopener noreferrer" class="mobile-cta" data-close style="text-decoration:none">
+             📄 Read Whitepaper
+          </a>
+
           <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="mobile-cta" style="text-decoration:none">🚀 Buy ASRD</a>
         </nav>
 
@@ -302,6 +322,12 @@
         <div class="cta-buttons fade-in-up" role="group" aria-label="Primary actions">
           <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🚀 Buy on DEX</a>
           <a href="#tokenomics" class="btn btn-secondary">View Tokenomics</a>
+
+          <!-- ADDED: hero whitepaper CTA -->
+          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
+             class="btn btn-whitepaper" target="_blank" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">
+             📄 Read Whitepaper
+          </a>
         </div>
       </div>
 
@@ -435,6 +461,11 @@
             <div><strong>LP:</strong> Burned & Locked</div>
             <div style="margin-top:32px">
               <a href="#" class="btn btn-primary" style="width:100%; justify-content:center">View Contract →</a>
+
+              <!-- ADDED: whitepaper button in Key Facts -->
+              <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
+                 class="btn btn-whitepaper" target="_blank" rel="noopener noreferrer"
+                 style="width:100%; justify-content:center; margin-top:12px">📄 Read Whitepaper</a>
             </div>
           </div>
         </div>
@@ -453,6 +484,10 @@
         <div class="cta-buttons">
           <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:24px 56px; font-size:18px">🚀 Get Started</a>
           <a href="#features" class="btn btn-secondary" style="padding:24px 56px; font-size:18px">Explore Features</a>
+
+          <!-- ADDED: CTA whitepaper link -->
+          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
+             target="_blank" rel="noopener noreferrer" class="btn btn-whitepaper" style="padding:24px 56px; font-size:18px">📄 Read Whitepaper</a>
         </div>
       </div>
     </div>
@@ -470,6 +505,12 @@
             <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
             <a href="#" class="social-btn" aria-label="Discord">💬</a>
             <a href="#" class="social-btn" aria-label="GitHub">📂</a>
+          </div>
+
+          <!-- ADDED: footer whitepaper link -->
+          <div style="margin-top:18px">
+            <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
+               target="_blank" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper">Read Whitepaper (PDF)</a>
           </div>
         </div>
         <div class="fade-in-up" style="grid-column:span 3">
