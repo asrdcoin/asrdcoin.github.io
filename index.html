@@ -17,12 +17,12 @@
       --red-500:#EF4444; --red-600:#DC2626;
       --slate-900:#0F172A; --slate-800:#1E293B; --slate-700:#334155; --slate-600:#475569;
       --slate-50:#F8FAFC; --slate-200:#E2E8F0; --slate-400:#94A3B8;
-      
+
       --glass: rgba(255,255,255,0.08); --glass-hover: rgba(255,255,255,0.12);
       --gradient-hero: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 30%, #60A5FA 70%, #1E40AF 100%);
       --gradient-gold: linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #FBBF24 100%);
       --gradient-emerald: linear-gradient(135deg, #059669 0%, #10B981 100%);
-      
+
       --radius-xl: 28px; --radius-2xl: 36px;
       --shadow-glow: 0 0 40px rgba(59,130,246,0.3);
       --shadow-premium: 0 35px 80px rgba(0,0,0,0.5);
@@ -31,7 +31,7 @@
     /* Core Reset */
     *{box-sizing:border-box; margin:0; padding:0}
     html{scroll-behavior:smooth; scroll-padding-top:120px}
-    body{font-family:'Inter', ui-sans-serif, sans-serif; background:linear-gradient(180deg,var(--slate-900) 0%, var(--slate-800) 40%, var(--slate-700) 100%); color:var(--slate-50); overflow-x:hidden}
+    body{font-family:'Inter', ui-sans-serif, sans-serif; background:linear-gradient(180deg,var(--slate-900) 0%, var(--slate-800) 40%, var(--slate-700) 100%); color:var(--slate-50); overflow-x:hidden; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
 
     /* Particles Background */
     .particles{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.3}
@@ -43,47 +43,63 @@
     /* Premium Header */
     header{position:fixed; top:0; left:0; right:0; z-index:1000; backdrop-filter:blur(25px); background:var(--glass); border-bottom:1px solid rgba(255,255,255,0.1); transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
     header.scrolled{background:rgba(255,255,255,0.15)}
-    .header-inner{display:flex; align-items:center; justify-content:space-between; padding:20px 0}
-    
+    .header-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+
     .logo{display:flex; align-items:center; gap:16px; font-size:28px; font-weight:800; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text}
-    /* IMAGE-BASED COIN LOGO */
-    .logo-icon-img{
-      width:56px;
-      height:56px;
-      border-radius:50%;
-      object-fit:contain;
-      padding:6px;
-      background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 65%);
-      box-shadow:0 12px 30px rgba(0,0,0,0.7);
-    }
-    
-    nav{display:flex; gap:32px; align-items:center}
+    .logo-icon-img{ width:56px; height:56px; border-radius:50%; object-fit:contain; padding:6px; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 65%); box-shadow:0 12px 30px rgba(0,0,0,0.7); }
+
+    /* Desktop nav */
+    nav.desktop-nav{display:flex; gap:32px; align-items:center}
     .nav-link{position:relative; padding:12px 0; color:var(--slate-200); font-weight:600; letter-spacing:0.025em; transition:all 0.3s ease}
     .nav-link::after{content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--gradient-hero); transition:width 0.4s ease; border-radius:2px}
     .nav-link:hover{color:var(--slate-50); }
     .nav-link:hover::after{width:100%}
-    
-    .nav-cta{padding:16px 36px; background:var(--gradient-hero); border-radius:50px; color:white; font-weight:800; font-size:15px; letter-spacing:0.025em; box-shadow:0 20px 40px rgba(59,130,246,0.4); transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
-    .nav-cta:hover{transform:translateY(-3px) scale(1.02); box-shadow:0 30px 60px rgba(59,130,246,0.5)}
+    .nav-cta{padding:12px 22px; background:var(--gradient-hero); border-radius:50px; color:white; font-weight:800; font-size:15px; letter-spacing:0.025em; box-shadow:0 14px 30px rgba(59,130,246,0.35); transition:all 0.2s ease}
+
+    /* Hamburger for tablet & mobile */
+    .hamburger{
+      display:none;
+      width:52px; height:44px; border-radius:12px;
+      background:transparent; border:1px solid rgba(255,255,255,0.06);
+      display:flex; align-items:center; justify-content:center; gap:6px;
+    }
+    .hamburger .bar{width:24px; height:2px; background:var(--slate-50); transition:all .25s ease}
+    .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0; transform:scaleX(0)}
+    .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+    /* Mobile menu (sliding overlay) */
+    .mobile-overlay{position:fixed; inset:0; z-index:1200; display:none; align-items:flex-start; justify-content:center}
+    .mobile-overlay.open{display:flex}
+    .mobile-backdrop{position:absolute; inset:0; background:rgba(3,6,12,0.6); backdrop-filter:blur(4px); opacity:0; transition:opacity .28s ease}
+    .mobile-backdrop.open{opacity:1}
+    .mobile-panel{position:relative; width:100%; max-width:420px; margin-top:80px; background:linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border-radius:20px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 40px 100px rgba(0,0,0,0.6); transform:translateY(-10px) scale(.98); opacity:0; transition:transform .28s cubic-bezier(.2,.9,.25,1), opacity .28s; overflow:hidden}
+    .mobile-panel.open{transform:none; opacity:1}
+    .mobile-panel .panel-inner{padding:28px 20px}
+    .mobile-panel .mobile-links{display:flex; flex-direction:column; gap:12px; margin-top:12px}
+    .mobile-links a{display:block; padding:16px 18px; border-radius:12px; font-weight:700; color:var(--slate-50); background:transparent; text-decoration:none}
+    .mobile-links a:hover{background:rgba(255,255,255,0.03)}
+    .mobile-cta{margin-top:18px; padding:14px; border-radius:12px; text-align:center; font-weight:900; background:var(--gradient-hero); color:white; display:block}
+    .mobile-disclaimer{font-size:13px; color:var(--slate-400); margin-top:14px}
 
     /* Hero - Cinematic */
     .hero{padding:160px 0 120px; position:relative; min-height:100vh; display:flex; align-items:center}
     .hero-bg{position:absolute; inset:0; background:var(--gradient-hero); opacity:0.08; border-radius:0 0 var(--radius-2xl) var(--radius-2xl)}
     .hero-content{max-width:900px; position:relative; z-index:2}
-    
+
     .hero-badge{position:relative; display:inline-flex; padding:12px 28px; background:var(--glass-hover); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.2); border-radius:50px; font-size:15px; font-weight:700; color:var(--slate-200); margin-bottom:32px; box-shadow:0 10px 30px rgba(0,0,0,0.3)}
     .hero-badge::before{content:''; position:absolute; inset:0; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); border-radius:50px; animation:shine 3s infinite}
-    
+
     .hero h1{font-size:clamp(60px, 10vw, 100px); font-weight:900; line-height:1.05; margin-bottom:28px; letter-spacing:-0.02em; background:linear-gradient(135deg, var(--slate-50) 0%, #E2E8F0 50%, var(--blue-500) 100%); -webkit-background-clip:text; background-clip:text; position:relative}
     .hero h1::after{content:''; position:absolute; bottom:-12px; left:0; right:0; height:4px; background:var(--gradient-gold); border-radius:4px; animation:glowPulse 2s ease-in-out infinite alternate}
-    
+
     .hero-subtitle{font-size:clamp(22px, 4vw, 32px); font-weight:400; color:var(--slate-200); margin-bottom:48px; line-height:1.5; max-width:700px}
-    
+
     .hero-stats{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:40px; margin:60px 0}
     .stat-item{text-align:center; position:relative}
     .stat{font-size:clamp(44px, 8vw, 64px); font-weight:900; line-height:1; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; margin-bottom:8px; position:relative}
     .stat-label{font-size:14px; color:var(--slate-400); font-weight:600; letter-spacing:0.05em; text-transform:uppercase}
-    
+
     .cta-buttons{display:flex; flex-wrap:wrap; gap:24px; margin:60px 0}
     .btn{position:relative; padding:20px 40px; border-radius:50px; font-weight:800; font-size:16px; text-decoration:none; display:inline-flex; align-items:center; gap:12px; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); overflow:hidden}
     .btn::before{content:''; position:absolute; inset:0; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%); opacity:0; transition:opacity 0.4s}
@@ -120,20 +136,20 @@
     .feature:hover .feature-icon-large{transform:scale(1.1) rotateY(360deg)}
     .feature h3{font-size:28px; font-weight:800; margin-bottom:20px; letter-spacing:-0.01em}
 
-    /* Premium Tokenomics */
+    /* Tokenomics */
     .tokenomics{display:grid; grid-template-columns:2fr 1fr; gap:80px; align-items:start; margin-top:80px}
     @media (max-width:1024px){.tokenomics{grid-template-columns:1fr; gap:60px}}
-    
+
     .tokenomics-main h3{font-size:38px; font-weight:900; margin-bottom:28px; letter-spacing:-0.02em}
     .pie-container{display:flex; align-items:center; gap:60px; margin:60px 0; flex-wrap:wrap; justify-content:center}
-    
+
     .token-pie{width:380px; height:380px; position:relative; margin:0 auto}
     .pie-chart-svg{width:100%; height:100%; transform:rotate(-90deg); filter:drop-shadow(0 25px 50px rgba(59,130,246,0.4))}
-    
+
     .pie-chart-center{position:absolute; inset:18%; border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,0.1) 0%, var(--slate-900) 70%); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; box-shadow:0 0 60px rgba(0,0,0,0.7), inset 0 0 30px rgba(255,255,255,0.15); border:2px solid rgba(255,255,255,0.2); backdrop-filter:blur(30px)}
     .pie-center-number{font-size:44px; font-weight:900; line-height:1; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text; margin-bottom:6px; letter-spacing:-0.03em}
     .pie-center-label{font-size:16px; color:var(--slate-400); font-weight:600; letter-spacing:0.5px; text-transform:uppercase}
-    
+
     .allocations{gap:24px; min-width:320px}
     .allocation-item{padding:28px; background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.02)); border-radius:var(--radius-2xl); border:1px solid rgba(255,255,255,0.1); position:relative; overflow:hidden; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
     .allocation-item::before{content:''; position:absolute; left:0; top:0; bottom:0; width:8px; z-index:1}
@@ -162,46 +178,90 @@
     @keyframes shine{0%{transform:translateX(-100%) translateY(-100%)} 100%{transform:translateX(100%) translateY(100%)}}
     @keyframes pieFill{0%{stroke-dashoffset:314} 100%{stroke-dashoffset:0}}
     @keyframes fadeInUp{from{opacity:0; transform:translateY(60px)} to{opacity:1; transform:translateY(0)}}
-    
+
     .fade-in-up{opacity:0; animation:fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards}
 
     /* Responsive */
-    @media (max-width:768px){
+    @media (max-width:1024px){
       .container{padding:0 20px}
-      nav{gap:20px}
+      nav.desktop-nav{display:none}
+      .hamburger{display:flex}
       .cta-buttons{flex-direction:column; align-items:stretch}
       .btn{width:100%; justify-content:center}
       .token-pie{width:300px; height:300px}
       .pie-center-number{font-size:36px}
+      .hero{padding:120px 0 80px}
+      .hero-visual{display:none}
+      header{padding:10px 0}
+    }
+    @media (max-width:480px){
+      .logo{font-size:22px}
+      .header-inner{padding:10px 6px}
+      .hamburger{width:48px; height:40px}
     }
   </style>
 </head>
 <body>
   <!-- Premium Particle System -->
-  <div class="particles" id="particles"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
 
   <!-- Header with coin image logo -->
-  <header id="header">
+  <header id="header" role="banner">
     <div class="container">
       <div class="header-inner">
-        <a href="#" class="logo">
+        <a href="#" class="logo" aria-label="ASRD home">
           <img src="asrd-coin-logo.png" alt="ASRD coin logo" class="logo-icon-img">
           ASRD
         </a>
-        <nav>
+
+        <!-- Desktop nav -->
+        <nav class="desktop-nav" aria-label="Main navigation">
           <a href="#features" class="nav-link">Features</a>
           <a href="#tokenomics" class="nav-link">Tokenomics</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#contact" class="nav-link">Contact</a>
-          <a href="https://dexscreener.com" target="_blank" class="nav-cta">Buy ASRD</a>
+          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="nav-cta">Buy ASRD</a>
         </nav>
+
+        <!-- Hamburger (tablet & mobile) -->
+        <button id="menuToggle" class="hamburger" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Mobile overlay & sliding panel -->
+  <div id="mobileMenu" class="mobile-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
+    <aside class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
+      <div class="panel-inner">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+          <div style="display:flex; align-items:center; gap:10px">
+            <img src="asrd-coin-logo.png" alt="ASRD" style="width:48px;height:48px;border-radius:10px;object-fit:contain">
+            <div style="font-weight:900;font-size:18px">ASRD</div>
+          </div>
+          <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:0;color:var(--slate-200);font-weight:800;font-size:18px;padding:10px;border-radius:10px">✕</button>
+        </div>
+
+        <nav class="mobile-links" aria-label="Mobile navigation">
+          <a href="#features" data-close>Features</a>
+          <a href="#tokenomics" data-close>Tokenomics</a>
+          <a href="#about" data-close>About</a>
+          <a href="#contact" data-close>Contact</a>
+          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="mobile-cta" style="text-decoration:none">🚀 Buy ASRD</a>
+        </nav>
+
+        <div class="mobile-disclaimer">Informational only. Read the whitepaper for technical & legal details.</div>
+      </div>
+    </aside>
+  </div>
+
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-bg"></div>
+  <section class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-content">
         <!-- HERO COIN LOGO ROW -->
@@ -223,29 +283,29 @@
         <div class="hero-badge fade-in-up">🔥 BEP-20 Utility Token</div>
         <h1 class="fade-in-up">Powering the Next Digital Economy</h1>
         <p class="hero-subtitle fade-in-up">Sustainable growth through deflationary mechanics, treasury-funded buybacks, and developer ecosystem support. Built for utility that endures.</p>
-        
-        <div class="hero-stats fade-in-up">
-          <div class="stat-item">
+
+        <div class="hero-stats fade-in-up" role="list" aria-label="Key stats">
+          <div class="stat-item" role="listitem">
             <div class="stat">4M</div>
             <div class="stat-label">Total Supply</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-item" role="listitem">
             <div class="stat">2%</div>
             <div class="stat-label">Transfer Fee</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-item" role="listitem">
             <div class="stat">100%</div>
             <div class="stat-label">Circulating</div>
           </div>
         </div>
-        
-        <div class="cta-buttons fade-in-up">
-          <a href="https://dexscreener.com" target="_blank" class="btn btn-primary">🚀 Buy on DEX</a>
+
+        <div class="cta-buttons fade-in-up" role="group" aria-label="Primary actions">
+          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🚀 Buy on DEX</a>
           <a href="#tokenomics" class="btn btn-secondary">View Tokenomics</a>
         </div>
       </div>
-      
-      <div class="hero-visual">
+
+      <div class="hero-visual" aria-hidden="true">
         <div class="feature-card fade-in-up">
           <div class="feature-icon" style="background:var(--gradient-hero)">⚡</div>
           <h4>Lightning Transfers</h4>
@@ -272,7 +332,7 @@
         <h2>Why ASRD Dominates</h2>
         <p>Engineered for maximum utility, security, and sustainable growth in the BSC ecosystem.</p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature fade-in-up">
           <div class="feature-icon-large">🛡️</div>
@@ -305,17 +365,17 @@
         <h2>Transparent Tokenomics</h2>
         <p>Fair launch. 100% circulating. Mechanics engineered for exponential growth.</p>
       </div>
-      
+
       <div class="tokenomics">
         <div class="tokenomics-main fade-in-up">
           <h3>Every Transaction Creates Value</h3>
           <p style="font-size:20px; color:var(--slate-200); margin-bottom:40px; line-height:1.7; max-width:700px">
             <strong>2% transfer tax:</strong> 1% <span style="color:var(--red-500)">burned forever</span> + 1% to <span style="color:var(--emerald-500)">treasury</span> for buybacks, liquidity, and ecosystem grants.
           </p>
-          
+
           <div class="pie-container">
             <div class="token-pie float">
-              <svg class="pie-chart-svg" viewBox="0 0 360 360">
+              <svg class="pie-chart-svg" viewBox="0 0 360 360" role="img" aria-label="Token allocation chart">
                 <defs>
                   <linearGradient id="liqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#1E40AF"/>
@@ -330,41 +390,42 @@
                     <stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/>
                   </linearGradient>
                 </defs>
-                
+
                 <circle cx="180" cy="180" r="160" fill="none" stroke="#1E293B" stroke-width="35"/>
-                <circle cx="180" cy="180" r="160" fill="none" stroke="url(#liqGrad)" stroke-width="35" stroke-dasharray="1006 1006" stroke-dashoffset="1006" pathLength="1"/>
-                <circle cx="180" cy="180" r="140" fill="none" stroke="url(#feeGrad)" stroke-width="25" stroke-dasharray="44.1 628.3" stroke-dashoffset="672.4" pathLength="1"/>
-                <circle cx="180" cy="180" r="120" fill="none" stroke="url(#burnGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="314.15" pathLength="1"/>
-                <circle cx="180" cy="180" r="100" fill="none" stroke="url(#treasuryGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="292.1" pathLength="1"/>
+                <!-- Example decorative strokes; the animation triggers on intersection -->
+                <circle cx="180" cy="180" r="160" fill="none" stroke="url(#liqGrad)" stroke-width="35" stroke-dasharray="1006 1006" stroke-dashoffset="1006" pathLength="1" />
+                <circle cx="180" cy="180" r="140" fill="none" stroke="url(#feeGrad)" stroke-width="25" stroke-dasharray="44.1 628.3" stroke-dashoffset="672.4" pathLength="1" />
+                <circle cx="180" cy="180" r="120" fill="none" stroke="url(#burnGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="314.15" pathLength="1" />
+                <circle cx="180" cy="180" r="100" fill="none" stroke="url(#treasuryGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="292.1" pathLength="1" />
                 <circle cx="180" cy="180" r="70" fill="url(#liqGrad)" opacity="0.15"/>
               </svg>
-              <div class="pie-chart-center">
+              <div class="pie-chart-center" aria-hidden="true">
                 <div class="pie-center-number">4,000,000</div>
                 <div class="pie-center-label">ASRD Total Supply</div>
               </div>
             </div>
-            
+
             <div class="allocations">
               <div class="allocation-item liquidity">
-                <div class="allocation-label">💧 Liquidity & Market</div>
+                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">💧 Liquidity & Market</div>
                 <div class="allocation-value">100%</div>
               </div>
               <div class="allocation-item fee">
-                <div class="allocation-label">⚙️ Transfer Tax</div>
+                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">⚙️ Transfer Tax</div>
                 <div class="allocation-value">2.00%</div>
               </div>
               <div class="allocation-item burn">
-                <div class="allocation-label">🔥 Burn</div>
+                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">🔥 Burn</div>
                 <div class="allocation-value">1.00%</div>
               </div>
               <div class="allocation-item treasury">
-                <div class="allocation-label">💎 Treasury</div>
+                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">💎 Treasury</div>
                 <div class="allocation-value">1.00%</div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div style="background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.02)); padding:48px; border-radius:var(--radius-2xl); border:1px solid rgba(255,255,255,0.15); height:fit-content; box-shadow:var(--shadow-premium)" class="fade-in-up">
           <h3 style="font-size:28px; font-weight:900; margin-bottom:32px; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text">Key Facts</h3>
           <div style="display:grid; gap:20px; font-size:16px; line-height:1.6">
@@ -390,7 +451,7 @@
           Join thousands of builders creating the next digital economy with ASRD.
         </p>
         <div class="cta-buttons">
-          <a href="https://dexscreener.com" target="_blank" class="btn btn-primary" style="padding:24px 56px; font-size:18px">🚀 Get Started</a>
+          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:24px 56px; font-size:18px">🚀 Get Started</a>
           <a href="#features" class="btn btn-secondary" style="padding:24px 56px; font-size:18px">Explore Features</a>
         </div>
       </div>
@@ -421,9 +482,12 @@
   </footer>
 
   <script>
-    // Particle System
+    /* ---------------------------
+       Particle System
+       --------------------------- */
     function createParticles() {
       const particles = document.getElementById('particles');
+      if (!particles) return;
       for(let i = 0; i < 50; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -435,31 +499,51 @@
       }
     }
 
-    // Header effects
+    /* ---------------------------
+       Header scroll effect
+       --------------------------- */
     window.addEventListener('scroll', () => {
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 100);
-    });
-
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // small parallax for feature cards
+      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      document.querySelectorAll('.feature-card').forEach((card, i) => {
+        // reduce movement for mobile
+        const factor = (window.innerWidth <= 1024) ? 0.02 : 0.08;
+        card.style.transform = `translateY(${scrolled * factor * (i + 1)}px)`;
       });
     });
 
-    // Premium animations
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    /* ---------------------------
+       Smooth in-page scrolling for hash links
+       --------------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        // If href is # or empty allow default
+        if (!href || href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ---------------------------
+       Intersection observer for reveal & pie animation
+       --------------------------- */
+    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -80px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          entry.target.classList.add('inview');
           entry.target.style.animationPlayState = 'running';
           if (entry.target.querySelector('.pie-chart-svg')) {
             const circles = entry.target.querySelectorAll('circle[stroke-dasharray]');
             circles.forEach((circle, index) => {
               setTimeout(() => {
-                circle.style.animation = 'pieFill 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
-              }, index * 300);
+                circle.style.animation = 'pieFill 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+              }, index * 160);
             });
           }
         }
@@ -468,15 +552,85 @@
 
     document.querySelectorAll('.fade-in-up, .feature, .tokenomics-main').forEach(el => observer.observe(el));
 
-    // Parallax
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      document.querySelectorAll('.feature-card').forEach((card, i) => {
-        card.style.transform = `translateY(${scrolled * 0.1 * (i + 1)}px)`;
-      });
-    });
+    /* ---------------------------
+       Mobile menu toggle logic (hamburger)
+       --------------------------- */
+    (function () {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileBackdrop = document.getElementById('mobileBackdrop');
+      const mobilePanel = document.getElementById('mobilePanel');
+      const mobileClose = document.getElementById('mobileClose');
+      const focusableSelector = 'a, button, input, textarea, [tabindex]:not([tabindex="-1"])';
+      let lastFocused = null;
 
-    // Initialize
+      if (!menuToggle || !mobileMenu) return;
+
+      function openMenu() {
+        lastFocused = document.activeElement;
+        menuToggle.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('open');
+        mobileBackdrop.classList.add('open');
+        mobilePanel.classList.add('open');
+        mobileMenu.removeAttribute('aria-hidden');
+        // Focus first link
+        const firstLink = mobileMenu.querySelector('.mobile-links a');
+        if (firstLink) firstLink.focus();
+        // prevent body scroll
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        mobileBackdrop.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        // restore focus
+        if (lastFocused) lastFocused.focus();
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
+
+      menuToggle.addEventListener('click', (e) => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        if (expanded) closeMenu(); else openMenu();
+      });
+
+      mobileClose.addEventListener('click', closeMenu);
+      mobileBackdrop.addEventListener('click', closeMenu);
+
+      // Close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+          closeMenu();
+        }
+      });
+
+      // Close when clicking any mobile link that has data-close
+      mobileMenu.querySelectorAll('[data-close]').forEach(el => {
+        el.addEventListener('click', () => {
+          // allow native anchor navigation first; then close
+          setTimeout(closeMenu, 120);
+        });
+      });
+
+      // Close if focus moves outside the panel while open (simple focus trap-ish)
+      mobileMenu.addEventListener('focusout', (e) => {
+        if (menuToggle.getAttribute('aria-expanded') !== 'true') return;
+        // if focus moves outside the mobile panel and mobile menu, close after short delay
+        setTimeout(() => {
+          const active = document.activeElement;
+          if (!mobilePanel.contains(active) && active !== menuToggle) {
+            // keep it open only if focus is within panel
+            closeMenu();
+          }
+        }, 150);
+      });
+    })();
+
+    // Initialize particles
     createParticles();
   </script>
 </body>
