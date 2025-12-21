@@ -6,7 +6,7 @@
   <title>ASRD — Powering the Next Digital Economy</title>
   <meta name="description" content="ASRD — Powering the Next Digital Economy. BEP-20 token with deflationary burn, fee sharing, treasury buybacks and developer grants." />
   <style>
-    /* ================== Palette ================== */
+    /* --- Palette (user provided) --- */
     :root{
       --blue-start:#2B7BF0; --blue-end:#67C0E8;
       --gold-start:#B89339; --gold-end:#E3C26B;
@@ -15,226 +15,224 @@
       --bg-1:#061421; --bg-2:#0D1C2A; --text-metal:#E0E6F0;
       --glass: rgba(255,255,255,0.04);
       --card: rgba(255,255,255,0.03);
-      --accent-grad: linear-gradient(135deg,var(--blue-start),var(--blue-end));
-      --gold-grad: linear-gradient(135deg,var(--gold-start),var(--gold-end));
-      --silver-grad: linear-gradient(135deg,var(--silver-start),var(--silver-end));
-      --radius:14px; --glass-2: rgba(255,255,255,0.02);
+      --accent: linear-gradient(135deg,var(--blue-start),var(--blue-end));
+      --goldGrad: linear-gradient(135deg,var(--gold-start),var(--gold-end));
+      --silverGrad: linear-gradient(135deg,var(--silver-start),var(--silver-end));
+      --radius:14px;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
 
-    /* ================== Reset & Layout ================== */
+    /* Global & layout */
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text-metal);-webkit-font-smoothing:antialiased}
-    body{overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+    html,body{height:100%;margin:0;background:radial-gradient(900px 400px at 10% 10%,rgba(103,192,232,0.02),transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text-metal);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1200px;margin:0 auto;padding:18px}
+    .container{max-width:1120px;margin:0 auto;padding:22px}
 
-    /* ================== Particles BG ================== */
-    #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+    /* network background svg container */
+    .bg-network{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.55}
 
-    /* ================== Header ================== */
-    header{position:relative;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0}
+    header{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:64px;height:64px;border-radius:12px;overflow:hidden;display:inline-block}
-    .logo img{width:100%;height:100%;object-fit:cover;display:block}
-    .brand h1{margin:0;font-size:18px;letter-spacing:0.6px}
-    .brand p{margin:0;font-size:12px;opacity:0.85}
+    .logo-img{width:64px;height:64px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    .brand-title{line-height:1}
+    .brand-title h1{margin:0;font-size:18px;letter-spacing:0.6px;color:var(--text-metal)}
+    .brand-title p{margin:0;font-size:12px;opacity:0.85}
 
-    nav{display:flex;gap:8px;align-items:center}
-    .nav-link{padding:8px 12px;border-radius:12px;font-weight:700;color:var(--text-metal);background:transparent}
-    .nav-cta{padding:10px 14px;border-radius:12px;background:var(--accent-grad);color:#071423;font-weight:800}
+    /* Nav */
+    nav{display:flex;gap:10px;align-items:center}
+    .nav-link{padding:8px 12px;border-radius:12px;font-weight:600;color:var(--text-metal);background:transparent}
+    .nav-cta{padding:10px 14px;border-radius:12px;background:var(--accent);color:#071423;font-weight:700}
 
-    /* Mobile hamburger */
-    .hamburger{display:none;background:transparent;border:0;color:var(--text-metal);font-size:26px}
+    /* HERO - mobile first */
+    .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:start;padding:20px 0}
+    .hero-inner{display:flex;flex-direction:column;gap:16px}
+    .hero h2{font-size:22px;margin:0;line-height:1.03;background:linear-gradient(90deg,var(--silver-start),var(--blue-end));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero h1{font-size:28px;margin:0;line-height:1.02;font-weight:800}
+    .hero p.lead{margin:0;color:rgba(224,230,240,0.92);font-size:15px}
 
-    /* ================== Hero ================== */
-    .hero{position:relative;z-index:10;display:grid;grid-template-columns:1fr;gap:18px;padding:28px 0}
-    .hero-left{display:flex;flex-direction:column;gap:14px}
-    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--silver-start),var(--silver-end));color:#071423;font-weight:700}
-    .title{font-size:28px;line-height:1.02;font-weight:800}
-    .subtitle{color:rgba(224,230,240,0.9);font-size:15px}
-    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-visual{display:grid;grid-template-columns:1fr;gap:12px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
 
-    /* coin visual */
-    .hero-right{display:flex;flex-direction:column;gap:12px;align-items:center}
-    .coin-wrap{width:280px;height:280px;border-radius:50%;display:grid;place-items:center;position:relative}
-    .coin{width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), rgba(0,0,0,0.25)), linear-gradient(180deg,var(--silver-start),var(--silver-end));box-shadow:0 30px 80px rgba(3,10,20,0.7);transform-style:preserve-3d;animation:spin 9s linear infinite}
-    .coin-svg{width:220px;height:220px;display:block;transform-origin:50% 50%;animation:spin 9s linear infinite;}
-    .coin .A, .coin .S{display:none}
-    .coin .A{position:absolute;left:42px;top:32px;width:60px;height:120px;background:linear-gradient(180deg,var(--blue-start),var(--blue-end));clip-path: polygon(50% 0, 100% 100%, 0 100%);box-shadow:inset 0 -6px 18px rgba(0,0,0,0.18)}
-    .coin .S{position:absolute;right:36px;top:40px;width:90px;height:110px;background:linear-gradient(180deg,var(--gold-start),var(--gold-end));border-radius:50%;box-shadow:inset 0 -6px 18px rgba(0,0,0,0.18)}
-    .rim{position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 18px rgba(255,255,255,0.02);border:6px solid rgba(255,255,255,0.04);}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:12px;border:0;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#071423;font-weight:700}
+    .btn-outline{background:transparent;border:1px solid rgba(224,230,240,0.06);color:var(--text-metal)}
 
-    @keyframes spin{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}
+    /* token snapshot */
+    .snapshot{display:flex;gap:10px;flex-direction:column}
+    .snapshot-row{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}
+    .stat{flex:1;min-width:120px}
+    .stat .label{font-size:12px;opacity:0.85}
+    .stat .value{font-weight:800}
 
-    /* ================== Snapshot & stats ================== */
-    .snapshot{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
-    .stat-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:12px;border-radius:12px;min-width:140px;flex:1;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    .stat-card .label{font-size:12px;opacity:0.9}
-    .stat-card .val{font-size:18px;font-weight:800}
+    /* Tokenomics visuals */
+    .tokenomics-wrap{display:flex;gap:18px;align-items:flex-start;flex-direction:column}
+    .pie-wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .pie-svg{width:220px;height:220px;border-radius:50%;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+    .alloc-table{min-width:260px}
 
-    /* ================== Tokenomics ================== */
-    .tokenomics{margin-top:18px;display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
-    .donut{display:flex;gap:12px;align-items:center}
-    .legend{display:flex;flex-direction:column;gap:8px}
-    .legend .row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.02))}
-    .legend .label{font-weight:700}
+    /* Sections */
+    section{margin-top:22px}
+    h3{margin:0 0 8px 0}
+    .two-cols{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:start}
 
-    /* interactive chart */
-    .chart{width:100%;height:260px}
+    /* Footer */
+    footer{margin-top:30px;padding:30px 0;border-top:1px solid rgba(255,255,255,0.03)}
 
-    /* ================== Sections ================== */
-    section.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:16px;border-radius:14px;margin-top:18px}
+    /* Metallic badges */
+    .metal-pill{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--silver-start),var(--silver-end));color:#071423;font-weight:700}
 
-    /* timeline */
-    .timeline{display:flex;flex-direction:column;gap:10px}
-    .tl-item{display:flex;gap:12px}
-    .tl-bullet{width:12px;height:12px;border-radius:6px;background:var(--ring);margin-top:6px}
-
-    /* footer */
-    footer{margin-top:28px;padding:28px 0;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-
-    /* ================== Responsive ================== */
-    @media (min-width:900px){
-      .hero{grid-template-columns:1fr 380px;align-items:center;padding:40px 0}
-      .title{font-size:40px}
-      .subtitle{font-size:16px}
+    /* responsive tweaks */
+    @media (min-width:800px){
+      .hero{grid-template-columns:1fr 420px;align-items:center;padding:36px 0}
+      .hero h1{font-size:42px}
+      .hero h2{font-size:18px}
+      .pie-svg{width:260px;height:260px}
     }
 
-    @media (max-width:899px){
-      nav{display:none}
-      .hamburger{display:block}
-      .coin-wrap{width:220px;height:220px}
-      .coin{width:180px;height:180px}
-      .tokenomics{grid-template-columns:1fr;}
-      .hero-right{order:-1}
-    }
+    /* hero visual decorative SVGs */
+    .hero-graphic{width:100%;height:280px;border-radius:12px;overflow:hidden;position:relative}
+    .hero-graphic .glow{position:absolute;inset:0;background:radial-gradient(500px 200px at 10% 20%, rgba(103,192,232,0.06), transparent), linear-gradient(180deg, rgba(0,0,0,0.2), transparent)}
+    .hero-graphic svg{position:absolute;inset:0;width:100%;height:100%}
 
+    /* polished tokenomics list */
+    .alloc-list{display:grid;gap:10px}
+    .alloc-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.02))}
+
+    /* accessibility & small screen adjustments */
     @media (max-width:480px){
-      .title{font-size:22px}
-      .subtitle{font-size:14px}
-      .logo{width:52px;height:52px}
-      .coin-wrap{width:160px;height:160px}
-      .coin{width:130px;height:130px}
-      .stat-card{min-width:110px}
+      .hero h1{font-size:24px}
+      .hero-graphic{height:220px}
+      .two-cols{grid-template-columns:1fr}
+      .nav-link{padding:8px}
     }
 
-    /* ================== Micro-interactions ================== */
-    .btn-glow{box-shadow:0 8px 36px rgba(43,123,240,0.12);transition:transform .18s ease,box-shadow .18s}
-    .btn-glow:hover{transform:translateY(-4px);box-shadow:0 18px 58px rgba(43,123,240,0.18)}
+    /* subtle animations */
+    .fade-up{transform:translateY(6px);opacity:0;transition:all 520ms cubic-bezier(.15,.9,.22,1)}
+    .fade-up.inview{transform:none;opacity:1}
 
-    .nav-panel{position:fixed;inset:0;background:linear-gradient(180deg,rgba(6,20,33,0.96),rgba(13,28,42,0.96));backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;z-index:80}
-    .nav-panel a{font-size:20px}
+    /* utility */
+    .muted{opacity:0.8;font-size:14px}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace}
 
   </style>
 </head>
 <body>
-  <!-- Particles background -->
-  <canvas id="particles"></canvas>
 
-  <div class="wrap">
+  <!-- Background network SVG (static, lightweight) -->
+  <div class="bg-network" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">
+      <defs>
+        <linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#2B7BF0" stop-opacity="0.06"/><stop offset="1" stop-color="#67C0E8" stop-opacity="0.02"/></linearGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="none"></rect>
+      <g stroke="var(--network)" stroke-opacity="0.12" fill="none" stroke-width="1">
+        <line x1="160" y1="80" x2="420" y2="180"/>
+        <line x1="420" y1="180" x2="740" y2="120"/>
+        <line x1="800" y1="200" x2="1200" y2="180"/>
+        <line x1="1200" y1="180" x2="1400" y2="400"/>
+        <circle cx="160" cy="80" r="3" fill="#9FE6FF"/>
+        <circle cx="420" cy="180" r="3" fill="#9FE6FF"/>
+        <circle cx="740" cy="120" r="3" fill="#9FE6FF"/>
+        <circle cx="1200" cy="180" r="3" fill="#9FE6FF"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="container">
     <header>
       <div class="brand">
-        <div class="logo"><img src="ASRD-logo.png" alt="ASRD logo"/></div>
-        <div>
+        <img src="ASRD-logo.png" alt="ASRD" class="logo-img"/>
+        <div class="brand-title">
           <h1>ASRD</h1>
-          <p>Powering the Next Digital Economy.</p>
+          <p class="muted">Powering the Next Digital Economy.</p>
         </div>
       </div>
 
-      <nav aria-label="main nav">
+      <nav aria-label="primary navigation">
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#tokenomics">Tokenomics</a>
         <a class="nav-link" href="#roadmap">Roadmap</a>
         <a class="nav-link" href="#security">Security</a>
-        <a class="nav-cta nav-link" href="#whitepaper">Whitepaper</a>
+        <a class="nav-cta" href="#whitepaper">Read White Paper</a>
       </nav>
-
-      <button class="hamburger" aria-label="Open menu" id="hamburger">☰</button>
     </header>
 
     <main>
       <section class="hero">
-        <div class="hero-left">
-          <span class="eyebrow">ASRD</span>
-          <div class="title">Powering the Next <span style="background:linear-gradient(90deg,var(--blue-start),var(--gold-start));-webkit-background-clip:text;background-clip:text;color:transparent">Digital Economy</span></div>
-          <div class="subtitle">A practical BEP-20 token with deflationary mechanics, treasury buybacks, and developer-first grants — designed for builders and users.</div>
+        <div class="hero-inner">
+          <h2 class="fade-up">ASRD — Powering the Next Digital Economy.</h2>
+          <h1 class="fade-up">A practical BEP-20 token built for low-friction digital services and sustainable ecosystem growth.</h1>
+          <p class="lead fade-up">Deflationary mechanics combined with treasury-led support — designed for developers, builders and users who want utility that endures.</p>
 
-          <div class="hero-cta">
-            <a class="nav-cta btn-glow" href="#tokenomics">Token Details</a>
-            <a class="nav-link" href="#whitepaper">Read Whitepaper</a>
-            <a class="nav-link" href="#contact">Community</a>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#tokenomics">Token Details</a>
+            <a class="btn btn-outline" href="#whitepaper">White Paper</a>
+            <a class="btn btn-outline" href="#contact">Contact</a>
           </div>
 
-          <div class="snapshot" aria-hidden>
-            <div class="stat-card"><div class="label">Standard</div><div class="val mono">BEP-20</div></div>
-            <div class="stat-card"><div class="label">Total Supply</div><div class="val mono">4,000,000</div></div>
-            <div class="stat-card"><div class="label">Decimals</div><div class="val mono">18</div></div>
+          <div class="card snapshot fade-up" style="margin-top:10px">
+            <div class="snapshot-row">
+              <div class="stat"><div class="label">Standard</div><div class="value mono">BEP-20</div></div>
+              <div class="stat"><div class="label">Total Supply</div><div class="value mono">4,000,000 ASRD</div></div>
+              <div class="stat"><div class="label">Decimals</div><div class="value mono">18</div></div>
+            </div>
+            <div style="margin-top:10px" class="muted">Transfer mechanics example: small fee with a portion burned and a portion to treasury for buybacks and ecosystem funding. Governance controls rates within safe bounds.</div>
           </div>
         </div>
 
-        <div class="hero-right">
-          <div class="coin-wrap" aria-hidden>
-            <!-- Vector logo recreated as inline SVG (code) - scalable, stylable, animating -->
-            <svg class="coin-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ASRD coin logo">
+        <div class="hero-visual">
+          <!-- Decorative hero graphic built with SVG to avoid external assets. Replace with hero-graphic.png for richer AI art. -->
+          <div class="card hero-graphic">
+            <div class="glow"></div>
+            <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="blueGrad" x1="0" x2="1"><stop offset="0" stop-color="#2B7BF0"/><stop offset="1" stop-color="#67C0E8"/></linearGradient>
-                <linearGradient id="goldGrad" x1="0" x2="1"><stop offset="0" stop-color="#B89339"/><stop offset="1" stop-color="#E3C26B"/></linearGradient>
-                <linearGradient id="silverGrad" x1="0" x2="1"><stop offset="0" stop-color="#BCC0C8"/><stop offset="1" stop-color="#E0E3E8"/></linearGradient>
-                <radialGradient id="gloss" cx="30%" cy="20%">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"/>
+                <radialGradient id="coinGlow" cx="30%" cy="35%">
+                  <stop offset="0%" stop-color="#67C0E8" stop-opacity="0.6"/>
+                  <stop offset="100%" stop-color="#071423" stop-opacity="0"/>
                 </radialGradient>
-                <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#071423" flood-opacity="0.6"/>
-                </filter>
+                <linearGradient id="metalA" x1="0" x2="1">
+                  <stop offset="0" stop-color="#2B7BF0"/>
+                  <stop offset="1" stop-color="#67C0E8"/>
+                </linearGradient>
+                <linearGradient id="metalS" x1="0" x2="1">
+                  <stop offset="0" stop-color="#B89339"/>
+                  <stop offset="1" stop-color="#E3C26B"/>
+                </linearGradient>
+                <linearGradient id="rim" x1="0" x2="1">
+                  <stop offset="0" stop-color="#BCC0C8" stop-opacity="0.9"/>
+                  <stop offset="1" stop-color="#E0E3E8" stop-opacity="0.9"/>
+                </linearGradient>
               </defs>
 
-              <!-- outer rim -->
-              <g filter="url(#softShadow)">
-                <circle cx="250" cy="250" r="200" fill="url(#silverGrad)" stroke="#071423" stroke-opacity="0.08" stroke-width="8"/>
-                <circle cx="250" cy="250" r="186" fill="url(#gloss)" opacity="0.06"/>
+              <rect width="100%" height="100%" fill="url(#coinGlow)"/>
+
+              <!-- outer ring / circuit pattern -->
+              <g transform="translate(120,40)">
+                <circle cx="260" cy="220" r="160" fill="rgba(8,18,30,0.6)" stroke="url(#rim)" stroke-width="6"/>
+                <!-- simple circuit marks -->
+                <g stroke="#9FE6FF" stroke-opacity="0.35" stroke-width="2" fill="none">
+                  <path d="M100,100 L200,100 L230,120"/>
+                  <path d="M420,140 L360,120 L320,120"/>
+                  <circle cx="260" cy="70" r="4" fill="#9FE6FF"/>
+                  <circle cx="390" cy="260" r="4" fill="#9FE6FF"/>
+                </g>
+
+                <!-- stylized ASRD letters: A (blue) and S (gold) with metallic shading -->
+                <g transform="translate(180,120)">
+                  <path d="M60 0 L110 160 L10 160 Z" fill="url(#metalA)" stroke="#0f2a4a" stroke-opacity="0.2" stroke-width="2"/>
+                  <path d="M140 30 C180 30 180 80 140 100 C100 120 140 160 100 160 C60 160 40 120 80 100 C120 80 60 30 140 30 Z" fill="url(#metalS)" stroke="#6a4b1f" stroke-opacity="0.2" stroke-width="2"/>
+                </g>
               </g>
-
-              <!-- circuit pattern (stylized) -->
-              <g stroke="#9FE6FF" stroke-opacity="0.22" stroke-width="3" fill="none">
-                <path d="M110 160 C160 120, 200 110, 260 110"/>
-                <path d="M380 340 C330 380, 290 390, 230 390"/>
-                <path d="M120 320 L180 320 L210 300" stroke-linecap="round"/>
-                <circle cx="360" cy="150" r="4" fill="#9FE6FF" stroke="none"/>
-                <circle cx="140" cy="360" r="4" fill="#9FE6FF" stroke="none"/>
-              </g>
-
-              <!-- dark coin face -->
-              <circle cx="250" cy="250" r="170" fill="#061a2a" opacity="0.9" />
-
-              <!-- stylized A (blue) -->
-              <g transform="translate(120,95) scale(1.35)">
-                <path d="M80 10 L150 210 L10 210 Z" fill="url(#blueGrad)" stroke="#0b2540" stroke-opacity="0.18" stroke-width="6"/>
-                <!-- inner cut for A crossbar -->
-                <path d="M75 140 L105 140 L90 110 Z" fill="#071423" opacity="0.18"/>
-              </g>
-
-              <!-- stylized S (gold) -->
-              <g transform="translate(200,130) scale(1.05)">
-                <path d="M140 20 C160 20 190 40 170 70 C150 100 120 100 120 130 C120 160 150 170 170 190 C190 210 160 230 130 230 C100 230 80 210 100 190" fill="url(#goldGrad)" stroke="#6a4b1f" stroke-opacity="0.18" stroke-width="6"/>
-                <!-- inner silver highlight -->
-                <path d="M130 60 C150 60 170 80 155 100 C140 120 120 120 120 140" fill="url(#silverGrad)" opacity="0.85"/>
-              </g>
-
-              <!-- subtle gloss and rim highlight -->
-              <path d="M70 60 C140 20 360 20 430 60" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10" stroke-linecap="round"/>
-
             </svg>
           </div>
 
-          <div style="width:100%;max-width:360px">
-            <div class="card">
-              <div style="display:flex;justify-content:space-between;align-items:center">
-                <div><strong>Live Snapshot</strong></div>
-                <div class="mono" id="supply">4,000,000</div>
-              </div>
-              <div style="margin-top:8px" class="muted">Default example: 2% transfer fee → 1% burn + 1% treasury (governance controlled).</div>
+          <div class="card" style="min-width:220px">
+            <h3 style="margin-top:0">Live Snapshot</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+              <div class="muted"><strong>Market Allocated</strong> — 100%</div>
+              <div class="muted"><strong>On-transfer fee (example)</strong> — 2% (1% burn / 1% treasury)</div>
+              <div class="muted"><strong>Governance</strong> — Hybrid: multisig → token-weighted</div>
             </div>
           </div>
         </div>
@@ -242,45 +240,86 @@
 
       <!-- Tokenomics -->
       <section id="tokenomics" class="card">
-        <h3>Tokenomics</h3>
-        <p class="muted">Transparent allocation and interactive visuals. Tap the segments to highlight allocations.</p>
-
-        <div class="tokenomics">
+        <div class="two-cols">
           <div>
-            <div id="chart" class="chart" role="img" aria-label="Token allocation chart"></div>
+            <h3>Tokenomics</h3>
+            <p class="muted">All tokens are in circulation on launch to prioritize liquidity and adoption. The model pairs a small transfer fee (partial burn + treasury) with treasury-funded buybacks and developer grants.</p>
 
-            <div style="margin-top:12px" class="muted">Distribution and burn mechanics are designed to balance liquidity with steady value capture through treasury buybacks and developer grants.</div>
+            <div class="tokenomics-wrap" style="margin-top:12px">
+              <div class="pie-wrap">
+                <!-- responsive SVG donut chart -->
+                <svg class="pie-svg" viewBox="0 0 42 42" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Token allocation pie chart">
+                  <defs>
+                    <linearGradient id="gBlue" x1="0" x2="1"><stop offset="0" stop-color="#2B7BF0"/><stop offset="1" stop-color="#67C0E8"/></linearGradient>
+                    <linearGradient id="gGold" x1="0" x2="1"><stop offset="0" stop-color="#B89339"/><stop offset="1" stop-color="#E3C26B"/></linearGradient>
+                    <linearGradient id="gSilver" x1="0" x2="1"><stop offset="0" stop-color="#BCC0C8"/><stop offset="1" stop-color="#E0E3E8"/></linearGradient>
+                  </defs>
+                  <!-- donut base -->
+                  <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="#071423" stroke-width="7"/>
+                  <!-- segments: Liquidity 40% (blue), Community 30% (gold), Treasury 20% (silver), Team 10% (light) -->
+                  <g transform="rotate(-90 21 21)">
+                    <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="url(#gBlue)" stroke-width="7" stroke-dasharray="40 60" stroke-dashoffset="0"/>
+                    <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="url(#gGold)" stroke-width="7" stroke-dasharray="30 70" stroke-dashoffset="-40"/>
+                    <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="url(#gSilver)" stroke-width="7" stroke-dasharray="20 80" stroke-dashoffset="-70"/>
+                    <circle cx="21" cy="21" r="15.9155" fill="transparent" stroke="rgba(255,255,255,0.06)" stroke-width="7" stroke-dasharray="10 90" stroke-dashoffset="-90"/>
+                  </g>
+                  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="4" fill="#E0E6F0" font-weight="700">4,000,000</text>
+                </svg>
 
-            <div style="margin-top:12px" class="card">
-              <strong>On-transfer mechanics (example)</strong>
-              <pre class="mono" style="background:rgba(0,0,0,0.28);padding:10px;border-radius:8px">feeBasis = 200 (2.00%)
+                <div style="min-width:180px">
+                  <div style="font-weight:800">Allocation (4,000,000)</div>
+                  <div class="alloc-list" style="margin-top:8px">
+                    <div class="alloc-item"><div>Liquidity Pools</div><div class="mono">1,600,000 (40%)</div></div>
+                    <div class="alloc-item"><div>Community & Rewards</div><div class="mono">1,200,000 (30%)</div></div>
+                    <div class="alloc-item"><div>Treasury & Buybacks</div><div class="mono">800,000 (20%)</div></div>
+                    <div class="alloc-item"><div>Team & Advisors</div><div class="mono">400,000 (10%)</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:12px">
+                <h4 style="margin:0">On-transfer mechanics (example)</h4>
+                <p class="muted">A small transfer fee routes a portion to burn and a portion to the treasury to fund buybacks, liquidity and grants. These parameters are configurable by governance within defined safety caps.</p>
+                <pre class="mono" style="background:rgba(255,255,255,0.02);padding:10px;border-radius:8px">Example: feeBasis = 200 (2.00%)
 - burn = 1%  (permanent removal)
 - treasury = 1% (ecosystem support & buybacks)</pre>
+              </div>
             </div>
           </div>
 
-          <aside>
-            <div class="card">
-              <strong>Allocation (4,000,000)</strong>
-              <div class="legend" style="margin-top:8px">
-                <div class="row"><div class="label">Liquidity Pools</div><div class="mono">1,600,000 (40%)</div></div>
-                <div class="row"><div class="label">Community & Rewards</div><div class="mono">1,200,000 (30%)</div></div>
-                <div class="row"><div class="label">Treasury & Buybacks</div><div class="mono">800,000 (20%)</div></div>
-                <div class="row"><div class="label">Team & Advisors</div><div class="mono">400,000 (10%)</div></div>
-              </div>
-            </div>
+          <aside class="card" style="width:360px;min-width:220px">
+            <h3 style="margin-top:0">Quick Facts</h3>
+            <table style="width:100%">
+              <tr><th align="left">Token</th><td align="right">ASRD</td></tr>
+              <tr><th align="left">Standard</th><td align="right">BEP-20</td></tr>
+              <tr><th align="left">Total Supply</th><td align="right">4,000,000</td></tr>
+              <tr><th align="left">Initial Distribution</th><td align="right">All released to market</td></tr>
+              <tr><th align="left">Security</th><td align="right">Audits & bounty planned</td></tr>
+            </table>
           </aside>
         </div>
       </section>
 
-      <!-- Security & Governance -->
+      <!-- Governance & Security -->
       <section id="security" class="card">
         <h3>Security & Governance</h3>
-        <div class="timeline" style="margin-top:8px">
-          <div class="tl-item"><div class="tl-bullet"></div><div class="muted">External audit before listings</div></div>
-          <div class="tl-item"><div class="tl-bullet"></div><div class="muted">Bug bounty program (Immunefi or equivalent)</div></div>
-          <div class="tl-item"><div class="tl-bullet"></div><div class="muted">Gnosis Safe multisig treasury + timelock</div></div>
-          <div class="tl-item"><div class="tl-bullet"></div><div class="muted">Progressive migration to token-weighted governance</div></div>
+        <p class="muted">Security-first: external audits, a public bug bounty, multisig treasury and timelock governance are core requirements before major listings or integrations.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <div class="card">
+            <h4 style="margin:0">Planned Actions</h4>
+            <ul class="muted" style="margin:8px 0 0 14px">
+              <li>External audit before major activity</li>
+              <li>Bug bounty program</li>
+              <li>Gnosis Safe multisig treasury</li>
+              <li>Timelock for critical actions (48–72 hours)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4 style="margin:0">Governance Path</h4>
+            <div class="muted" style="margin-top:8px">Founder-led multisig initially, with progressive migration to token-weighted on-chain governance. Off-chain proposal forum and snapshot signaling for early community input.</div>
+          </div>
         </div>
       </section>
 
@@ -288,111 +327,57 @@
       <section id="roadmap" class="card">
         <h3>Roadmap</h3>
         <ol class="muted" style="margin-top:8px 0 0 18px">
-          <li>Token finalization, website & landing page</li>
-          <li>Deploy token & seed liquidity</li>
-          <li>Audit, bounty & staking UI</li>
-          <li>Exchange listings & grants</li>
-          <li>DAO tooling & decentralization</li>
+          <li>Token finalization, website & landing page (done)</li>
+          <li>Deploy token on BSC-compatible network and seed liquidity</li>
+          <li>Audit, bug bounty and staking UI</li>
+          <li>Exchange listings & developer grants</li>
+          <li>Progressive decentralization & DAO tooling</li>
         </ol>
       </section>
 
+      <!-- Whitepaper CTA -->
       <section id="whitepaper" class="card">
         <h3>White Paper</h3>
-        <p class="muted">Download the full white paper for technical appendix and legal disclaimers.</p>
-        <div style="margin-top:10px" class="hero-cta"><a class="nav-cta" href="#">Download PDF</a></div>
+        <p class="muted">The full investor-friendly white paper includes technical appendix, contract snippets, tokenomics tables and risk disclosures. Download the PDF for details.</p>
+        <div style="margin-top:12px" class="cta-row">
+          <a class="btn btn-primary" href="#">Download PDF</a>
+          <a class="btn btn-outline" href="#">View Contract Snippet</a>
+        </div>
       </section>
 
+      <!-- Contact -->
       <section id="contact" class="card">
-        <h3>Contact</h3>
-        <p class="muted">Replace placeholders with your project links after deployment.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-          <div style="padding:8px 12px;border-radius:10px;background:var(--silver-grad);color:#071423;font-weight:700">GitHub</div>
-          <div style="padding:8px 12px;border-radius:10px;background:var(--gold-grad);color:#071423;font-weight:700">Discord</div>
+        <h3>Contact & Community</h3>
+        <p class="muted">For technical integrations or developer grants, please connect via the project repository and community channels. Replace the placeholders with your real links after deployment.</p>
+        <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">
+          <div class="metal-pill">GitHub</div>
+          <div class="metal-pill">Discord</div>
+          <div class="metal-pill">Telegram</div>
         </div>
       </section>
 
     </main>
 
     <footer>
-      <div style="font-weight:800">ASRD</div>
-      <div class="muted">This page is informational only. See white paper for details.</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:800">ASRD</div>
+          <div class="muted">Powering the Next Digital Economy.</div>
+        </div>
+        <div class="muted">This page is informational only. Review the full white paper for technical and legal notes.</div>
+      </div>
     </footer>
   </div>
 
-  <!-- Fullscreen nav panel for mobile -->
-  <div id="navPanel" class="nav-panel" style="display:none">
-    <a href="#about" onclick="closeNav()">About</a>
-    <a href="#tokenomics" onclick="closeNav()">Tokenomics</a>
-    <a href="#roadmap" onclick="closeNav()">Roadmap</a>
-    <a href="#security" onclick="closeNav()">Security</a>
-    <a href="#whitepaper" onclick="closeNav()">Whitepaper</a>
-  </div>
-
   <script>
-    /* ================== Particles (lightweight) ================== */
-    (function(){
-      const canvas = document.getElementById('particles');
-      const ctx = canvas.getContext('2d');
-      let w=canvas.width=innerWidth, h=canvas.height=innerHeight, parts=[];
-      function rand(min,max){return Math.random()*(max-min)+min}
-      function init(){parts=[];const count=Math.round((w*h)/60000);for(let i=0;i<count;i++){parts.push({x:rand(0,w),y:rand(0,h),r:rand(0.8,2.4),vx:rand(-0.3,0.3),vy:rand(-0.2,0.2)})}}
-      function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;init()}
-      window.addEventListener('resize', resize);
-      init();
-      function draw(){ctx.clearRect(0,0,w,h);ctx.globalCompositeOperation='lighter';for(let p of parts){p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;ctx.fillStyle='rgba(159,230,255,0.08)';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()} // connections
-        for(let i=0;i<parts.length;i++){for(let j=i+1;j<parts.length;j++){let a=parts[i],b=parts[j];let dx=a.x-b.x,dy=a.y-b.y;let d=dx*dx+dy*dy; if(d<16000){let alpha=0.18 - d/16000*0.18; ctx.strokeStyle='rgba(96,124,154,'+alpha+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}} requestAnimationFrame(draw)}
-      draw();
-    })();
-
-    /* ================== Mobile nav ================== */
-    const hamburger = document.getElementById('hamburger');
-    const navPanel = document.getElementById('navPanel');
-    hamburger.addEventListener('click', ()=>{navPanel.style.display='flex';document.body.style.overflow='hidden'});
-    function closeNav(){navPanel.style.display='none';document.body.style.overflow=''}
-
-    /* ================== Donut chart - interactive ================== */
-    (function(){
-      const data = [40,30,20,10]; // percentages
-      const labels = ['Liquidity Pools','Community & Rewards','Treasury & Buybacks','Team & Advisors'];
-      const colors = ['#2B7BF0','#E3C26B','#BCC0C8','#E0E3E8'];
-      const el = document.getElementById('chart');
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const size = Math.min(el.clientWidth || 540, 540);
-      const svg = document.createElementNS(svgNS,'svg'); svg.setAttribute('viewBox','0 0 200 200'); svg.setAttribute('width','100%'); svg.setAttribute('height','100%');
-
-      const total = data.reduce((a,b)=>a+b,0);
-      let start=0;
-      for(let i=0;i<data.length;i++){
-        const d = data[i];
-        const circle = document.createElementNS(svgNS,'circle');
-        const radius=30; const cx=100; const cy=100; const circumference = 2*Math.PI*radius;
-        circle.setAttribute('r',radius); circle.setAttribute('cx',cx); circle.setAttribute('cy',cy);
-        circle.setAttribute('fill','transparent'); circle.setAttribute('stroke',colors[i]); circle.setAttribute('stroke-width',20);
-        const dash = (d/total)*circumference; circle.setAttribute('stroke-dasharray',dash+' '+(circumference-dash));
-        circle.setAttribute('transform','rotate('+(start*3.6)+' '+cx+' '+cy+')');
-        circle.style.transition='all 700ms cubic-bezier(.2,.9,.2,1)';
-        svg.appendChild(circle);
-        start += d;
-      }
-      // center label
-      const text = document.createElementNS(svgNS,'text'); text.setAttribute('x','50%'); text.setAttribute('y','50%'); text.setAttribute('text-anchor','middle'); text.setAttribute('dominant-baseline','middle'); text.setAttribute('fill', 'var(--text-metal)'); text.setAttribute('font-size','10'); text.setAttribute('font-weight','700'); text.textContent='4,000,000';
-      svg.appendChild(text);
-      el.appendChild(svg);
-
-      // legend click highlighting
-      const legendRows = document.querySelectorAll('.legend .row');
-      legendRows.forEach((r,i)=>{r.addEventListener('mouseenter',()=>{Array.from(svg.querySelectorAll('circle')).forEach((c,idx)=>{c.style.opacity = idx===i?1:0.18})});r.addEventListener('mouseleave',()=>{Array.from(svg.querySelectorAll('circle')).forEach((c)=>{c.style.opacity=1})})});
-    })();
-
-    /* ================== minor animations ================== */
-    document.addEventListener('DOMContentLoaded',()=>{
-      // subtle reveal for hero elements
-      const h = document.querySelectorAll('.hero-left > *'); setTimeout(()=>h.forEach((el,idx)=>setTimeout(()=>el.style.transform='none',idx*80)),160);
+    // simple in-view animation
+    document.addEventListener('DOMContentLoaded', function(){
+      const els = document.querySelectorAll('.fade-up');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('inview'); io.unobserve(e.target); } });
+      }, {threshold:0.12});
+      els.forEach(el=>io.observe(el));
     });
-
-    // accessibility: close nav on ESC
-    document.addEventListener('keydown',(e)=>{ if(e.key=== 'Escape') closeNav()});
-
   </script>
 </body>
 </html>
