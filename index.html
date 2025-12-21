@@ -24,33 +24,41 @@
 
     /* Global & layout */
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:radial-gradient(900px 400px at 10% 10%,rgba(103,192,232,0.02),transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text-metal);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    html,body{height:100%;margin:0;background:radial-gradient(900px 400px at 10% 10%,rgba(103,192,232,0.02),transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text-metal);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%}
     a{color:inherit;text-decoration:none}
-    .container{max-width:1120px;margin:0 auto;padding:22px}
+    /* container responsive: keep max width on desktop, allow shrink on small screens */
+    .container{max-width:1120px;margin:0 auto;padding:22px;width:calc(100% - 44px)}
+
+    /* Make images & svgs responsive (prevents overflow) */
+    img, svg {max-width:100%; height:auto; display:block}
+    /* Important to allow flex/grid children to shrink (avoids overflow on mobile) */
+    .card, .snapshot-row, .stat, .hero-visual, .two-cols > * {min-width:0; box-sizing:border-box}
 
     /* network background svg container */
     .bg-network{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.55}
 
-    header{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+    header{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0;flex-wrap:wrap}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo-img{width:64px;height:64px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    /* smaller logo on small screens */
+    .logo-img{width:64px;height:64px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.6);flex-shrink:0}
     .brand-title{line-height:1}
     .brand-title h1{margin:0;font-size:18px;letter-spacing:0.6px;color:var(--text-metal)}
     .brand-title p{margin:0;font-size:12px;opacity:0.85}
 
-    /* Nav */
-    nav{display:flex;gap:10px;align-items:center}
-    .nav-link{padding:8px 12px;border-radius:12px;font-weight:600;color:var(--text-metal);background:transparent}
-    .nav-cta{padding:10px 14px;border-radius:12px;background:var(--accent);color:#071423;font-weight:700}
+    /* Nav: allow wrap and horizontal scroll if necessary */
+    nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;overflow:hidden}
+    .nav-link{padding:8px 12px;border-radius:12px;font-weight:600;color:var(--text-metal);background:transparent;white-space:nowrap}
+    .nav-cta{padding:10px 14px;border-radius:12px;background:var(--accent);color:#071423;font-weight:700;white-space:nowrap}
 
     /* HERO - mobile first */
     .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:start;padding:20px 0}
     .hero-inner{display:flex;flex-direction:column;gap:16px}
-    .hero h2{font-size:22px;margin:0;line-height:1.03;background:linear-gradient(90deg,var(--silver-start),var(--blue-end));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero h1{font-size:28px;margin:0;line-height:1.02;font-weight:800}
-    .hero p.lead{margin:0;color:rgba(224,230,240,0.92);font-size:15px}
+    /* fluid typography to keep proportions across widths */
+    .hero h2{font-size:clamp(14px,3.2vw,18px);margin:0;line-height:1.03;background:linear-gradient(90deg,var(--silver-start),var(--blue-end));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero h1{font-size:clamp(22px,6.2vw,42px);margin:0;line-height:1.02;font-weight:800}
+    .hero p.lead{margin:0;color:rgba(224,230,240,0.92);font-size:clamp(13px,2.2vw,16px)}
 
-    .hero-visual{display:grid;grid-template-columns:1fr;gap:12px}
+    .hero-visual{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
 
     .cta-row{display:flex;gap:10px;flex-wrap:wrap}
@@ -61,20 +69,24 @@
     /* token snapshot */
     .snapshot{display:flex;gap:10px;flex-direction:column}
     .snapshot-row{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}
-    .stat{flex:1;min-width:120px}
+    /* let stat boxes shrink properly on small screens */
+    .stat{flex:1;min-width:0;flex-basis:0}
     .stat .label{font-size:12px;opacity:0.85}
-    .stat .value{font-weight:800}
+    .stat .value{font-weight:800;overflow-wrap:break-word}
 
     /* Tokenomics visuals */
     .tokenomics-wrap{display:flex;gap:18px;align-items:flex-start;flex-direction:column}
     .pie-wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-    .pie-svg{width:220px;height:220px;border-radius:50%;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
-    .alloc-table{min-width:260px}
+    /* make svg responsive */
+    .pie-svg{width:100%;max-width:260px;height:auto;border-radius:50%;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+    .alloc-table{min-width:0}
 
     /* Sections */
     section{margin-top:22px}
     h3{margin:0 0 8px 0}
-    .two-cols{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:start}
+    /* two-cols uses a fixed aside width on desktop but allows shrink on small screens */
+    .two-cols{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start}
+    .two-cols aside{width:100%;min-width:0}
 
     /* Footer */
     footer{margin-top:30px;padding:30px 0;border-top:1px solid rgba(255,255,255,0.03)}
@@ -87,17 +99,18 @@
       .hero{grid-template-columns:1fr 420px;align-items:center;padding:36px 0}
       .hero h1{font-size:42px}
       .hero h2{font-size:18px}
-      .pie-svg{width:260px;height:260px}
+      .pie-svg{width:260px;height:auto}
     }
 
     /* hero visual decorative SVGs */
-    .hero-graphic{width:100%;height:280px;border-radius:12px;overflow:hidden;position:relative}
+    .hero-graphic{width:100%;height:280px;border-radius:12px;overflow:hidden;position:relative;flex-shrink:0}
     .hero-graphic .glow{position:absolute;inset:0;background:radial-gradient(500px 200px at 10% 20%, rgba(103,192,232,0.06), transparent), linear-gradient(180deg, rgba(0,0,0,0.2), transparent)}
     .hero-graphic svg{position:absolute;inset:0;width:100%;height:100%}
 
     /* polished tokenomics list */
     .alloc-list{display:grid;gap:10px}
-    .alloc-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.02))}
+    .alloc-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.02));min-width:0}
+    .alloc-item div {min-width:0;overflow-wrap:anywhere}
 
     /* accessibility & small screen adjustments */
     @media (max-width:480px){
@@ -105,6 +118,8 @@
       .hero-graphic{height:220px}
       .two-cols{grid-template-columns:1fr}
       .nav-link{padding:8px}
+      .logo-img{width:48px;height:48px}
+      header{padding-bottom:8px}
     }
 
     /* subtle animations */
@@ -113,7 +128,7 @@
 
     /* utility */
     .muted{opacity:0.8;font-size:14px}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;overflow-wrap:anywhere}
 
   </style>
 </head>
@@ -287,7 +302,7 @@
             </div>
           </div>
 
-          <aside class="card" style="width:360px;min-width:220px">
+          <aside class="card" style="width:360px;min-width:0">
             <h3 style="margin-top:0">Quick Facts</h3>
             <table style="width:100%">
               <tr><th align="left">Token</th><td align="right">ASRD</td></tr>
