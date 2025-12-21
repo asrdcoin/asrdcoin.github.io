@@ -93,7 +93,9 @@
     .code-toggle{display:flex;gap:8px;align-items:center}
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;font-size:13px}
 
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:600}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:600;color:var(--text-metal);text-decoration:none}
+    .pill:hover{background:rgba(255,255,255,0.08)}
+    .nav-link{color:var(--text-metal)!important}
 
   </style>
 </head>
@@ -140,10 +142,10 @@
         </div>
       </div>
       <nav aria-label="top navigation">
-        <a href="#about" class="pill">About</a>
-        <a href="#tokenomics" class="pill">Tokenomics</a>
-        <a href="#roadmap" class="pill">Roadmap</a>
-        <a href="#security" class="pill">Security</a>
+        <a href="#about" class="pill nav-link">About</a>
+        <a href="#tokenomics" class="pill nav-link">Tokenomics</a>
+        <a href="#roadmap" class="pill nav-link">Roadmap</a>
+        <a href="#security" class="pill nav-link">Security</a>
       </nav>
     </header>
 
