@@ -46,7 +46,42 @@
     .header-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
 
     .logo{display:flex; align-items:center; gap:16px; font-size:28px; font-weight:800; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text}
-    .logo-icon-img{ width:56px; height:56px; border-radius:50%; object-fit:contain; padding:6px; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 65%); box-shadow:0 12px 30px rgba(0,0,0,0.7); }
+
+    /* header logo: fill the circular container */
+    .logo-icon-img{
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      object-fit:cover;      /* fill the circle (cropping if needed) */
+      padding:0;             /* remove inner padding that shrinks the image */
+      display:block;         /* remove inline-gap/baseline issues */
+      vertical-align:middle;
+      background:#0F172A;    /* fallback for transparent px */
+      box-shadow:0 12px 30px rgba(0,0,0,0.7);
+    }
+
+    /* hero (large) logo */
+    .hero-logo{
+      width:96px;
+      height:96px;
+      border-radius:50%;
+      object-fit:cover;
+      padding:0;
+      display:block;
+      background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 65%);
+      box-shadow:0 18px 40px rgba(15,23,42,0.85);
+    }
+
+    /* mobile / panel logo */
+    .mobile-logo{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      object-fit:cover;
+      padding:0;
+      display:block;
+      background:#0F172A;
+    }
 
     /* Desktop nav */
     nav.desktop-nav{display:flex; gap:32px; align-items:center}
@@ -217,7 +252,10 @@
     <div class="container">
       <div class="header-inner">
         <a href="#" class="logo" aria-label="ASRD home">
-          <img src="assets/images/asrd-coin-logo.png" alt="ASRD coin logo" class="logo-icon-img">
+          <!-- using raw.githubusercontent so path issues are less likely -->
+          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/asrd-coin-logo.png"
+               alt="ASRD coin logo"
+               class="logo-icon-img">
           ASRD
         </a>
 
@@ -228,7 +266,7 @@
           <a href="#about" class="nav-link">About</a>
           <a href="#contact" class="nav-link">Contact</a>
 
-          <!-- ADDED: Read Whitepaper link in header (desktop) -->
+          <!-- Read Whitepaper link in header (desktop) -->
           <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
              target="_blank" rel="noopener noreferrer"
              class="nav-whitepaper" aria-label="Read the ASRD whitepaper">📄 Whitepaper</a>
@@ -253,7 +291,9 @@
       <div class="panel-inner">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
           <div style="display:flex; align-items:center; gap:10px">
-            <img src="assets/images/asrd-coin-logo.png" alt="ASRD" style="width:48px;height:48px;border-radius:10px;object-fit:contain">
+            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/asrd-coin-logo.png"
+                 alt="ASRD"
+                 class="mobile-logo">
             <div style="font-weight:900;font-size:18px">ASRD</div>
           </div>
           <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:0;color:var(--slate-200);font-weight:800;font-size:18px;padding:10px;border-radius:10px">✕</button>
@@ -265,7 +305,7 @@
           <a href="#about" data-close>About</a>
           <a href="#contact" data-close>Contact</a>
 
-          <!-- ADDED: mobile whitepaper link -->
+          <!-- mobile whitepaper link -->
           <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
              target="_blank" rel="noopener noreferrer" class="mobile-cta" data-close style="text-decoration:none">
              📄 Read Whitepaper
@@ -286,15 +326,9 @@
       <div class="hero-content">
         <!-- HERO COIN LOGO ROW -->
         <div style="margin-bottom:28px; display:flex; align-items:center; gap:16px;">
-          <img src="assets/images/asrd-coin-logo.png" alt="ASRD coin" style="
-            width:96px;
-            height:96px;
-            border-radius:50%;
-            object-fit:contain;
-            padding:8px;
-            background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 65%);
-            box-shadow:0 18px 40px rgba(15,23,42,0.85);
-          ">
+          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/asrd-coin-logo.png"
+               alt="ASRD coin"
+               class="hero-logo">
           <span style="font-weight:700; letter-spacing:0.08em; font-size:13px; text-transform:uppercase; color:#E2E8F0;">
             ASRD Utility Token
           </span>
@@ -323,7 +357,7 @@
           <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🚀 Buy on DEX</a>
           <a href="#tokenomics" class="btn btn-secondary">View Tokenomics</a>
 
-          <!-- ADDED: hero whitepaper CTA -->
+          <!-- hero whitepaper CTA -->
           <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
              class="btn btn-whitepaper" target="_blank" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">
              📄 Read Whitepaper
@@ -462,7 +496,7 @@
             <div style="margin-top:32px">
               <a href="#" class="btn btn-primary" style="width:100%; justify-content:center">View Contract →</a>
 
-              <!-- ADDED: whitepaper button in Key Facts -->
+              <!-- whitepaper button in Key Facts -->
               <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
                  class="btn btn-whitepaper" target="_blank" rel="noopener noreferrer"
                  style="width:100%; justify-content:center; margin-top:12px">📄 Read Whitepaper</a>
@@ -485,7 +519,7 @@
           <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:24px 56px; font-size:18px">🚀 Get Started</a>
           <a href="#features" class="btn btn-secondary" style="padding:24px 56px; font-size:18px">Explore Features</a>
 
-          <!-- ADDED: CTA whitepaper link -->
+          <!-- CTA whitepaper link -->
           <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
              target="_blank" rel="noopener noreferrer" class="btn btn-whitepaper" style="padding:24px 56px; font-size:18px">📄 Read Whitepaper</a>
         </div>
@@ -507,7 +541,7 @@
             <a href="#" class="social-btn" aria-label="GitHub">📂</a>
           </div>
 
-          <!-- ADDED: footer whitepaper link -->
+          <!-- footer whitepaper link -->
           <div style="margin-top:18px">
             <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
                target="_blank" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper">Read Whitepaper (PDF)</a>
