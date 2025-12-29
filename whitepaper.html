@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ASRD Whitepaper — Powering the Next Digital Economy</title>
+  <meta name="description" content="Official technical whitepaper for ASRD utility token: Tokenomics, architecture, governance, and roadmap for the BEP-20 ecosystem token.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Premium Visual System - Consistent with main site */
+    :root {
+      --blue-900: #1E3A8A; --blue-800: #1E40AF; --blue-600: #3B82F6; --blue-500: #60A5FA;
+      --gold-900: #B45309; --gold-700: #D97706; --gold-500: #F59E0B; --gold-400: #FBBF24;
+      --emerald-600: #059669; --emerald-500: #10B981; --emerald-400: #34D399;
+      --red-500: #EF4444; --red-600: #DC2626;
+      --slate-900: #0F172A; --slate-800: #1E293B; --slate-700: #334155; --slate-600: #475569;
+      --slate-50: #F8FAFC; --slate-200: #E2E8F0; --slate-400: #94A3B8;
+
+      --glass: rgba(255,255,255,0.08); --glass-hover: rgba(255,255,255,0.12);
+      --gradient-hero: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 30%, #60A5FA 70%, #1E40AF 100%);
+      --gradient-gold: linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #FBBF24 100%);
+      --gradient-emerald: linear-gradient(135deg, #059669 0%, #10B981 100%);
+      --gradient-whitepaper: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #1E40AF 100%);
+
+      --radius-xl: 28px; --radius-2xl: 36px; --radius-lg: 16px;
+      --shadow-glow: 0 0 40px rgba(59,130,246,0.3);
+      --shadow-premium: 0 35px 80px rgba(0,0,0,0.5);
+      --shadow-card: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* Core Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px }
+    body {
+      font-family: 'Inter', ui-sans-serif, sans-serif;
+      background: linear-gradient(180deg, var(--slate-900) 0%, var(--slate-800) 40%, var(--slate-700) 100%);
+      color: var(--slate-50);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* Particles Background */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, var(--blue-500) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 20s linear infinite;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(25px);
+      background: var(--glass);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    header.scrolled {
+      background: rgba(255,255,255,0.15);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 24px;
+      font-weight: 800;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-decoration: none;
+    }
+
+    .logo-icon-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      padding: 0;
+      display: block;
+      background: #0F172A;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+
+    /* Desktop nav */
+    nav.desktop-nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav-link {
+      position: relative;
+      padding: 8px 0;
+      color: var(--slate-200);
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-hero);
+      transition: width 0.4s ease;
+      border-radius: 2px;
+    }
+    .nav-link:hover {
+      color: var(--slate-50);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-cta {
+      padding: 10px 20px;
+      background: var(--gradient-hero);
+      border-radius: 50px;
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.025em;
+      box-shadow: 0 10px 25px rgba(59,130,246,0.35);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(59,130,246,0.5);
+    }
+
+    /* Mobile menu toggle */
+    .hamburger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.06);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .hamburger .bar {
+      width: 20px;
+      height: 2px;
+      background: var(--slate-50);
+      transition: all .25s ease;
+    }
+    .hamburger[aria-expanded="true"] .bar:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .hamburger[aria-expanded="true"] .bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger[aria-expanded="true"] .bar:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* Whitepaper Hero */
+    .whitepaper-hero {
+      padding: 160px 0 100px;
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .whitepaper-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-whitepaper);
+      opacity: 0.1;
+      border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+    }
+    .whitepaper-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(59,130,246,0.2) 0%, transparent 70%);
+    }
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .hero-badge {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      background: var(--glass-hover);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--slate-200);
+      margin-bottom: 28px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .hero-badge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+      border-radius: 50px;
+      animation: shine 3s infinite;
+    }
+    .whitepaper-hero h1 {
+      font-size: clamp(42px, 8vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--slate-50) 0%, #E2E8F0 50%, var(--blue-500) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+    }
+    .whitepaper-hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-gold);
+      border-radius: 4px;
+      animation: glowPulse 2s ease-in-out infinite alternate;
+    }
+    .hero-subtitle {
+      font-size: clamp(18px, 3.5vw, 24px);
+      font-weight: 400;
+      color: var(--slate-200);
+      margin-bottom: 40px;
+      line-height: 1.5;
+      max-width: 700px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      color: var(--slate-300);
+    }
+    .meta-item i {
+      color: var(--blue-500);
+      font-size: 18px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .btn {
+      position: relative;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+      text-align: center;
+      min-width: 140px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .btn:hover::before {
+      opacity: 1;
+      animation: shine 1.5s;
+    }
+    .btn-primary {
+      background: var(--gradient-hero);
+      color: white;
+      box-shadow: 0 20px 40px rgba(59,130,246,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 30px 60px rgba(59,130,246,0.6);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--slate-50);
+      border: 2px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(20px);
+    }
+    .btn-secondary:hover {
+      border-color: var(--blue-500);
+      background: var(--glass-hover);
+      transform: translateY(-4px);
+    }
+    .btn-whitepaper {
+      background: var(--gradient-gold);
+      color: white;
+      box-shadow: 0 16px 32px rgba(245,158,11,0.25);
+    }
+    .btn-whitepaper:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 30px 60px rgba(245,158,11,0.35);
+    }
+
+    /* Table of Contents */
+    .toc-container {
+      position: sticky;
+      top: 120px;
+      max-height: calc(100vh - 140px);
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+    .toc-container::-webkit-scrollbar {
+      width: 4px;
+    }
+    .toc-container::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .toc-container::-webkit-scrollbar-thumb {
+      background: var(--blue-500);
+      border-radius: 10px;
+    }
+    .toc-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--slate-50);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toc-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc-item {
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .toc-link {
+      display: block;
+      padding: 12px 16px;
+      background: var(--glass);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--slate-300);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .toc-link::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--gradient-hero);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .toc-link:hover {
+      background: var(--glass-hover);
+      color: var(--slate-50);
+      transform: translateX(5px);
+    }
+    .toc-link:hover::before {
+      transform: translateX(0);
+    }
+    .toc-link.active {
+      background: var(--glass-hover);
+      color: var(--slate-50);
+      border-color: rgba(59,130,246,0.3);
+      box-shadow: 0 0 20px rgba(59,130,246,0.1);
+    }
+    .toc-link.active::before {
+      transform: translateX(0);
+    }
+
+    /* Whitepaper Content */
+    .whitepaper-content {
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius-2xl);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 60px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-premium);
+      position: relative;
+      overflow: hidden;
+    }
+    .whitepaper-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient-hero);
+      border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    }
+    .content-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section {
+      margin-bottom: 80px;
+      scroll-margin-top: 120px;
+    }
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    .section-header {
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 16px;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-gold);
+      border-radius: 4px;
+    }
+    .section-title {
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--slate-300);
+      font-weight: 500;
+    }
+    .content {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--slate-200);
+    }
+    .content h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 30px 0 15px;
+      color: var(--slate-50);
+    }
+    .content h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 25px 0 12px;
+      color: var(--slate-100);
+    }
+    .content p {
+      margin-bottom: 20px;
+    }
+    .content ul, .content ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    .content li {
+      margin-bottom: 8px;
+    }
+    .content strong {
+      color: var(--slate-50);
+      font-weight: 700;
+    }
+    .highlight-box {
+      background: var(--glass);
+      border-left: 4px solid var(--blue-500);
+      padding: 24px;
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      margin: 30px 0;
+    }
+    .highlight-box h4 {
+      margin-top: 0;
+      color: var(--blue-400);
+    }
+    .token-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .detail-card {
+      background: var(--glass);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s ease;
+    }
+    .detail-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(59,130,246,0.3);
+      box-shadow: var(--shadow-glow);
+    }
+    .detail-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .detail-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--slate-50);
+    }
+    .detail-value.supply {
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .detail-value.fee {
+      color: var(--red-500);
+    }
+    .detail-value.treasury {
+      color: var(--emerald-500);
+    }
+    .risk-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .risk-item {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .risk-item::before {
+      content: '⚠️';
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--red-500);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .risk-title {
+      font-weight: 800;
+      color: var(--red-400);
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+    .roadmap-container {
+      position: relative;
+      margin: 40px 0;
+    }
+    .roadmap-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gradient-hero);
+      border-radius: 4px;
+    }
+    .roadmap-phase {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 40px;
+    }
+    .phase-dot {
+      position: absolute;
+      left: -8px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gradient-hero);
+      box-shadow: 0 0 20px rgba(59,130,246,0.5);
+      z-index: 2;
+    }
+    .phase-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--slate-50);
+      margin-bottom: 10px;
+    }
+    .phase-period {
+      display: inline-block;
+      background: var(--gradient-gold);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .phase-content {
+      background: var(--glass);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .phase-content ul {
+      padding-left: 20px;
+    }
+    .phase-content li {
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--slate-900);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 60px 0 30px;
+      margin-top: 100px;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .social-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-xl);
+      background: var(--glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--slate-50);
+    }
+    .social-btn:hover {
+      background: var(--gradient-hero);
+      transform: translateY(-6px) rotate(360deg);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Mobile TOC Button */
+    .toc-mobile-toggle {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gradient-hero);
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: var(--shadow-glow);
+      transition: all 0.3s ease;
+    }
+    .toc-mobile-toggle:hover {
+      transform: scale(1.1);
+    }
+    .toc-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(3,6,12,0.9);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+    }
+    .toc-mobile-overlay.open {
+      display: flex;
+    }
+    .toc-mobile-panel {
+      background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      width: 90%;
+      max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 30px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    }
+    .toc-mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: var(--slate-50);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient-emerald);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(5,150,105,0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(5,150,105,0.4);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(2deg); }
+      66% { transform: translateY(-10px) rotate(-1deg); }
+    }
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 20px rgba(245,158,11,0.5); }
+      100% { box-shadow: 0 0 40px rgba(245,158,11,0.8); }
+    }
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%); }
+      100% { transform: translateX(100%) translateY(100%); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    /* Responsive Design */
+    @media (min-width: 992px) {
+      .whitepaper-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 60px;
+        padding: 60px 0;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .toc-container {
+        display: none;
+      }
+      .toc-mobile-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .whitepaper-hero {
+        padding: 140px 0 80px;
+        min-height: 60vh;
+      }
+      .whitepaper-content {
+        padding: 40px 30px;
+      }
+      .section {
+        margin-bottom: 60px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      /* Header adjustments */
+      .header-inner {
+        padding: 10px 0;
+      }
+      .logo {
+        font-size: 20px;
+      }
+      .logo-icon-img {
+        width: 40px;
+        height: 40px;
+      }
+      nav.desktop-nav {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      
+      /* Hero adjustments */
+      .whitepaper-hero {
+        padding: 120px 0 60px;
+      }
+      .whitepaper-hero h1 {
+        font-size: clamp(36px, 8vw, 48px);
+      }
+      .hero-subtitle {
+        font-size: clamp(16px, 3.5vw, 20px);
+      }
+      .hero-meta {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      /* Content adjustments */
+      .whitepaper-content {
+        padding: 30px 20px;
+      }
+      .section-title {
+        font-size: 28px;
+      }
+      .section-subtitle {
+        font-size: 16px;
+      }
+      .content {
+        font-size: 16px;
+      }
+      .token-details {
+        grid-template-columns: 1fr;
+      }
+      .highlight-box {
+        padding: 20px;
+      }
+      
+      /* Footer adjustments */
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .social-links {
+        justify-content: center;
+      }
+      
+      /* Mobile buttons */
+      .toc-mobile-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+      }
+      .back-to-top {
+        bottom: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+      .whitepaper-hero h1 {
+        font-size: 32px;
+      }
+      .hero-subtitle {
+        font-size: 18px;
+      }
+      .whitepaper-content {
+        padding: 25px 16px;
+      }
+      .section-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles Background -->
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo" aria-label="ASRD home">
+          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
+               alt="ASRD coin logo"
+               class="logo-icon-img">
+          ASRD
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#features" class="nav-link">Features</a>
+          <a href="index.html#tokenomics" class="nav-link">Tokenomics</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <a href="index.html#deposit" class="nav-cta">Deposit USDT</a>
+        </nav>
+
+        <!-- Mobile menu toggle -->
+        <button id="menuToggle" class="hamburger" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Whitepaper Hero -->
+  <section class="whitepaper-hero">
+    <div class="container">
+      <div class="hero-content fade-in-up">
+        <div class="hero-badge fade-in-up delay-1">
+          <i class="fas fa-file-contract"></i>
+          Official Technical Whitepaper
+        </div>
+        <h1 class="fade-in-up delay-2">ASRD Whitepaper</h1>
+        <p class="hero-subtitle fade-in-up delay-2">Powering the Next Digital Economy</p>
+        
+        <div class="hero-meta fade-in-up delay-3">
+          <div class="meta-item">
+            <i class="fas fa-coins"></i>
+            <span>Token: ASRD (BEP-20)</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-layer-group"></i>
+            <span>Total Supply: 4,000,000</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-network-wired"></i>
+            <span>Decimals: 18</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Version: 1.0</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions fade-in-up delay-4">
+          <a href="#executive-summary" class="btn btn-primary">
+            <i class="fas fa-book-open"></i>
+            Read Whitepaper
+          </a>
+          <a href="index.html" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile TOC Button -->
+  <button id="tocMobileToggle" class="toc-mobile-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Mobile TOC Overlay -->
+  <div id="tocMobileOverlay" class="toc-mobile-overlay">
+    <button id="tocMobileClose" class="toc-mobile-close">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="toc-mobile-panel" id="tocMobileList"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="whitepaper-layout">
+      <!-- Desktop Table of Contents -->
+      <aside class="toc-container">
+        <div class="toc-title">
+          <i class="fas fa-list"></i>
+          Table of Contents
+        </div>
+        <ul class="toc-list" id="tocList">
+          <!-- TOC will be populated by JavaScript -->
+        </ul>
+      </aside>
+
+      <!-- Whitepaper Content -->
+      <main class="whitepaper-content">
+        <div class="content-wrapper">
+          
+          <!-- Executive Summary -->
+          <section id="executive-summary" class="section">
+            <div class="section-header">
+              <h2 class="section-title">1. Executive Summary</h2>
+              <p class="section-subtitle">Project Overview & Core Principles</p>
+            </div>
+            <div class="content">
+              <h3>1.1 What the Project Does</h3>
+              <p>ASRD Coin is a utility token built on the BNB Smart Chain (BEP-20). Its primary function is to facilitate and incentivize participation within a decentralized ecosystem focused on supporting blockchain development and infrastructure. The protocol implements a deflationary transaction tax mechanism to fund a treasury, which is used for ecosystem grants, strategic buybacks, and liquidity provision.</p>
+              
+              <h3>1.2 Why It Exists</h3>
+              <p>The project addresses inefficiencies in sustaining long-term developer engagement and project liquidity within decentralized ecosystems. Many utility tokens lack built-in, sustainable mechanisms for self-funded growth, often relying on inflationary rewards or unsustainable yields.</p>
+              
+              <h3>1.3 Economic and Technical Viability</h3>
+              <div class="highlight-box">
+                <h4>Economic Rationale</h4>
+                <p>The model is designed to align long-term token holder and ecosystem developer interests through a transaction fee structure that directly funds growth initiatives.</p>
+              </div>
+              <div class="highlight-box">
+                <h4>Technical Foundation</h4>
+                <p>Built on the established BNB Smart Chain, the project utilizes audited smart contracts to execute transparent, on-chain treasury operations and token burns.</p>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Market Problem -->
+          <section id="market-problem" class="section">
+            <div class="section-header">
+              <h2 class="section-title">2. Market Problem</h2>
+              <p class="section-subtitle">Identifying Industry Gaps & Challenges</p>
+            </div>
+            <div class="content">
+              <h3>2.1 Current Industry Failures</h3>
+              <h4>Ecosystem Funding Gaps</h4>
+              <p>Many blockchain projects struggle to secure sustained funding for developer tools, integrations, and community initiatives after initial capital depletion. Grant programs are often discretionary, non-transparent, or reliant on centralized entity budgets.</p>
+              
+              <h4>Liquidity and Stability Challenges</h4>
+              <p>Utility tokens for early-stage projects frequently suffer from high volatility and shallow liquidity, deterring serious development and use. Projects often resort to short-term incentive programs that lead to sell pressure.</p>
+              
+              <h4>Misaligned Token Utility</h4>
+              <p>Tokens are frequently launched without clear, sustainable utility, devolving into speculative assets. Fee capture and value accrual mechanisms for the protocol itself are often underdeveloped or non-existent.</p>
+              
+              <h3>2.2 Why Existing Solutions Fail</h3>
+              <ul>
+                <li><strong>Inflationary Reward Models:</strong> Dilute holder value and often create perpetual sell pressure without generating corresponding protocol value.</li>
+                <li><strong>Centralized Treasuries:</strong> Lack transparency and can be misaligned with decentralized community interests, leading to governance disputes.</li>
+                <li><strong>Pure Deflationary Models (Burn-Only):</strong> Can increase token scarcity but do not actively fund ecosystem development or reinvest in security and growth.</li>
+              </ul>
+            </div>
+          </section>
+          
+          <!-- Proposed Solution -->
+          <section id="proposed-solution" class="section">
+            <div class="section-header">
+              <h2 class="section-title">3. Proposed Solution</h2>
+              <p class="section-subtitle">ASRD Protocol Architecture</p>
+            </div>
+            <div class="content">
+              <h3>3.1 System Architecture Overview</h3>
+              <p>The ASRD protocol is a set of smart contracts on BNB Smart Chain that governs the ASRD Coin (BEP-20). Its core functions are:</p>
+              <ul>
+                <li><strong>Automated Fee Processing:</strong> Applying a transfer tax on specific transactions.</li>
+                <li><strong>Treasury Management:</strong> Accumulating and securing a portion of fees for approved ecosystem uses.</li>
+                <li><strong>Deflationary Enforcement:</strong> Permanently removing another portion of fees from circulation via burn.</li>
+              </ul>
+              
+              <h3>3.2 Core Design Decisions and Trade-offs</h3>
+              <div class="highlight-box">
+                <h4>Decision 1: BNB Smart Chain (BEP-20)</h4>
+                <p><strong>Rationale:</strong> Significantly lower transaction costs and faster block times compared to other networks, enabling practical micro-transactions and fee mechanics.</p>
+                <p><strong>Trade-off:</strong> Accepting a degree of centralization for performance and cost efficiency.</p>
+                <p><strong>Mitigation:</strong> Implementing strong on-chain, multi-signature governance for treasury functions.</p>
+              </div>
+              
+              <div class="highlight-box">
+                <h4>Decision 2: Fixed Supply with Deflationary Mechanics</h4>
+                <p><strong>Rationale:</strong> Provides predictable maximum supply (4,000,000 ASRD) while enabling passive supply reduction through burns, countering typical circulating supply inflation.</p>
+                <p><strong>Trade-off:</strong> Limits the ability to mint new tokens for future fundraising or rewards.</p>
+                <p><strong>Mitigation:</strong> Ensuring the treasury is adequately funded from fees to finance ecosystem needs without new issuance.</p>
+              </div>
+              
+              <div class="highlight-box">
+                <h4>Decision 3: On-Chain Treasury & Developer Grants</h4>
+                <p><strong>Rationale:</strong> Creates a self-sustaining funding mechanism aligned with token usage; transparency builds trust.</p>
+                <p><strong>Trade-off:</strong> Requires robust governance to allocate funds effectively and avoid misuse.</p>
+                <p><strong>Mitigation:</strong> Structured grant proposal and voting systems with multi-sig execution.</p>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Tokenomics -->
+          <section id="tokenomics" class="section">
+            <div class="section-header">
+              <h2 class="section-title">6. Tokenomics</h2>
+              <p class="section-subtitle">Supply Model & Economic Structure</p>
+            </div>
+            <div class="content">
+              <div class="token-details">
+                <div class="detail-card">
+                  <div class="detail-title">Total Supply</div>
+                  <div class="detail-value supply">4,000,000 ASRD</div>
+                </div>
+                <div class="detail-card">
+                  <div class="detail-title">Transfer Tax</div>
+                  <div class="detail-value fee">2.00%</div>
+                </div>
+                <div class="detail-card">
+                  <div class="detail-title">Burn Rate</div>
+                  <div class="detail-value">1.00%</div>
+                </div>
+                <div class="detail-card">
+                  <div class="detail-title">Treasury Allocation</div>
+                  <div class="detail-value treasury">1.00%</div>
+                </div>
+              </div>
+              
+              <h3>6.1 Supply Model</h3>
+              <ul>
+                <li><strong>Blockchain:</strong> BNB Smart Chain (BEP-20)</li>
+                <li><strong>Token Name:</strong> ASRD Coin</li>
+                <li><strong>Token Symbol:</strong> ASRD</li>
+                <li><strong>Max Total Supply:</strong> 4,000,000 ASRD (Fixed, no future minting capability)</li>
+                <li><strong>Decimals:</strong> 18</li>
+                <li><strong>Circulating Supply at Launch:</strong> 4,000,000 ASRD (100% of total supply)</li>
+              </ul>
+              
+              <h3>6.2 Launch Allocation</h3>
+              <p>The total supply of 4,000,000 ASRD was introduced into circulation via a fair launch model. No tokens were allocated to founders, team, or advisors prior to public availability. The entire supply was made available to the market through initial liquidity provisioning.</p>
+              
+              <h3>6.3 Transaction Fee Structure</h3>
+              <p>A 2% fee is applied on transfers, with the following distribution hard-coded into the token contract:</p>
+              <ul>
+                <li><strong>1.0% Permanent Burn:</strong> Irreversibly removed from total supply, making ASRD a deflationary asset.</li>
+                <li><strong>1.0% Treasury Allocation:</strong> Sent to the community treasury contract for funding ecosystem initiatives.</li>
+              </ul>
+              
+              <h3>6.4 Official Links</h3>
+              <ul>
+                <li><strong>Project Website:</strong> https://asrdcoin.com</li>
+                <li><strong>Support Contact:</strong> support@asrdcoin.com</li>
+                <li><strong>BSCScan Contract Address:</strong> 0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB</li>
+                <li><strong>Liquidity Pool (LP) Status:</strong> Initial liquidity provider tokens are burned, and the LP is locked as verified on BSCScan.</li>
+              </ul>
+            </div>
+          </section>
+          
+          <!-- Roadmap -->
+          <section id="roadmap" class="section">
+            <div class="section-header">
+              <h2 class="section-title">10. Roadmap (18-36 Months)</h2>
+              <p class="section-subtitle">Strategic Development Timeline</p>
+            </div>
+            <div class="content">
+              <div class="roadmap-container">
+                <div class="roadmap-line"></div>
+                
+                <div class="roadmap-phase">
+                  <div class="phase-dot"></div>
+                  <div class="phase-period">Months 1-12</div>
+                  <h3 class="phase-title">Phase 1: Foundation & Stability</h3>
+                  <div class="phase-content">
+                    <ul>
+                      <li><strong>Technical:</strong> Successful contract deployment and audit publication. Establishment of secure multi-sig treasury.</li>
+                      <li><strong>Ecosystem:</strong> Launch of initial community and developer outreach. First governance discussions on treasury use.</li>
+                      <li><strong>Compliance:</strong> Ongoing monitoring of regulatory developments in the digital asset space.</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="roadmap-phase">
+                  <div class="phase-dot"></div>
+                  <div class="phase-period">Months 13-24</div>
+                  <h3 class="phase-title">Phase 2: Ecosystem Growth</h3>
+                  <div class="phase-content">
+                    <ul>
+                      <li><strong>Technical:</strong> Development and audit of a dedicated on-chain governance module.</li>
+                      <li><strong>Product:</strong> Funding and delivery of first developer grants for ecosystem tools (e.g., analytics dashboards, wallet integrations).</li>
+                      <li><strong>Community:</strong> Formalization of a grant proposal and review process managed by the community.</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="roadmap-phase">
+                  <div class="phase-dot"></div>
+                  <div class="phase-period">Months 25-36</div>
+                  <h3 class="phase-title">Phase 3: Sustained Development</h3>
+                  <div class="phase-content">
+                    <ul>
+                      <li><strong>Technical:</strong> Implementation and activation of on-chain token holder voting for treasury allocations.</li>
+                      <li><strong>Ecosystem:</strong> Expansion of grant program to support more complex integrations and applications built on or for ASRD.</li>
+                      <li><strong>Sustainability:</strong> Assessment of model performance and community-led iteration on grant focus areas.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Risks -->
+          <section id="risks" class="section">
+            <div class="section-header">
+              <h2 class="section-title">11. Risks & Limitations</h2>
+              <p class="section-subtitle">Identifying Potential Challenges</p>
+            </div>
+            <div class="content">
+              <ul class="risk-list">
+                <li class="risk-item">
+                  <div class="risk-title">Technical Risks</div>
+                  <p>Smart Contract Risk: Despite audits, undiscovered vulnerabilities could exist. BSC Dependency: The project inherits all security and operational risks of the BNB Smart Chain. Governance Attack: In early stages, compromise of multi-sig keys could lead to loss of treasury funds.</p>
+                </li>
+                <li class="risk-item">
+                  <div class="risk-title">Market Risks</div>
+                  <p>Liquidity Risk: Low liquidity can lead to high price volatility, hindering utility. Utility Adoption Risk: The token's value is tied to the growth of its ecosystem; failure to attract developers and users will limit utility. Competition: Many projects compete for developer mindshare and liquidity.</p>
+                </li>
+                <li class="risk-item">
+                  <div class="risk-title">Regulatory Risks</div>
+                  <p>Utility Token Classification: Regulatory bodies may disagree with the project's self-classification, potentially leading to legal challenges or restrictions. Tax Treatment: The transaction fee/burn mechanism may receive uncertain or unfavorable tax treatment in some jurisdictions. Global Regulation: Fragmented and evolving global crypto regulations create compliance complexity.</p>
+                </li>
+              </ul>
+              
+              <h3>11.4 What Could Fail</h3>
+              <ul>
+                <li><strong>Failure to Develop Ecosystem:</strong> If no meaningful tools or utilities are built using treasury funds, the token's core utility proposition fails.</li>
+                <li><strong>Loss of Community Trust:</strong> Poor management or lack of transparency regarding the treasury could erode trust irreparably.</li>
+                <li><strong>Catastrophic Smart Contract Failure:</strong> An exploit could permanently damage the protocol's mechanics or drain its treasury.</li>
+              </ul>
+            </div>
+          </section>
+          
+          <!-- Conclusion -->
+          <section id="conclusion" class="section">
+            <div class="section-header">
+              <h2 class="section-title">12. Conclusion</h2>
+              <p class="section-subtitle">Future Vision & Summary</p>
+            </div>
+            <div class="content">
+              <p>ASRD Coin presents a model for a utility token with built-in economic mechanisms for self-sustaining ecosystem development. By combining a deflationary burn with a treasury funded directly from network activity, it aims to align the long-term interests of token holders with the growth of a decentralized developer ecosystem.</p>
+              
+              <p>The project makes no exaggerated claims of returns or market disruption. Its success is contingent upon transparent execution, effective community governance, and the tangible delivery of utility through funded development work. The design prioritizes sustainability and regulatory-aware structure, focusing on building a functional and compliant utility token within the BNB Smart Chain environment.</p>
+              
+              <div class="highlight-box">
+                <p><strong>Document Version:</strong> 1.0</p>
+                <p><strong>Official Resources:</strong> https://asrdcoin.com | Contract: 0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB</p>
+                <p><strong>Disclaimer:</strong> This is not financial advice. ASRD Coin is a utility token. Participants must understand the risks outlined in this document.</p>
+              </div>
+            </div>
+          </section>
+          
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="fade-in-up">
+          <h4 style="font-size:24px; font-weight:900; margin-bottom:20px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; color:transparent">ASRD</h4>
+          <p style="color:var(--slate-400); margin-bottom:24px; max-width:300px">Powering sustainable digital infrastructure on BSC.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="#" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div class="fade-in-up">
+          <h4 style="font-size:20px; font-weight:800; margin-bottom:20px; color:var(--slate-50)">Whitepaper</h4>
+          <ul style="list-style:none; padding:0">
+            <li style="margin-bottom:10px"><a href="#executive-summary" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Executive Summary</a></li>
+            <li style="margin-bottom:10px"><a href="#tokenomics" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Tokenomics</a></li>
+            <li style="margin-bottom:10px"><a href="#roadmap" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Roadmap</a></li>
+            <li style="margin-bottom:10px"><a href="#risks" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Risks & Limitations</a></li>
+          </ul>
+        </div>
+        
+        <div class="fade-in-up">
+          <h4 style="font-size:20px; font-weight:800; margin-bottom:20px; color:var(--slate-50)">Resources</h4>
+          <ul style="list-style:none; padding:0">
+            <li style="margin-bottom:10px"><a href="index.html" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Home</a></li>
+            <li style="margin-bottom:10px"><a href="index.html#features" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Features</a></li>
+            <li style="margin-bottom:10px"><a href="index.html#tokenomics" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Tokenomics</a></li>
+            <li style="margin-bottom:10px"><a href="index.html#deposit" style="color:var(--slate-300); text-decoration:none; transition:color 0.3s ease">Deposit USDT</a></li>
+          </ul>
+        </div>
+        
+        <div class="fade-in-up" style="grid-column:1/-1">
+          <div style="text-align:center; color:var(--slate-400); font-size:13px; letter-spacing:0.025em; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px">
+            © 2025 ASRD. The utility token of the future. Not financial advice. DYOR.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Create particles background
+    function createParticles() {
+      const particles = document.getElementById('particles');
+      if (!particles) return;
+      particles.innerHTML = '';
+      const particleCount = window.innerWidth < 768 ? 25 : 50;
+      for(let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particles.appendChild(particle);
+      }
+    }
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (header) {
+        header.classList.toggle('scrolled', window.scrollY > 100);
+      }
+      
+      // Back to top button
+      const backToTop = document.getElementById('backToTop');
+      if (backToTop) {
+        backToTop.classList.toggle('visible', window.scrollY > 500);
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          // Account for fixed header offset
+          const headerOffset = document.getElementById('header')?.offsetHeight || 80;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerOffset - 12;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          
+          // Close mobile TOC if open
+          closeMobileTOC();
+        }
+      });
+    });
+
+    // Table of Contents generation and highlighting
+    function setupTableOfContents() {
+      const tocList = document.getElementById('tocList');
+      const tocMobileList = document.getElementById('tocMobileList');
+      const sections = document.querySelectorAll('.section');
+      
+      if (!tocList || !tocMobileList) return;
+      
+      // Create TOC items for each section
+      sections.forEach(section => {
+        const sectionId = section.id;
+        const sectionTitle = section.querySelector('.section-title').textContent;
+        
+        if (sectionId && sectionTitle) {
+          // Desktop TOC item
+          const tocItem = document.createElement('li');
+          tocItem.className = 'toc-item';
+          tocItem.innerHTML = `
+            <a href="#${sectionId}" class="toc-link">${sectionTitle}</a>
+          `;
+          tocList.appendChild(tocItem);
+          
+          // Mobile TOC item
+          const tocMobileItem = tocItem.cloneNode(true);
+          tocMobileList.appendChild(tocMobileItem);
+        }
+      });
+      
+      // Highlight active section in TOC
+      const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const id = entry.target.id;
+          const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+          
+          if (tocLink) {
+            if (entry.isIntersecting) {
+              document.querySelectorAll('.toc-link').forEach(link => {
+                link.classList.remove('active');
+              });
+              tocLink.classList.add('active');
+            }
+          }
+        });
+      }, observerOptions);
+      
+      // Observe each section
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    }
+
+    // Mobile TOC functionality
+    function setupMobileTOC() {
+      const tocMobileToggle = document.getElementById('tocMobileToggle');
+      const tocMobileOverlay = document.getElementById('tocMobileOverlay');
+      const tocMobileClose = document.getElementById('tocMobileClose');
+      
+      if (!tocMobileToggle || !tocMobileOverlay) return;
+      
+      tocMobileToggle.addEventListener('click', () => {
+        tocMobileOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+      
+      tocMobileClose.addEventListener('click', closeMobileTOC);
+      
+      tocMobileOverlay.addEventListener('click', (e) => {
+        if (e.target === tocMobileOverlay) {
+          closeMobileTOC();
+        }
+      });
+    }
+    
+    function closeMobileTOC() {
+      const tocMobileOverlay = document.getElementById('tocMobileOverlay');
+      if (tocMobileOverlay) {
+        tocMobileOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Mobile menu functionality (from main site)
+    function setupMobileMenu() {
+      const menuToggle = document.getElementById('menuToggle');
+      if (!menuToggle) return;
+      
+      menuToggle.addEventListener('click', () => {
+        // This would link to the main site's mobile menu
+        // For now, just redirect to home for mobile navigation
+        window.location.href = 'index.html';
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      setupTableOfContents();
+      setupMobileTOC();
+      setupMobileMenu();
+      
+      // Add animation delays for elements
+      const fadeElements = document.querySelectorAll('.fade-in-up');
+      fadeElements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
+
+    // Recreate particles on resize
+    window.addEventListener('resize', createParticles);
+  </script>
+</body>
+</html>
