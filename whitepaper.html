@@ -12,101 +12,106 @@
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <div class="animated-bg">
+  <div class="animated-bg" aria-hidden="true">
     <div class="bg-grid"></div>
     <div class="floating-orb orb-1"></div>
     <div class="floating-orb orb-2"></div>
     <div class="floating-orb orb-3"></div>
   </div>
 
-  <header class="header" id="header">
+  <header class="header" id="header" role="banner">
     <div class="container">
       <div class="header-inner">
         <a class="logo" href="index.html">
           <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
                alt="ASRD coin logo"
                class="logo-img">
-          <span>ASRD</span>
+          ASRD
         </a>
 
-        <nav class="desktop-nav">
-          <div class="nav-item">
-            <a href="index.html" class="nav-link">
-              <i class="fas fa-home"></i>
-              Home
-            </a>
-          </div>
-          <div class="nav-item">
-            <a href="#executive-summary" class="nav-link">
-              <i class="fas fa-file-alt"></i>
-              Whitepaper
-            </a>
-          </div>
-          <div class="nav-item">
-            <a href="#tokenomics" class="nav-link">
-              <i class="fas fa-chart-pie"></i>
-              Tokenomics
-            </a>
-          </div>
-          <div class="nav-item">
-            <a href="#roadmap" class="nav-link">
-              <i class="fas fa-map-marked-alt"></i>
-              Roadmap
-            </a>
-          </div>
-          <a href="index.html#deposit" class="nav-cta">
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="index.html" class="nav-link">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <a href="#executive-summary" class="nav-link">
+            <i class="fas fa-file-alt"></i>
+            Whitepaper
+          </a>
+          <a href="#tokenomics" class="nav-link">
+            <i class="fas fa-chart-pie"></i>
+            Tokenomics
+          </a>
+          <a href="#roadmap" class="nav-link">
+            <i class="fas fa-map-marked-alt"></i>
+            Roadmap
+          </a>
+          <a href="#risks" class="nav-link">
+            <i class="fas fa-exclamation-triangle"></i>
+            Risks
+          </a>
+          <a href="index.html#deposit" class="nav-cta" aria-label="Deposit USDT">
             <i class="fas fa-wallet"></i>
             Deposit USDT
           </a>
         </nav>
 
-        <button class="mobile-toggle" id="mobileMenuBtn">
+        <button id="menuToggle" class="mobile-toggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </button>
       </div>
     </div>
-
-    <div class="mobile-menu" id="mobileMenu">
-      <nav class="mobile-nav">
-        <a href="index.html" class="mobile-nav-link">
-          <i class="fas fa-home"></i>
-          Home
-        </a>
-        <a href="#executive-summary" class="mobile-nav-link">
-          <i class="fas fa-file-alt"></i>
-          Whitepaper
-        </a>
-        <a href="#tokenomics" class="mobile-nav-link">
-          <i class="fas fa-chart-pie"></i>
-          Tokenomics
-        </a>
-        <a href="#roadmap" class="mobile-nav-link">
-          <i class="fas fa-map-marked-alt"></i>
-          Roadmap
-        </a>
-        <a href="#risks" class="mobile-nav-link">
-          <i class="fas fa-exclamation-triangle"></i>
-          Risk Analysis
-        </a>
-        <a href="index.html#deposit" class="mobile-nav-link">
-          <i class="fas fa-wallet"></i>
-          Deposit USDT
-        </a>
-      </nav>
-    </div>
   </header>
 
-  <section class="whitepaper-hero">
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
+    <aside class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
+      <div class="panel-inner">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+          <div style="display:flex; align-items:center; gap:10px">
+            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
+                 alt="ASRD"
+                 class="logo-img logo-sm">
+            <div style="font-weight:900;font-size:18px">ASRD Whitepaper</div>
+          </div>
+          <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:0;color:var(--slate-200);font-weight:800;font-size:18px;padding:8px;border-radius:10px;cursor:pointer">✕</button>
+        </div>
+
+        <nav class="mobile-links" aria-label="Mobile navigation">
+          <a href="index.html" data-close><i class="fas fa-home"></i> Home</a>
+          <a href="#executive-summary" data-close><i class="fas fa-file-alt"></i> Executive Summary</a>
+          <a href="#tokenomics" data-close><i class="fas fa-chart-pie"></i> Tokenomics</a>
+          <a href="#architecture" data-close><i class="fas fa-code"></i> Architecture</a>
+          <a href="#roadmap" data-close><i class="fas fa-map-marked-alt"></i> Roadmap</a>
+          <a href="#risks" data-close><i class="fas fa-exclamation-triangle"></i> Risk Analysis</a>
+          <a href="index.html#deposit" class="mobile-cta" data-close><i class="fas fa-wallet"></i> Deposit USDT</a>
+        </nav>
+
+        <div class="mobile-disclaimer">Official Technical Whitepaper • Version 1.0</div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="whitepaper-hero" id="home">
     <div class="container">
-      <div class="hero-content animate-fade-in-up">
+      <div class="hero-content">
+        <div style="margin-bottom:24px; display:flex; align-items:center; gap:12px;">
+          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
+               alt="ASRD coin"
+               class="logo-img logo-lg">
+          <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
+            Official Technical Whitepaper
+          </span>
+        </div>
+
         <div class="hero-badge-whitepaper animate-fade-in-up" style="animation-delay: 0.1s">
           <i class="fas fa-file-contract"></i>
-          Official Technical Whitepaper • Version 1.0
+          Version 1.0 • BEP-20 Utility Token
         </div>
         
-        <h1 class="hero-title animate-fade-in-up" style="animation-delay: 0.2s">ASRD Whitepaper</h1>
+        <h1 class="animate-fade-in-up" style="animation-delay: 0.2s">ASRD Whitepaper</h1>
         
         <p class="hero-subtitle animate-fade-in-up" style="animation-delay: 0.3s">
           A comprehensive technical blueprint detailing the architecture, tokenomics, governance, 
@@ -150,7 +155,7 @@
     </div>
   </section>
 
-  <nav class="floating-nav">
+  <nav class="floating-nav" aria-label="Quick navigation">
     <a href="#executive-summary" class="floating-nav-item">Summary</a>
     <a href="#tokenomics" class="floating-nav-item">Tokenomics</a>
     <a href="#architecture" class="floating-nav-item">Architecture</a>
@@ -162,8 +167,8 @@
     <div class="container">
       <div class="section-header animate-fade-in-up">
         <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 1</span>
-        <h2 class="section-title">Executive Summary</h2>
-        <p class="section-subtitle">
+        <h2>Executive Summary</h2>
+        <p>
           Comprehensive overview of ASRD's mission, architecture, and value proposition
         </p>
       </div>
@@ -209,8 +214,8 @@
     <div class="container">
       <div class="section-header animate-fade-in-up">
         <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 6</span>
-        <h2 class="section-title">Tokenomics</h2>
-        <p class="section-subtitle">
+        <h2>Tokenomics</h2>
+        <p>
           Supply model, fee structure, and economic mechanics
         </p>
       </div>
@@ -273,8 +278,8 @@
     <div class="container">
       <div class="section-header animate-fade-in-up">
         <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 4</span>
-        <h2 class="section-title">Technical Architecture</h2>
-        <p class="section-subtitle">
+        <h2>Technical Architecture</h2>
+        <p>
           Smart contract design, security measures, and system components
         </p>
       </div>
@@ -325,8 +330,8 @@
     <div class="container">
       <div class="section-header animate-fade-in-up">
         <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 10</span>
-        <h2 class="section-title">Strategic Roadmap</h2>
-        <p class="section-subtitle">
+        <h2>Strategic Roadmap</h2>
+        <p>
           18-36 month development timeline for sustainable ecosystem growth
         </p>
       </div>
@@ -413,8 +418,8 @@
     <div class="container">
       <div class="section-header animate-fade-in-up">
         <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 11</span>
-        <h2 class="section-title">Risk Analysis</h2>
-        <p class="section-subtitle">
+        <h2>Risk Analysis</h2>
+        <p>
           Comprehensive identification and mitigation of potential challenges
         </p>
       </div>
@@ -462,7 +467,7 @@
     </div>
   </section>
 
-  <footer class="footer">
+  <footer class="footer" id="contact">
     <div class="container">
       <div class="footer-content">
         <div class="fade-in-up" style="animation-delay: 0.1s">
@@ -566,27 +571,26 @@
     </div>
   </footer>
 
-  <a href="#" class="back-to-top" id="backToTop">
+  <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
   </a>
 
   <script>
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenuBtn.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
-
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
+    function createParticles() {
+      const particles = document.getElementById('particles');
+      if (!particles) return;
+      particles.innerHTML = '';
+      const particleCount = window.innerWidth < 768 ? 25 : 50;
+      for(let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particles.appendChild(particle);
+      }
+    }
 
     window.addEventListener('scroll', () => {
       const header = document.getElementById('header');
@@ -623,20 +627,16 @@
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
         e.preventDefault();
         
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          const headerHeight = document.getElementById('header').offsetHeight;
-          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
+        const target = document.querySelector(href);
+        if (target) {
+          const headerOffset = document.getElementById('header')?.offsetHeight || 80;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerOffset - 12;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
       });
     });
@@ -649,14 +649,84 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in-up');
+          entry.target.classList.add('inview');
+          if (entry.target.querySelector('.pie-chart-svg')) {
+            const circles = entry.target.querySelectorAll('circle[stroke-dasharray]');
+            circles.forEach((circle, index) => {
+              setTimeout(() => {
+                circle.style.animation = 'pieFill 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+              }, index * 160);
+            });
+          }
         }
       });
     }, observerOptions);
 
-    document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left').forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .feature-card, .tokenomics-main, .content-card, .risk-card, .roadmap-phase').forEach(el => observer.observe(el));
+
+    (function () {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileBackdrop = document.getElementById('mobileBackdrop');
+      const mobilePanel = document.getElementById('mobilePanel');
+      const mobileClose = document.getElementById('mobileClose');
+      let lastFocused = null;
+
+      if (!menuToggle || !mobileMenu) return;
+
+      function openMenu() {
+        lastFocused = document.activeElement;
+        menuToggle.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('open');
+        mobileBackdrop.classList.add('open');
+        mobilePanel.classList.add('open');
+        mobileMenu.removeAttribute('aria-hidden');
+        const firstLink = mobileMenu.querySelector('.mobile-links a');
+        if (firstLink) firstLink.focus();
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        mobileBackdrop.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        if (lastFocused) lastFocused.focus();
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
+
+      if (menuToggle) {
+        menuToggle.addEventListener('click', (e) => {
+          const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          if (expanded) closeMenu(); else openMenu();
+        });
+      }
+
+      if (mobileClose) {
+        mobileClose.addEventListener('click', closeMenu);
+      }
+
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', closeMenu);
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+          closeMenu();
+        }
+      });
+
+      if (mobileMenu) {
+        mobileMenu.querySelectorAll('[data-close]').forEach(el => {
+          el.addEventListener('click', () => {
+            setTimeout(closeMenu, 120);
+          });
+        });
+      }
+    })();
 
     document.addEventListener('DOMContentLoaded', () => {
       const animateElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left');
@@ -668,6 +738,9 @@
         }
       });
     });
+
+    window.addEventListener('load', createParticles);
+    window.addEventListener('resize', createParticles);
   </script>
 </body>
 </html>
