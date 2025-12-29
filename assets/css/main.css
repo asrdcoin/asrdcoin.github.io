@@ -3337,11 +3337,11 @@ strong {
 }
 
 /* ==========================================================================
-   Simple Video Player Section
+   Mobile-Optimized Video Player Section
    ========================================================================== */
 
 .simple-video-section {
-  padding: 40px 0 30px;
+  padding: 30px 0;
   background: linear-gradient(180deg, var(--slate-900) 0%, var(--slate-800) 100%);
 }
 
@@ -3350,9 +3350,13 @@ strong {
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 16px;
-  padding: 20px;
+  padding: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Prevent container from causing horizontal scroll */
+  width: calc(100% - 20px);
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
 }
 
 .simple-video-wrapper {
@@ -3361,13 +3365,15 @@ strong {
   background: #000;
   border-radius: 12px;
   overflow: hidden;
+  /* Key fix: Maintain aspect ratio while being responsive */
+  aspect-ratio: 16 / 9;
 }
 
 .simple-video-element {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  border-radius: 12px;
+  object-fit: contain; /* Changed from 'cover' to 'contain' to show full video */
   background: #000;
 }
 
@@ -3384,32 +3390,19 @@ strong {
   transition: all 0.3s ease;
 }
 
-.simple-video-element::-webkit-media-controls-play-button:hover,
-.simple-video-element::-webkit-media-controls-mute-button:hover,
-.simple-video-element::-webkit-media-controls-fullscreen-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.simple-video-element::-webkit-media-controls-current-time-display,
-.simple-video-element::-webkit-media-controls-time-remaining-display {
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-}
-
 .video-note {
   margin-top: 15px;
-  padding: 15px;
+  padding: 12px 15px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
   border-left: 3px solid var(--blue-500);
-  font-size: 14px;
+  font-size: 13px;
   color: var(--slate-300);
+  line-height: 1.4;
 }
 
 .video-note p {
-  margin: 8px 0;
+  margin: 6px 0;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -3417,59 +3410,96 @@ strong {
 
 .video-note i {
   color: var(--blue-400);
-  font-size: 16px;
-  width: 20px;
+  font-size: 14px;
+  width: 18px;
 }
 
-/* Responsive video sizing */
+/* ============================
+   MOBILE-SPECIFIC OPTIMIZATIONS
+   ============================ */
+
+/* For all mobile devices */
 @media (max-width: 767px) {
   .simple-video-section {
-    padding: 30px 0 20px;
+    padding: 20px 0 15px;
   }
   
   .simple-video-container {
-    padding: 15px;
+    padding: 12px;
     border-radius: 12px;
+    width: calc(100% - 16px);
+    margin: 0 8px;
   }
   
   .simple-video-wrapper {
     border-radius: 8px;
-  }
-  
-  .simple-video-element {
-    border-radius: 8px;
-    max-height: 300px;
+    aspect-ratio: 16 / 9; /* Standard widescreen ratio */
   }
   
   .video-note {
-    font-size: 13px;
-    padding: 12px;
+    font-size: 12px;
+    padding: 10px 12px;
   }
   
-  .video-note p {
-    margin: 6px 0;
+  /* Fix for Safari on iOS */
+  @supports (-webkit-touch-callout: none) {
+    .simple-video-wrapper {
+      max-height: 60vh; /* Limit height on iOS */
+    }
   }
 }
 
+/* For very small mobile screens (portrait) */
+@media (max-width: 480px) and (orientation: portrait) {
+  .simple-video-wrapper {
+    aspect-ratio: 4 / 3; /* Better ratio for portrait mobile */
+    max-height: 50vh; /* Further limit height */
+  }
+}
+
+/* For mobile landscape */
+@media (max-width: 900px) and (orientation: landscape) {
+  .simple-video-wrapper {
+    aspect-ratio: 21 / 9; /* Ultra-wide for landscape */
+    max-height: 70vh;
+  }
+  
+  .simple-video-section {
+    padding: 15px 0 10px;
+  }
+}
+
+/* For tablets */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .simple-video-element {
-    max-height: 400px;
+  .simple-video-wrapper {
+    aspect-ratio: 16 / 10; /* Slightly taller for tablets */
   }
 }
 
-@media (min-width: 1024px) {
-  .simple-video-element {
-    max-height: 450px;
-  }
-}
-
-/* Hero section adjustment */
-.hero {
-  padding-top: 20px;
-}
-
-@media (min-width: 768px) {
+/* Hero section adjustment for mobile */
+@media (max-width: 767px) {
   .hero {
-    padding-top: 30px;
+    padding-top: 10px;
+  }
+  
+  .hero h1 {
+    font-size: clamp(32px, 8vw, 44px);
+  }
+}
+
+/* Fix for older browsers that don't support aspect-ratio */
+@supports not (aspect-ratio: 16 / 9) {
+  .simple-video-wrapper::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
+  }
+  
+  .simple-video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
