@@ -70,67 +70,34 @@
     </aside>
   </div>
 
-  <!-- Compact Video Player Section -->
-  <section class="compact-video-section" id="video-section">
+  <!-- Simple Video Player Section -->
+  <section class="simple-video-section" id="video-section">
     <div class="container">
-      <div class="video-player-wrapper">
-        <div class="video-header">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
-                 alt="ASRD coin"
-                 class="logo-img logo-sm">
-            <div>
-              <h3 style="margin:0; font-size:clamp(20px, 4vw, 28px);">Introducing ASRD</h3>
-              <p style="margin:4px 0 0 0; font-size:14px; color:var(--slate-400);">Watch our vision for the digital economy</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="compact-video-container">
-          <div class="compact-video-player" id="videoPlayer">
-            <video 
-              id="asrdVideo"
-              class="video-element"
-              autoplay
-              muted
-              playsinline
-              loop
-              preload="metadata"
-              aria-label="ASRD promotional video showing digital economy concepts"
-            >
-              <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            
-            <div class="video-overlay">
-              <button class="play-button" id="playButton" aria-label="Play video">
-                <i class="fas fa-play"></i>
-              </button>
-            </div>
-            
-            <div class="compact-video-controls">
-              <button class="control-btn play-btn" id="playPauseBtn" aria-label="Play/Pause">
-                <i class="fas fa-pause"></i>
-              </button>
-              
-              <div class="progress-container">
-                <div class="progress-bar" id="progressBar">
-                  <div class="progress-fill" id="progressFill"></div>
-                </div>
-              </div>
-              
-              <div class="time-display">
-                <span id="currentTime">0:00</span>
-              </div>
-              
-              <button class="control-btn mute-btn" id="muteBtn" aria-label="Unmute">
-                <i class="fas fa-volume-mute"></i>
-              </button>
-              
-              <button class="control-btn fullscreen-btn" id="fullscreenBtn" aria-label="Fullscreen">
-                <i class="fas fa-expand"></i>
-              </button>
-            </div>
+      <div class="video-header">
+        <h3 style="text-align:center; margin-bottom:20px;">ASRD in Action</h3>
+      </div>
+      
+      <div class="simple-video-container">
+        <div class="simple-video-wrapper">
+          <video 
+            id="asrdVideo"
+            class="simple-video-element"
+            controls
+            playsinline
+            autoplay
+            muted
+            loop
+            preload="metadata"
+            poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
+            aria-label="ASRD promotional video showing digital economy concepts"
+          >
+            <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          
+          <div class="video-note">
+            <p><i class="fas fa-volume-up"></i> Click the speaker icon to unmute sound</p>
+            <p><i class="fas fa-expand"></i> Use fullscreen for best viewing experience</p>
           </div>
         </div>
       </div>
