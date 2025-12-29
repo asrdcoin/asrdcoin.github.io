@@ -70,10 +70,25 @@
     </aside>
   </div>
 
-  <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="container">
-      <div class="hero-content">
+  <!-- Hero Video Section -->
+  <section class="hero-video-section" id="home">
+    <div class="hero-video-container">
+      <div class="video-overlay"></div>
+      <video 
+        class="hero-video" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        preload="metadata"
+        aria-label="ASRD promotional video showing digital economy concepts"
+        poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
+      >
+        <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      
+      <div class="video-content container">
         <div style="margin-bottom:24px; display:flex; align-items:center; gap:12px;">
           <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
                alt="ASRD coin"
@@ -108,24 +123,10 @@
           <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">📄 Read Whitepaper</a>
         </div>
       </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <div class="floating-card fade-in-up">
-          <div class="floating-icon" style="background:var(--gradient-hero)">⚡</div>
-          <h4>Lightning Transfers</h4>
-          <p>BEP-20 optimized for instant, low-cost transactions across the BSC ecosystem.</p>
-        </div>
-        <div class="floating-card fade-in-up">
-          <div class="floating-icon" style="background:var(--gradient-emerald)">🔥</div>
-          <h4>Deflationary Burn</h4>
-          <p>1% permanent supply reduction per transfer creates compounding scarcity.</p>
-        </div>
-        <div class="floating-card fade-in-up">
-          <div class="floating-icon" style="background:var(--gradient-gold)">💎</div>
-          <h4>Treasury Power</h4>
-          <p>1% funds ecosystem growth, buybacks, and strategic developer grants.</p>
-        </div>
-      </div>
+      
+      <button class="video-control-btn" id="videoControl" aria-label="Pause video" title="Pause video">
+        <i class="fas fa-pause"></i>
+      </button>
     </div>
   </section>
 
