@@ -70,27 +70,24 @@
     </aside>
   </div>
 
-  <!-- Video Player Section -->
-  <section class="video-player-section" id="video-section">
+  <!-- Compact Video Player Section -->
+  <section class="compact-video-section" id="video-section">
     <div class="container">
       <div class="video-player-wrapper">
         <div class="video-header">
           <div style="display:flex; align-items:center; gap:12px;">
             <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
                  alt="ASRD coin"
-                 class="logo-img logo-md">
+                 class="logo-img logo-sm">
             <div>
-              <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
-                ASRD Utility Token
-              </span>
-              <h2 style="margin-top:4px; margin-bottom:0; font-size:clamp(24px, 5vw, 36px);">Introducing ASRD</h2>
+              <h3 style="margin:0; font-size:clamp(20px, 4vw, 28px);">Introducing ASRD</h3>
+              <p style="margin:4px 0 0 0; font-size:14px; color:var(--slate-400);">Watch our vision for the digital economy</p>
             </div>
           </div>
-          <div class="hero-badge">🎬 Watch Our Story</div>
         </div>
 
-        <div class="video-player-container">
-          <div class="video-player">
+        <div class="compact-video-container">
+          <div class="compact-video-player" id="videoPlayer">
             <video 
               id="asrdVideo"
               class="video-element"
@@ -99,15 +96,20 @@
               playsinline
               loop
               preload="metadata"
-              poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
               aria-label="ASRD promotional video showing digital economy concepts"
             >
               <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
             
-            <div class="video-controls">
-              <button class="control-btn play-pause-btn" id="playPauseBtn" aria-label="Play/Pause">
+            <div class="video-overlay">
+              <button class="play-button" id="playButton" aria-label="Play video">
+                <i class="fas fa-play"></i>
+              </button>
+            </div>
+            
+            <div class="compact-video-controls">
+              <button class="control-btn play-btn" id="playPauseBtn" aria-label="Play/Pause">
                 <i class="fas fa-pause"></i>
               </button>
               
@@ -115,40 +117,19 @@
                 <div class="progress-bar" id="progressBar">
                   <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="time-display">
-                  <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                </div>
               </div>
               
-              <button class="control-btn volume-btn" id="volumeBtn" aria-label="Toggle Mute">
-                <i class="fas fa-volume-up"></i>
+              <div class="time-display">
+                <span id="currentTime">0:00</span>
+              </div>
+              
+              <button class="control-btn mute-btn" id="muteBtn" aria-label="Unmute">
+                <i class="fas fa-volume-mute"></i>
               </button>
               
-              <button class="control-btn fullscreen-btn" id="fullscreenBtn" aria-label="Toggle Fullscreen">
+              <button class="control-btn fullscreen-btn" id="fullscreenBtn" aria-label="Fullscreen">
                 <i class="fas fa-expand"></i>
               </button>
-            </div>
-            
-            <div class="video-overlay">
-              <div class="overlay-content">
-                <h3>Powering the Next Digital Economy</h3>
-                <p>Watch how ASRD is revolutionizing digital finance</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="video-info">
-            <div class="info-item">
-              <i class="fas fa-play-circle"></i>
-              <span>Autoplays for the best experience</span>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-volume-mute"></i>
-              <span>Start muted for mobile compatibility</span>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-mobile-alt"></i>
-              <span>Optimized for all devices</span>
             </div>
           </div>
         </div>
@@ -160,6 +141,16 @@
   <section class="hero" id="home">
     <div class="container">
       <div class="hero-content">
+        <div style="margin-bottom:24px; display:flex; align-items:center; gap:12px;">
+          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
+               alt="ASRD coin"
+               class="logo-img logo-lg">
+          <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
+            ASRD Utility Token
+          </span>
+        </div>
+
+        <div class="hero-badge fade-in-up">🔥 BEP-20 Utility Token</div>
         <h1 class="fade-in-up">Powering the Next Digital Economy</h1>
         <p class="hero-subtitle fade-in-up">Sustainable growth through deflationary mechanics, treasury-funded buybacks, and developer ecosystem support. Built for utility that endures.</p>
 
