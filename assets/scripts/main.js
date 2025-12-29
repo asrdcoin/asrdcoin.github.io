@@ -519,3 +519,57 @@ window.addEventListener('error', function(e) {
 
 // Log when script loads
 console.log('ASRD main.js loaded successfully');
+// Enhanced video unmute script
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('asrdVideo');
+    
+    if (!video) return;
+    
+    // Function to unmute and play video
+    function unmuteVideo() {
+        video.muted = false;
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Video started playing successfully
+                console.log("ASRD: Video playing unmuted");
+            }).catch(error => {
+                // Auto-play was prevented
+                console.log("ASRD: Auto-play prevented, waiting for user interaction");
+            });
+        }
+    }
+    
+    // Try to unmute immediately on desktop browsers
+    setTimeout(unmuteVideo, 500);
+    
+    // For mobile browsers and stricter autoplay policies
+    // Unmute on any user interaction
+    const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+    
+    interactionEvents.forEach(eventType => {
+        document.addEventListener(eventType, function unmuteOnce() {
+            if (video.muted) {
+                video.muted = false;
+                video.play().catch(e => {});
+            }
+            // Remove the event listener after first interaction
+            interactionEvents.forEach(type => {
+                document.removeEventListener(type, unmuteOnce);
+            });
+        }, { once: true });
+    });
+    
+    // Also unmute when video enters viewport
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && video.muted) {
+                video.muted = false;
+                video.play().catch(e => {});
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    observer.observe(video);
+});
