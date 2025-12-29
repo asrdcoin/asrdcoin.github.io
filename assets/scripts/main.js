@@ -818,3 +818,387 @@ function initializePage() {
   
   console.log('ASRD website initialization complete');
 }
+// ========== COMPACT VIDEO PLAYER CONTROLS ==========
+
+function initVideoPlayer() {
+  const video = document.getElementById('asrdVideo');
+  const videoPlayer = document.querySelector('.compact-video-player');
+  const playButton = document.getElementById('playButton');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const muteBtn = document.getElementById('muteBtn');
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  const progressFill = document.getElementById('progressFill');
+  const progressBar = document.getElementById('progressBar');
+  const currentTimeEl = document.getElementById('currentTime');
+  
+  if (!video) return;
+  
+  // Format time (seconds to MM:SS)
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+  
+  // Update time display
+  function updateTimeDisplay() {
+    currentTimeEl.textContent = formatTime(video.currentTime);
+  }
+  
+  // Update progress bar
+  function updateProgress() {
+    if (video.duration && !isNaN(video.duration)) {
+      const percent = (video.currentTime / video.duration) * 100;
+      progressFill.style.width = `${percent}%`;
+    }
+    updateTimeDisplay();
+  }
+  
+  // Toggle play/pause
+  function togglePlayPause() {
+    if (video.paused) {
+      playVideo();
+    } else {
+      pauseVideo();
+    }
+  }
+  
+  function playVideo() {
+    video.play().then(() => {
+      videoPlayer.classList.add('playing');
+      videoPlayer.classList.remove('paused');
+      if (playPauseBtn) {
+        playPauseBtn.querySelector('.fa-play').style.display = 'none';
+        playPauseBtn.querySelector('.fa-pause').style.display = 'inline-block';
+      }
+    }).catch(error => {
+      console.log('Video play failed:', error);
+      // If autoplay is blocked, show the play button
+      if (playButton) playButton.style.display = 'flex';
+    });
+  }
+  
+  function pauseVideo() {
+    video.pause();
+    videoPlayer.classList.remove('playing');
+    videoPlayer.classList.add('paused');
+    if (playPauseBtn) {
+      playPauseBtn.querySelector('.fa-play').style.display = 'inline-block';
+      playPauseBtn.querySelector('.fa-pause').style.display = 'none';
+    }
+  }
+  
+  // Toggle mute
+  function toggleMute() {
+    video.muted = !video.muted;
+    if (video.muted) {
+      muteBtn.classList.remove('unmuted');
+      muteBtn.setAttribute('aria-label', 'Unmute video');
+    } else {
+      muteBtn.classList.add('unmuted');
+      muteBtn.setAttribute('aria-label', 'Mute video');
+    }
+  }
+  
+  // Toggle fullscreen
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      if (videoPlayer.requestFullscreen) {
+        videoPlayer.requestFullscreen();
+      } else if (videoPlayer.webkitRequestFullscreen) {
+        videoPlayer.webkitRequestFullscreen();
+      } else if (videoPlayer.msRequestFullscreen) {
+        videoPlayer.msRequestFullscreen();
+      }
+      videoPlayer.classList.add('fullscreen');
+      fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      fullscreenBtn.setAttribute('aria-label', 'Exit fullscreen');
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+      videoPlayer.classList.remove('fullscreen');
+      fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      fullscreenBtn.setAttribute('aria-label', 'Enter fullscreen');
+    }
+  }
+  
+  // Seek video on progress bar click
+  function seekVideo(e) {
+    const rect = progressBar.getBoundingClientRect();
+    const pos = (e.clientX - rect.left) / rect.width;
+    if (video.duration && !isNaN(video.duration)) {
+      video.currentTime = pos * video.duration;
+    }
+  }
+  
+  // Event Listeners
+  video.addEventListener('loadedmetadata', () => {
+    updateTimeDisplay();
+  });
+  
+  video.addEventListener('timeupdate', updateProgress);
+  
+  video.addEventListener('ended', () => {
+    videoPlayer.classList.remove('playing');
+    videoPlayer.classList.add('paused');
+    if (playPauseBtn) {
+      playPauseBtn.querySelector('.fa-play').style.display = 'inline-block';
+      playPauseBtn.querySelector('.fa-pause').style.display = 'none';
+    }
+  });
+  
+  video.addEventListener('play', () => {
+    videoPlayer.classList.add('playing');
+    videoPlayer.classList.remove('paused');
+    if (playPauseBtn) {
+      playPauseBtn.querySelector('.fa-play').style.display = 'none';
+      playPauseBtn.querySelector('.fa-pause').style.display = 'inline-block';
+    }
+    if (playButton) playButton.style.display = 'none';
+  });
+  
+  video.addEventListener('pause', () => {
+    videoPlayer.classList.remove('playing');
+    videoPlayer.classList.add('paused');
+    if (playPauseBtn) {
+      playPauseBtn.querySelector('.fa-play').style.display = 'inline-block';
+      playPauseBtn.querySelector('.fa-pause').style.display = 'none';
+    }
+  });
+  
+  // Play button events
+  if (playButton) {
+    playButton.addEventListener('click', () => {
+      playVideo();
+      playButton.style.display = 'none';
+    });
+  }
+  
+  if (playPauseBtn) {
+    playPauseBtn.addEventListener('click', togglePlayPause);
+  }
+  
+  if (muteBtn) {
+    muteBtn.addEventListener('click', toggleMute);
+  }
+  
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+  }
+  
+  if (progressBar) {
+    progressBar.addEventListener('click', seekVideo);
+  }
+  
+  // Show/hide controls on hover/touch
+  let controlsTimeout;
+  function showControls() {
+    const controls = document.querySelector('.compact-video-controls');
+    if (controls) {
+      controls.classList.add('active');
+      clearTimeout(controlsTimeout);
+      
+      // Hide controls after 3 seconds of inactivity
+      controlsTimeout = setTimeout(() => {
+        if (!video.paused) {
+          controls.classList.remove('active');
+        }
+      }, 3000);
+    }
+  }
+  
+  if (videoPlayer) {
+    videoPlayer.addEventListener('mousemove', showControls);
+    videoPlayer.addEventListener('touchstart', showControls);
+  }
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (document.activeElement === video || videoPlayer.classList.contains('fullscreen')) {
+      switch(e.key) {
+        case ' ':
+        case 'k':
+          e.preventDefault();
+          togglePlayPause();
+          break;
+        case 'm':
+          e.preventDefault();
+          toggleMute();
+          break;
+        case 'f':
+          e.preventDefault();
+          toggleFullscreen();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          if (video.duration && !isNaN(video.duration)) {
+            video.currentTime = Math.max(0, video.currentTime - 5);
+          }
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          if (video.duration && !isNaN(video.duration)) {
+            video.currentTime = Math.min(video.duration, video.currentTime + 5);
+          }
+          break;
+      }
+    }
+  });
+  
+  // Handle fullscreen changes
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      videoPlayer.classList.remove('fullscreen');
+      fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      fullscreenBtn.setAttribute('aria-label', 'Enter fullscreen');
+    }
+  });
+  
+  // Mobile-specific optimizations
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    // Ensure video autoplays on mobile (muted by default)
+    setTimeout(() => {
+      video.play().catch(e => {
+        console.log('Autoplay prevented on mobile:', e);
+        // Show play button if autoplay fails
+        if (playButton) {
+          playButton.style.display = 'flex';
+          videoPlayer.classList.remove('playing');
+          videoPlayer.classList.add('paused');
+        }
+      });
+    }, 500);
+    
+    // Add loading indicator
+    video.addEventListener('waiting', () => {
+      videoPlayer.classList.add('loading');
+    });
+    
+    video.addEventListener('playing', () => {
+      videoPlayer.classList.remove('loading');
+    });
+    
+    // Make controls always visible on mobile
+    const controls = document.querySelector('.compact-video-controls');
+    if (controls) {
+      controls.classList.add('active');
+    }
+  }
+  
+  // Initialize mute button state
+  if (muteBtn && video.muted) {
+    muteBtn.classList.remove('unmuted');
+    muteBtn.setAttribute('aria-label', 'Unmute video');
+  }
+  
+  // Initialize play button visibility
+  if (playButton && !video.paused) {
+    playButton.style.display = 'none';
+  }
+}
+
+// ========== PAGE INITIALIZATION ==========
+
+// Initialize all functions for current page
+function initializePage() {
+  console.log('Initializing ASRD website...');
+  
+  // Core functions (run on all pages)
+  initMobileMenu();
+  initHeaderScroll();
+  initSmoothScroll();
+  initBackToTop();
+  initAnimations();
+  
+  // Check which page we're on
+  const isIndexPage = document.getElementById('menuToggle') !== null;
+  const isWhitepaperPage = document.getElementById('mobileMenuBtn') !== null;
+  
+  // Page-specific functions
+  if (isIndexPage) {
+    console.log('Detected index.html - initializing index-specific features');
+    initVideoPlayer(); // Video player
+    initCopyToClipboard();
+    initFloatingDeposit();
+    initParticles();
+    initViewOnExplorer();
+  }
+  
+  if (isWhitepaperPage) {
+    console.log('Detected whitepaper.html - initializing whitepaper-specific features');
+    initFloatingNav();
+  }
+  
+  // Initialize elements already in view
+  const animateElements = document.querySelectorAll('.fade-in-up, .animate-fade-in-up, .animate-fade-in-left');
+  animateElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      if (el.classList.contains('animate-fade-in-up')) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      } else if (el.classList.contains('animate-fade-in-left')) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateX(0)';
+      }
+    }
+  });
+  
+  // Prevent horizontal scroll on mobile
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+      document.body.style.overflowX = 'hidden';
+    } else {
+      document.body.style.overflowX = '';
+    }
+  });
+  
+  // Initial check for mobile overflow
+  if (window.innerWidth <= 768) {
+    document.body.style.overflowX = 'hidden';
+  }
+  
+  console.log('ASRD website initialization complete');
+}
+
+// ========== EVENT LISTENERS ==========
+
+// Run when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializePage);
+
+// Run when page is fully loaded (including images)
+window.addEventListener('load', () => {
+  // Additional initialization that requires everything to be loaded
+  const header = document.getElementById('header');
+  if (header && window.scrollY > 100) {
+    header.classList.add('scrolled');
+  }
+  
+  // Re-initialize particles on load (for index.html)
+  if (document.getElementById('particles')) {
+    setTimeout(initParticles, 500);
+  }
+});
+
+// Handle browser back/forward navigation
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    initializePage();
+  }
+});
+
+// ========== ERROR HANDLING ==========
+
+// Global error handler
+window.addEventListener('error', function(e) {
+  console.error('JavaScript Error:', e.message, 'at', e.filename, ':', e.lineno);
+});
+
+// Log when script loads
+console.log('ASRD main.js loaded successfully');
