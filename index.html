@@ -70,9 +70,6 @@
     </aside>
   </div>
 
-  <!-- Simple Video Player Section -->
- 
-
   <!-- Hero Content Section -->
   <section class="hero" id="home">
     <div class="container">
@@ -90,33 +87,43 @@
         <h1 class="fade-in-up">Powering the Next Digital Economy</h1>
         <p class="hero-subtitle fade-in-up">Sustainable growth through deflationary mechanics, treasury-funded buybacks, and developer ecosystem support. Built for utility that endures.</p>
 
-        <section class="simple-video-section" id="video-section">
-    <div class="container">
-      <div class="video-header">
-        <h3 style="text-align:center; margin-bottom:20px;">ASRD in Action</h3>
-      </div>
-      
-      <div class="simple-video-container">
-        <div class="simple-video-wrapper">
-          <video 
-            id="asrdVideo"
-            class="simple-video-element"
-            controls
-            playsinline
-            autoplay
-            muted
-            loop
-            preload="metadata"
-            poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
-            aria-label="ASRD promotional video showing digital economy concepts"
-          >
-            <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <!-- Video Section - Fixed with proper margin and positioning -->
+        <div style="margin: 40px 0; position: relative; z-index: 1;">
+          <div class="simple-video-container">
+            <div class="simple-video-wrapper">
+              <video 
+                id="asrdVideo"
+                class="simple-video-element"
+                controls
+                playsinline
+                autoplay
+                muted
+                loop
+                preload="metadata"
+                poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
+                aria-label="ASRD promotional video showing digital economy concepts"
+              >
+                <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+
+        <div class="hero-stats fade-in-up" role="list" aria-label="Key stats">
+          <div class="stat-item" role="listitem">
+            <div class="stat">4M</div>
+            <div class="stat-label">Total Supply</div>
+          </div>
+          <div class="stat-item" role="listitem">
+            <div class="stat">2%</div>
+            <div class="stat-label">Transfer Fee</div>
+          </div>
+          <div class="stat-item" role="listitem">
+            <div class="stat">100%</div>
+            <div class="stat-label">Circulating</div>
+          </div>
+        </div>
 
         <div class="cta-buttons fade-in-up" role="group" aria-label="Primary actions">
           <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🚀 Buy on DEX</a>
