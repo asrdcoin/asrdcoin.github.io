@@ -566,3 +566,255 @@ window.addEventListener('error', function(e) {
 
 // Log when script loads
 console.log('ASRD main.js loaded successfully');
+
+// ========== VIDEO PLAYER CONTROLS ==========
+
+function initVideoPlayer() {
+  const video = document.getElementById('asrdVideo');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const volumeBtn = document.getElementById('volumeBtn');
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  const progressFill = document.getElementById('progressFill');
+  const progressBar = document.getElementById('progressBar');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationEl = document.getElementById('duration');
+  const videoPlayer = document.querySelector('.video-player');
+  
+  if (!video) return;
+  
+  // Format time (seconds to MM:SS)
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+  
+  // Update time display
+  function updateTimeDisplay() {
+    currentTimeEl.textContent = formatTime(video.currentTime);
+    durationEl.textContent = formatTime(video.duration || 0);
+  }
+  
+  // Update progress bar
+  function updateProgress() {
+    if (video.duration) {
+      const percent = (video.currentTime / video.duration) * 100;
+      progressFill.style.width = `${percent}%`;
+    }
+    updateTimeDisplay();
+  }
+  
+  // Toggle play/pause
+  function togglePlayPause() {
+    if (video.paused) {
+      video.play();
+      videoPlayer.classList.add('playing');
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      playPauseBtn.setAttribute('aria-label', 'Pause video');
+    } else {
+      video.pause();
+      videoPlayer.classList.remove('playing');
+      playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      playPauseBtn.setAttribute('aria-label', 'Play video');
+    }
+  }
+  
+  // Toggle mute
+  function toggleMute() {
+    video.muted = !video.muted;
+    if (video.muted) {
+      volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      volumeBtn.setAttribute('aria-label', 'Unmute video');
+    } else {
+      volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      volumeBtn.setAttribute('aria-label', 'Mute video');
+    }
+  }
+  
+  // Toggle fullscreen
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      videoPlayer.requestFullscreen?.().catch(err => {
+        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      videoPlayer.classList.add('fullscreen');
+      fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      fullscreenBtn.setAttribute('aria-label', 'Exit fullscreen');
+    } else {
+      document.exitFullscreen?.();
+      videoPlayer.classList.remove('fullscreen');
+      fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      fullscreenBtn.setAttribute('aria-label', 'Enter fullscreen');
+    }
+  }
+  
+  // Seek video on progress bar click
+  function seekVideo(e) {
+    const rect = progressBar.getBoundingClientRect();
+    const pos = (e.clientX - rect.left) / rect.width;
+    video.currentTime = pos * video.duration;
+  }
+  
+  // Event Listeners
+  video.addEventListener('loadedmetadata', () => {
+    updateTimeDisplay();
+  });
+  
+  video.addEventListener('timeupdate', updateProgress);
+  
+  video.addEventListener('ended', () => {
+    videoPlayer.classList.remove('playing');
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    playPauseBtn.setAttribute('aria-label', 'Play video');
+  });
+  
+  playPauseBtn.addEventListener('click', togglePlayPause);
+  
+  volumeBtn.addEventListener('click', toggleMute);
+  
+  fullscreenBtn.addEventListener('click', toggleFullscreen);
+  
+  progressBar.addEventListener('click', seekVideo);
+  
+  // Show/hide controls on touch/mouse
+  let controlsTimeout;
+  function showControls() {
+    videoPlayer.querySelector('.video-controls').classList.add('active');
+    clearTimeout(controlsTimeout);
+    
+    // Hide controls after 3 seconds of inactivity
+    controlsTimeout = setTimeout(() => {
+      if (!video.paused) {
+        videoPlayer.querySelector('.video-controls').classList.remove('active');
+      }
+    }, 3000);
+  }
+  
+  videoPlayer.addEventListener('mousemove', showControls);
+  videoPlayer.addEventListener('touchstart', showControls);
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (document.activeElement === video || videoPlayer.classList.contains('fullscreen')) {
+      switch(e.key) {
+        case ' ':
+        case 'k':
+          e.preventDefault();
+          togglePlayPause();
+          break;
+        case 'm':
+          e.preventDefault();
+          toggleMute();
+          break;
+        case 'f':
+          e.preventDefault();
+          toggleFullscreen();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          video.currentTime = Math.max(0, video.currentTime - 5);
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          video.currentTime = Math.min(video.duration, video.currentTime + 5);
+          break;
+      }
+    }
+  });
+  
+  // Handle fullscreen changes
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      videoPlayer.classList.remove('fullscreen');
+      fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+      fullscreenBtn.setAttribute('aria-label', 'Enter fullscreen');
+    }
+  });
+  
+  // Mobile-specific optimizations
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    // Ensure video autoplays on mobile
+    video.play().catch(e => {
+      console.log('Autoplay prevented on mobile:', e);
+      // Show play button overlay
+      videoPlayer.classList.remove('playing');
+      playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      playPauseBtn.setAttribute('aria-label', 'Play video');
+    });
+    
+    // Add loading indicator
+    video.addEventListener('waiting', () => {
+      videoPlayer.classList.add('loading');
+    });
+    
+    video.addEventListener('playing', () => {
+      videoPlayer.classList.remove('loading');
+    });
+  }
+}
+
+// ========== PAGE INITIALIZATION ==========
+
+// Initialize all functions for current page
+function initializePage() {
+  console.log('Initializing ASRD website...');
+  
+  // Core functions (run on all pages)
+  initMobileMenu();
+  initHeaderScroll();
+  initSmoothScroll();
+  initBackToTop();
+  initAnimations();
+  
+  // Check which page we're on
+  const isIndexPage = document.getElementById('menuToggle') !== null;
+  const isWhitepaperPage = document.getElementById('mobileMenuBtn') !== null;
+  
+  // Page-specific functions
+  if (isIndexPage) {
+    console.log('Detected index.html - initializing index-specific features');
+    initVideoPlayer(); // Add this line
+    initCopyToClipboard();
+    initFloatingDeposit();
+    initParticles();
+    initViewOnExplorer();
+    initFloatingNav();
+  }
+  
+  if (isWhitepaperPage) {
+    console.log('Detected whitepaper.html - initializing whitepaper-specific features');
+    initFloatingNav();
+  }
+  
+  // Initialize elements already in view
+  const animateElements = document.querySelectorAll('.fade-in-up, .animate-fade-in-up, .animate-fade-in-left');
+  animateElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      if (el.classList.contains('animate-fade-in-up')) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      } else if (el.classList.contains('animate-fade-in-left')) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateX(0)';
+      }
+    }
+  });
+  
+  // Prevent horizontal scroll on mobile
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+      document.body.style.overflowX = 'hidden';
+    } else {
+      document.body.style.overflowX = '';
+    }
+  });
+  
+  // Initial check for mobile overflow
+  if (window.innerWidth <= 768) {
+    document.body.style.overflowX = 'hidden';
+  }
+  
+  console.log('ASRD website initialization complete');
+}
