@@ -176,10 +176,586 @@
     <a href="#risks" class="floating-nav-item">Risks</a>
   </nav>
 
-  <!-- Rest of the whitepaper sections remain exactly the same -->
-  <!-- They will work with the updated CSS -->
-  
-  <!-- Add the script at the end -->
+  <section id="executive-summary" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 1</span>
+        <h2 class="section-title">Executive Summary</h2>
+        <p class="section-subtitle">
+          Comprehensive overview of ASRD's mission, architecture, and value proposition
+        </p>
+      </div>
+
+      <div class="content-cards">
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3 class="card-title">What the Project Does</h3>
+          <div class="card-content">
+            <p>ASRD Coin is a utility token built on the BNB Smart Chain (BEP-20). Its primary function is to facilitate and incentivize participation within a decentralized ecosystem focused on supporting blockchain development and infrastructure.</p>
+            <p>The protocol implements a deflationary transaction tax mechanism to fund a treasury, which is used for ecosystem grants, strategic buybacks, and liquidity provision.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <h3 class="card-title">Why It Exists</h3>
+          <div class="card-content">
+            <p>The project addresses inefficiencies in sustaining long-term developer engagement and project liquidity within decentralized ecosystems.</p>
+            <p>Many utility tokens lack built-in, sustainable mechanisms for self-funded growth, often relying on inflationary rewards or unsustainable yields.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="card-title">Economic & Technical Viability</h3>
+          <div class="card-content">
+            <p><strong>Economic Rationale:</strong> The model aligns long-term token holder and ecosystem developer interests through a transaction fee structure that directly funds growth initiatives.</p>
+            <p><strong>Technical Foundation:</strong> Built on the established BNB Smart Chain, the project utilizes audited smart contracts to execute transparent, on-chain treasury operations and token burns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokenomics" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 6</span>
+        <h2 class="section-title">Tokenomics</h2>
+        <p class="section-subtitle">
+          Supply model, fee structure, and economic mechanics
+        </p>
+      </div>
+
+      <div class="tokenomics-visual animate-fade-in-up">
+        <div class="visual-header">
+          <h3 class="visual-title">Token Distribution & Mechanics</h3>
+          <p class="visual-subtitle">
+            Fixed supply with deflationary mechanics designed for sustainable ecosystem growth
+          </p>
+        </div>
+
+        <div class="token-details">
+          <div class="token-detail animate-fade-in-left">
+            <div class="detail-label">Total Supply</div>
+            <div class="detail-value">4,000,000</div>
+          </div>
+          <div class="token-detail animate-fade-in-left">
+            <div class="detail-label">Decimals</div>
+            <div class="detail-value">18</div>
+          </div>
+          <div class="token-detail animate-fade-in-left">
+            <div class="detail-label">Network</div>
+            <div class="detail-value">BSC (BEP-20)</div>
+          </div>
+          <div class="token-detail animate-fade-in-left">
+            <div class="detail-label">Launch Model</div>
+            <div class="detail-value">Fair Launch</div>
+          </div>
+        </div>
+
+        <div class="fee-breakdown">
+          <div class="fee-card burn animate-fade-in-left">
+            <div class="fee-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <div class="fee-percent">1.0%</div>
+            <h4 class="fee-title">Permanent Burn</h4>
+            <p class="fee-desc">
+              Irreversibly removed from total supply with each transaction, creating compounding scarcity and deflationary pressure over time.
+            </p>
+          </div>
+
+          <div class="fee-card treasury animate-fade-in-left">
+            <div class="fee-icon">
+              <i class="fas fa-vault"></i>
+            </div>
+            <div class="fee-percent">1.0%</div>
+            <h4 class="fee-title">Treasury Allocation</h4>
+            <p class="fee-desc">
+              Funds ecosystem development, strategic buybacks, liquidity provision, and community grants to ensure sustainable growth.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 4</span>
+        <h2 class="section-title">Technical Architecture</h2>
+        <p class="section-subtitle">
+          Smart contract design, security measures, and system components
+        </p>
+      </div>
+
+      <div class="content-cards">
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3 class="card-title">Smart Contract Architecture</h3>
+          <div class="card-content">
+            <p><strong>ASRD Token Contract (BEP-20):</strong> Manages token transfers, balances, and enforces the transfer tax logic.</p>
+            <p><strong>Treasury Contract:</strong> Receives and holds the treasury portion of transaction fees. Governed by a multi-signature wallet.</p>
+            <p><strong>Burn Address:</strong> A publicly verifiable, inaccessible address where burned tokens are sent.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3 class="card-title">Transfer Tax Mechanism</h3>
+          <div class="card-content">
+            <p>A 2% fee is applied to qualifying transfers with automatic split:</p>
+            <p><strong>1% Burn:</strong> Sent to burn address, irreversibly reducing total supply</p>
+            <p><strong>1% Treasury:</strong> Sent to treasury contract for ecosystem development</p>
+            <p><strong>Exemptions:</strong> Critical system addresses may be exempted to ensure smooth operation</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="card-title">Security Framework</h3>
+          <div class="card-content">
+            <p><strong>Multiple Audits:</strong> Professional smart contract audits before deployment</p>
+            <p><strong>Multi-Signature Governance:</strong> Treasury controlled by distributed signers</p>
+            <p><strong>Timelock Upgrades:</strong> Protocol upgrades require community notice period</p>
+            <p><strong>Transparent Operations:</strong> All treasury actions publicly verifiable on-chain</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 10</span>
+        <h2 class="section-title">Strategic Roadmap</h2>
+        <p class="section-subtitle">
+          18-36 month development timeline for sustainable ecosystem growth
+        </p>
+      </div>
+
+      <div class="interactive-roadmap animate-fade-in-up">
+        <div class="roadmap-line"></div>
+
+        <div class="roadmap-phase">
+          <div class="phase-marker">1</div>
+          <div class="phase-content">
+            <div class="phase-header">
+              <h3 class="phase-title">Foundation & Stability</h3>
+              <span class="phase-period">Months 1-12</span>
+            </div>
+            <div class="phase-details">
+              <div class="phase-detail">
+                <div class="detail-category">Technical</div>
+                <div class="detail-text">Successful contract deployment and audit publication. Establishment of secure multi-sig treasury.</div>
+              </div>
+              <div class="phase-detail">
+                <div class="detail-category">Ecosystem</div>
+                <div class="detail-text">Launch of initial community and developer outreach. First governance discussions on treasury use.</div>
+              </div>
+              <div class="phase-detail">
+                <div class="detail-category">Compliance</div>
+                <div class="detail-text">Ongoing monitoring of regulatory developments in the digital asset space.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-marker">2</div>
+          <div class="phase-content">
+            <div class="phase-header">
+              <h3 class="phase-title">Ecosystem Growth</h3>
+              <span class="phase-period">Months 13-24</span>
+            </div>
+            <div class="phase-details">
+              <div class="phase-detail">
+                <div class="detail-category">Technical</div>
+                <div class="detail-text">Development and audit of a dedicated on-chain governance module.</div>
+              </div>
+              <div class="phase-detail">
+                <div class="detail-category">Product</div>
+                <div class="detail-text">Funding and delivery of first developer grants for ecosystem tools and integrations.</div>
+              </div>
+              <div class="phase-detail">
+                <div class="detail-category">Community</div>
+                <div class="detail-text">Formalization of a grant proposal and review process managed by the community.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap-phase">
+          <div class="phase-marker">3</div>
+          <div class="phase-content">
+            <div class="phase-header">
+              <h3 class="phase-title">Sustained Development</h3>
+              <span class="phase-period">Months 25-36</span>
+            </div>
+            <div class="phase-details">
+              <div class="phase-detail">
+                <div class="detail-category">Technical</div>
+                <div class="detail-text">Implementation and activation of on-chain token holder voting for treasury allocations.</div>
+              </div>
+              <div class="phase-detail">
+                <div class="detail-category">Ecosystem</div>
+                <div class="detail-text">Expansion of grant program to support more complex integrations and applications.</div>
+              </div>
+              <div class="phase-detail">
+                <div class="detail-category">Sustainability</div>
+                <div class="detail-text">Assessment of model performance and community-led iteration on grant focus areas.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="risks" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 11</span>
+        <h2 class="section-title">Risk Analysis</h2>
+        <p class="section-subtitle">
+          Comprehensive identification and mitigation of potential challenges
+        </p>
+      </div>
+
+      <div class="risk-visualization">
+        <div class="risk-card technical animate-fade-in-left">
+          <div class="risk-icon">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3 class="risk-title">Technical Risks</h3>
+          <ul class="risk-items">
+            <li class="risk-item">Smart contract vulnerabilities despite audits</li>
+            <li class="risk-item">Dependency on BSC network security</li>
+            <li class="risk-item">Potential governance key compromise</li>
+            <li class="risk-item">Integration and compatibility issues</li>
+          </ul>
+        </div>
+
+        <div class="risk-card market animate-fade-in-left">
+          <div class="risk-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="risk-title">Market Risks</h3>
+          <ul class="risk-items">
+            <li class="risk-item">Low liquidity leading to high volatility</li>
+            <li class="risk-item">Failure to attract developer adoption</li>
+            <li class="risk-item">Intense competition in DeFi space</li>
+            <li class="risk-item">Macroeconomic crypto market cycles</li>
+          </ul>
+        </div>
+
+        <div class="risk-card regulatory animate-fade-in-left">
+          <div class="risk-icon">
+            <i class="fas fa-gavel"></i>
+          </div>
+          <h3 class="risk-title">Regulatory Risks</h3>
+          <ul class="risk-items">
+            <li class="risk-item">Changing utility token classification</li>
+            <li class="risk-item">Unfavorable tax treatment mechanisms</li>
+            <li class="risk-item">Jurisdictional compliance complexity</li>
+            <li class="risk-item">Global regulatory fragmentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="governance" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 7</span>
+        <h2 class="section-title">Governance Framework</h2>
+        <p class="section-subtitle">
+          Decentralized decision-making and community participation mechanisms
+        </p>
+      </div>
+
+      <div class="content-cards">
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-vote-yea"></i>
+          </div>
+          <h3 class="card-title">Treasury Governance</h3>
+          <div class="card-content">
+            <p><strong>Multi-Signature Control:</strong> Treasury funds are managed by a 3-of-5 multi-signature wallet requiring consensus from multiple parties.</p>
+            <p><strong>Transparent Proposals:</strong> All treasury spending proposals are publicly documented and discussed before execution.</p>
+            <p><strong>Community Input:</strong> Key decisions incorporate feedback from token holders through informal signaling votes.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="card-title">Community Participation</h3>
+          <div class="card-content">
+            <p><strong>Grant Program:</strong> Developers can submit proposals for ecosystem funding through a structured application process.</p>
+            <p><strong>Governance Discussions:</strong> Regular community calls and forum discussions to gather feedback on protocol direction.</p>
+            <p><strong>Transparency Reports:</strong> Quarterly reports detailing treasury activities, burn metrics, and ecosystem development.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-sync-alt"></i>
+          </div>
+          <h3 class="card-title">Protocol Upgrades</h3>
+          <div class="card-content">
+            <p><strong>Timelock Implementation:</strong> All smart contract upgrades require a minimum notice period before activation.</p>
+            <p><strong>Backward Compatibility:</strong> Protocol changes maintain compatibility with existing integrations and user positions.</p>
+            <p><strong>Emergency Procedures:</strong> Clearly defined processes for addressing critical security issues or protocol vulnerabilities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="use-cases" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 3</span>
+        <h2 class="section-title">Utility & Use Cases</h2>
+        <p class="section-subtitle">
+          Practical applications and value accrual mechanisms
+        </p>
+      </div>
+
+      <div class="content-cards">
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+          </div>
+          <h3 class="card-title">Transaction Medium</h3>
+          <div class="card-content">
+            <p><strong>DeFi Integration:</strong> ASRD serves as a transaction medium within supported decentralized applications and protocols.</p>
+            <p><strong>Cross-Platform Utility:</strong> Token functionality extends across multiple platforms and services within the BSC ecosystem.</p>
+            <p><strong>Low-Fee Transactions:</strong> BSC network enables cost-effective transfers suitable for micro-transactions and frequent usage.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3 class="card-title">Ecosystem Development</h3>
+          <div class="card-content">
+            <p><strong>Grant Funding:</strong> Treasury allocates funds to developers building tools, integrations, and applications that enhance ASRD utility.</p>
+            <p><strong>Liquidity Provision:</strong> Strategic allocation of treasury resources to deepen market liquidity and reduce volatility.</p>
+            <p><strong>Partnership Incentives:</strong> Resources allocated to foster strategic partnerships and ecosystem collaborations.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="card-title">Value Accrual</h3>
+          <div class="card-content">
+            <p><strong>Deflationary Mechanics:</strong> Permanent burn mechanism creates compounding scarcity as transaction volume increases.</p>
+            <p><strong>Treasury Backing:</strong> Growing treasury provides resources for value-enhancing activities like strategic buybacks.</p>
+            <p><strong>Network Effects:</strong> Increasing adoption creates positive feedback loops that enhance token utility and demand.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="conclusion" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag">Chapter 12</span>
+        <h2 class="section-title">Conclusion & Future Vision</h2>
+        <p class="section-subtitle">
+          Long-term vision and strategic objectives for sustainable ecosystem growth
+        </p>
+      </div>
+
+      <div class="content-cards">
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-flag-checkered"></i>
+          </div>
+          <h3 class="card-title">Strategic Objectives</h3>
+          <div class="card-content">
+            <p><strong>Sustainable Ecosystem:</strong> Build a self-funding ecosystem that can support long-term development without external funding.</p>
+            <p><strong>Developer Adoption:</strong> Attract and retain talented developers through meaningful grant programs and supportive infrastructure.</p>
+            <p><strong>Token Holder Value:</strong> Create sustainable value for token holders through transparent operations and value-accruing mechanisms.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </div>
+          <h3 class="card-title">Expansion Opportunities</h3>
+          <div class="card-content">
+            <p><strong>Cross-Chain Integration:</strong> Explore bridges and interoperability solutions to expand utility beyond BSC.</p>
+            <p><strong>Additional Use Cases:</strong> Develop new utility applications and integration points as the ecosystem matures.</p>
+            <p><strong>Governance Evolution:</strong> Transition toward more decentralized governance models as community participation grows.</p>
+          </div>
+        </div>
+
+        <div class="content-card animate-fade-in-left">
+          <div class="card-icon">
+            <i class="fas fa-shield-check"></i>
+          </div>
+          <h3 class="card-title">Commitment to Principles</h3>
+          <div class="card-content">
+            <p><strong>Transparency:</strong> Maintain open communication about protocol operations, treasury management, and strategic direction.</p>
+            <p><strong>Sustainability:</strong> Prioritize long-term stability over short-term gains in all protocol decisions and developments.</p>
+            <p><strong>Community Focus:</strong> Center development around community needs and feedback, ensuring the protocol serves its users.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section fade-in-up">
+          <h4>ASRD Ecosystem</h4>
+          <p style="color: var(--slate-300); margin-bottom: 24px; line-height: 1.6;">
+            Powering sustainable digital infrastructure on BNB Smart Chain through transparent tokenomics and community-driven development.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Telegram">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Discord">
+              <i class="fab fa-discord"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-section fade-in-up">
+          <h4>Whitepaper</h4>
+          <ul class="footer-links">
+            <li class="footer-link">
+              <a href="#executive-summary">
+                <i class="fas fa-chevron-right"></i>
+                Executive Summary
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="#tokenomics">
+                <i class="fas fa-chevron-right"></i>
+                Tokenomics
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="#architecture">
+                <i class="fas fa-chevron-right"></i>
+                Architecture
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="#roadmap">
+                <i class="fas fa-chevron-right"></i>
+                Roadmap
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="#use-cases">
+                <i class="fas fa-chevron-right"></i>
+                Use Cases
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="#risks">
+                <i class="fas fa-chevron-right"></i>
+                Risk Analysis
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section fade-in-up">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li class="footer-link">
+              <a href="index.html">
+                <i class="fas fa-chevron-right"></i>
+                Home
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="index.html#deposit">
+                <i class="fas fa-chevron-right"></i>
+                Deposit USDT
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="index.html#tokenomics">
+                <i class="fas fa-chevron-right"></i>
+                Tokenomics
+              </a>
+            </li>
+            <li class="footer-link">
+              <a href="#contact">
+                <i class="fas fa-chevron-right"></i>
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section fade-in-up">
+          <h4>Document Info</h4>
+          <div style="color: var(--slate-300);">
+            <p><strong>Version:</strong> 1.0</p>
+            <p><strong>Network:</strong> BNB Smart Chain</p>
+            <p><strong>Contract:</strong> 0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB</p>
+            <p><strong>Website:</strong> asrdcoin.com</p>
+            <p><strong>Last Updated:</strong> January 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom fade-in-up">
+        <p>© 2025 ASRD. The utility token of the future. Not financial advice. DYOR.</p>
+        <p style="margin-top: 8px; font-size: 12px; color: var(--slate-500);">
+          This whitepaper is for informational purposes only. Consult professional advice before making investment decisions.
+          Cryptocurrency investments involve significant risk. Past performance is not indicative of future results.
+        </p>
+        <p style="margin-top: 12px; font-size: 11px; color: var(--slate-600);">
+          ASRD is a utility token on the BNB Smart Chain. It is not a security and does not represent ownership or equity.
+          The protocol is experimental and subject to change. Users should only participate with funds they can afford to lose.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
   <script src="assets/scripts/main.js"></script>
 </body>
 </html>
