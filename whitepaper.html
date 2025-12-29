@@ -117,47 +117,27 @@
       justify-content: space-between;
       padding: 16px 0;
     }
-   /* Replace your existing logo rules with this */
-    .logo {
-      display: inline-flex;      /* compact inline block */
+   .logo {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
       font-size: 22px;
       font-weight: 800;
-      line-height: 1;            /* important: prevents extra vertical spacing */
+      line-height: 1;
       text-decoration: none;
-      -webkit-font-smoothing:antialiased;
-      vertical-align: middle;
     }
     
-    /* Use a single img element (no padded wrapper). Make it block-level to remove inline gaps */
+    .logo span {
+      line-height: 1;
+      display: block;
+    }
+    
     .logo-icon {
-      width: 48px;               /* desktop default, override in media queries if needed */
-      height: 48px;
-      padding: 0;                /* important: remove artificial space */
-      margin: 0;
-      display: block;            /* removes baseline gap */
+      width: 44px;
+      height: 44px;
+      display: block;
+      object-fit: cover;
       border-radius: 50%;
-      object-fit: cover;         /* fill the circle, hides transparent PNG padding */
-      background: #0F172A;       /* fallback behind the image */
-      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-    }
-    
-    /* mobile overrides (optional) */
-    @media (max-width: 767px) {
-      .logo-icon { width: 40px; height: 40px; }
-      .logo { font-size: 18px; gap: 8px; }
-    }
-    
-    /* if you must keep a wrapper span, make sure it has no padding and overflow:hidden */
-    .logo-wrap {
-      width: 48px;
-      height: 48px;
-      padding: 0;
-      margin: 0;
-      display: inline-block;
-      border-radius: 50%;
-      overflow: hidden;
     }
 
     /* Desktop Navigation */
@@ -1133,51 +1113,65 @@
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 0 16px;
-      }
-      .header-inner {
-        padding: 12px 0;
-      }
-      .logo {
-        font-size: 20px;
-      }
-      .logo-icon {
-        width: 40px;
-        height: 40px;
-      }
-      .hero-badge {
-        padding: 10px 20px;
-        font-size: 14px;
-      }
-      .hero-title {
-        font-size: 36px;
-      }
-      .hero-subtitle {
-        font-size: 18px;
-      }
-      .btn {
-        padding: 16px 24px;
-        font-size: 15px;
-        min-width: 100%;
-        justify-content: center;
-      }
-      .hero-actions {
-        flex-direction: column;
-      }
-      .section-title {
-        font-size: 32px;
-      }
-      .section-subtitle {
-        font-size: 18px;
-      }
-      .content-card {
-        padding: 30px 20px;
-      }
-      .card-title {
-        font-size: 22px;
-      }
-    }
+  .container {
+    padding: 0 16px;
+  }
+
+  .header-inner {
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-badge {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .btn {
+    padding: 16px 24px;
+    font-size: 15px;
+    min-width: 100%;
+    justify-content: center;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .section-subtitle {
+    font-size: 18px;
+  }
+
+  .content-card {
+    padding: 30px 20px;
+  }
+
+  .card-title {
+    font-size: 22px;
+  }
+}
   </style>
 </head>
 <body>
