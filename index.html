@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Premium Visual System (unchanged variables) */
+    /* Premium Visual System */
     :root{
       --blue-900:#1E3A8A; --blue-800:#1E40AF; --blue-600:#3B82F6; --blue-500:#60A5FA;
       --gold-900:#B45309; --gold-700:#D97706; --gold-500:#F59E0B; --gold-400:#FBBF24;
@@ -30,7 +30,7 @@
 
     /* Core Reset */
     *{box-sizing:border-box; margin:0; padding:0}
-    html{scroll-behavior:smooth; scroll-padding-top:120px}
+    html{scroll-behavior:smooth; scroll-padding-top:80px}
     body{font-family:'Inter', ui-sans-serif, sans-serif; background:linear-gradient(180deg,var(--slate-900) 0%, var(--slate-800) 40%, var(--slate-700) 100%); color:var(--slate-50); overflow-x:hidden; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
 
     /* Particles Background */
@@ -43,45 +43,45 @@
     /* Premium Header */
     header{position:fixed; top:0; left:0; right:0; z-index:1000; backdrop-filter:blur(25px); background:var(--glass); border-bottom:1px solid rgba(255,255,255,0.1); transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
     header.scrolled{background:rgba(255,255,255,0.15)}
-    .header-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .header-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
 
-    .logo{display:flex; align-items:center; gap:16px; font-size:28px; font-weight:800; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text}
+    .logo{display:flex; align-items:center; gap:12px; font-size:24px; font-weight:800; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; text-decoration:none}
 
     .logo-icon-img{
-      width:56px;
-      height:56px;
+      width:48px;
+      height:48px;
       border-radius:50%;
       object-fit:cover;
       padding:0;
       display:block;
-      vertical-align:middle;
       background:#0F172A;
-      box-shadow:0 12px 30px rgba(0,0,0,0.7);
+      box-shadow:0 8px 20px rgba(0,0,0,0.7);
     }
 
-    .hero-logo{width:96px; height:96px; border-radius:50%; object-fit:cover; padding:0; display:block; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 65%); box-shadow:0 18px 40px rgba(15,23,42,0.85);}
+    .hero-logo{width:80px; height:80px; border-radius:50%; object-fit:cover; padding:0; display:block; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 65%); box-shadow:0 12px 30px rgba(15,23,42,0.85);}
 
-    .mobile-logo{width:48px; height:48px; border-radius:50%; object-fit:cover; padding:0; display:block; background:#0F172A;}
+    .mobile-logo{width:40px; height:40px; border-radius:50%; object-fit:cover; padding:0; display:block; background:#0F172A;}
 
     /* Desktop nav */
-    nav.desktop-nav{display:flex; gap:32px; align-items:center}
-    .nav-link{position:relative; padding:12px 0; color:var(--slate-200); font-weight:600; letter-spacing:0.025em; transition:all 0.3s ease}
+    nav.desktop-nav{display:flex; gap:24px; align-items:center}
+    .nav-link{position:relative; padding:8px 0; color:var(--slate-200); font-weight:600; letter-spacing:0.025em; transition:all 0.3s ease; text-decoration:none; font-size:15px}
     .nav-link::after{content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--gradient-hero); transition:width 0.4s ease; border-radius:2px}
     .nav-link:hover{color:var(--slate-50); }
     .nav-link:hover::after{width:100%}
-    .nav-cta{padding:12px 22px; background:var(--gradient-hero); border-radius:50px; color:white; font-weight:800; font-size:15px; letter-spacing:0.025em; box-shadow:0 14px 30px rgba(59,130,246,0.35); transition:all 0.2s ease}
+    .nav-cta{padding:10px 20px; background:var(--gradient-hero); border-radius:50px; color:white; font-weight:800; font-size:14px; letter-spacing:0.025em; box-shadow:0 10px 25px rgba(59,130,246,0.35); transition:all 0.2s ease; text-decoration:none; white-space:nowrap}
 
     /* ADDED: gold nav button for whitepaper */
-    .nav-whitepaper{padding:10px 18px; background:var(--gradient-gold); border-radius:50px; color:white; font-weight:800; font-size:14px; letter-spacing:0.02em; box-shadow:0 12px 28px rgba(245,158,11,0.25); text-decoration:none}
+    .nav-whitepaper{padding:8px 16px; background:var(--gradient-gold); border-radius:50px; color:white; font-weight:800; font-size:13px; letter-spacing:0.02em; box-shadow:0 10px 25px rgba(245,158,11,0.25); text-decoration:none; white-space:nowrap}
 
     /* Hamburger for tablet & mobile */
     .hamburger{
       display:none;
-      width:52px; height:44px; border-radius:12px;
+      width:44px; height:44px; border-radius:12px;
       background:transparent; border:1px solid rgba(255,255,255,0.06);
-      display:flex; align-items:center; justify-content:center; gap:6px;
+      flex-direction:column; align-items:center; justify-content:center; gap:4px;
+      cursor:pointer;
     }
-    .hamburger .bar{width:24px; height:2px; background:var(--slate-50); transition:all .25s ease}
+    .hamburger .bar{width:20px; height:2px; background:var(--slate-50); transition:all .25s ease}
     .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
     .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0; transform:scaleX(0)}
     .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
@@ -89,140 +89,149 @@
     /* Mobile menu (sliding overlay) */
     .mobile-overlay{position:fixed; inset:0; z-index:1200; display:none; align-items:flex-start; justify-content:center}
     .mobile-overlay.open{display:flex}
-    .mobile-backdrop{position:absolute; inset:0; background:rgba(3,6,12,0.6); backdrop-filter:blur(4px); opacity:0; transition:opacity .28s ease}
+    .mobile-backdrop{position:absolute; inset:0; background:rgba(3,6,12,0.8); backdrop-filter:blur(4px); opacity:0; transition:opacity .28s ease}
     .mobile-backdrop.open{opacity:1}
     .mobile-panel{position:relative; width:100%; max-width:420px; margin-top:80px; background:linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border-radius:20px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 40px 100px rgba(0,0,0,0.6); transform:translateY(-10px) scale(.98); opacity:0; transition:transform .28s cubic-bezier(.2,.9,.25,1), opacity .28s; overflow:hidden}
     .mobile-panel.open{transform:none; opacity:1}
-    .mobile-panel .panel-inner{padding:28px 20px}
-    .mobile-panel .mobile-links{display:flex; flex-direction:column; gap:12px; margin-top:12px}
-    .mobile-links a{display:block; padding:16px 18px; border-radius:12px; font-weight:700; color:var(--slate-50); background:transparent; text-decoration:none}
+    .mobile-panel .panel-inner{padding:24px 20px}
+    .mobile-panel .mobile-links{display:flex; flex-direction:column; gap:8px; margin-top:12px}
+    .mobile-links a{display:block; padding:14px 16px; border-radius:12px; font-weight:700; color:var(--slate-50); background:transparent; text-decoration:none; font-size:16px}
     .mobile-links a:hover{background:rgba(255,255,255,0.03)}
-    .mobile-cta{margin-top:18px; padding:14px; border-radius:12px; text-align:center; font-weight:900; background:var(--gradient-hero); color:white; display:block}
-    .mobile-disclaimer{font-size:13px; color:var(--slate-400); margin-top:14px}
+    .mobile-cta{margin-top:12px; padding:14px; border-radius:12px; text-align:center; font-weight:900; background:var(--gradient-hero); color:white; display:block; text-decoration:none}
+    .mobile-disclaimer{font-size:12px; color:var(--slate-400); margin-top:12px; text-align:center; padding:0 10px}
 
-    /* Hero (unchanged) */
-    .hero{padding:160px 0 120px; position:relative; min-height:100vh; display:flex; align-items:center}
+    /* Hero */
+    .hero{padding:140px 0 80px; position:relative; min-height:100vh; display:flex; align-items:center}
     .hero-bg{position:absolute; inset:0; background:var(--gradient-hero); opacity:0.08; border-radius:0 0 var(--radius-2xl) var(--radius-2xl)}
-    .hero-content{max-width:900px; position:relative; z-index:2}
+    .hero-content{max-width:900px; position:relative; z-index:2; width:100%}
 
-    .hero-badge{position:relative; display:inline-flex; padding:12px 28px; background:var(--glass-hover); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.2); border-radius:50px; font-size:15px; font-weight:700; color:var(--slate-200); margin-bottom:32px; box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+    .hero-badge{position:relative; display:inline-flex; padding:10px 24px; background:var(--glass-hover); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.2); border-radius:50px; font-size:14px; font-weight:700; color:var(--slate-200); margin-bottom:28px; box-shadow:0 8px 25px rgba(0,0,0,0.3)}
     .hero-badge::before{content:''; position:absolute; inset:0; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); border-radius:50px; animation:shine 3s infinite}
 
-    .hero h1{font-size:clamp(60px, 10vw, 100px); font-weight:900; line-height:1.05; margin-bottom:28px; letter-spacing:-0.02em; background:linear-gradient(135deg, var(--slate-50) 0%, #E2E8F0 50%, var(--blue-500) 100%); -webkit-background-clip:text; background-clip:text; position:relative}
-    .hero h1::after{content:''; position:absolute; bottom:-12px; left:0; right:0; height:4px; background:var(--gradient-gold); border-radius:4px; animation:glowPulse 2s ease-in-out infinite alternate}
+    .hero h1{font-size:clamp(42px, 8vw, 80px); font-weight:900; line-height:1.05; margin-bottom:24px; letter-spacing:-0.02em; background:linear-gradient(135deg, var(--slate-50) 0%, #E2E8F0 50%, var(--blue-500) 100%); -webkit-background-clip:text; background-clip:text; position:relative}
+    .hero h1::after{content:''; position:absolute; bottom:-8px; left:0; right:0; height:3px; background:var(--gradient-gold); border-radius:4px; animation:glowPulse 2s ease-in-out infinite alternate}
 
-    .hero-subtitle{font-size:clamp(22px, 4vw, 32px); font-weight:400; color:var(--slate-200); margin-bottom:48px; line-height:1.5; max-width:700px}
+    .hero-subtitle{font-size:clamp(18px, 3.5vw, 28px); font-weight:400; color:var(--slate-200); margin-bottom:40px; line-height:1.4; max-width:700px}
 
-    .hero-stats{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:40px; margin:60px 0}
+    .hero-stats{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; margin:40px 0}
     .stat-item{text-align:center; position:relative}
-    .stat{font-size:clamp(44px, 8vw, 64px); font-weight:900; line-height:1; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; margin-bottom:8px; position:relative}
-    .stat-label{font-size:14px; color:var(--slate-400); font-weight:600; letter-spacing:0.05em; text-transform:uppercase}
+    .stat{font-size:clamp(36px, 6vw, 56px); font-weight:900; line-height:1; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; margin-bottom:6px; position:relative}
+    .stat-label{font-size:13px; color:var(--slate-400); font-weight:600; letter-spacing:0.05em; text-transform:uppercase}
 
-    .cta-buttons{display:flex; flex-wrap:wrap; gap:24px; margin:60px 0}
-    .btn{position:relative; padding:20px 40px; border-radius:50px; font-weight:800; font-size:16px; text-decoration:none; display:inline-flex; align-items:center; gap:12px; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); overflow:hidden}
+    .cta-buttons{display:flex; flex-wrap:wrap; gap:16px; margin:40px 0}
+    .btn{position:relative; padding:16px 32px; border-radius:50px; font-weight:800; font-size:15px; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:10px; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); overflow:hidden; text-align:center; min-width:140px}
     .btn::before{content:''; position:absolute; inset:0; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%); opacity:0; transition:opacity 0.4s}
     .btn:hover::before{opacity:1; animation:shine 1.5s}
-    .btn-primary{background:var(--gradient-hero); color:white; box-shadow:0 25px 50px rgba(59,130,246,0.4)}
-    .btn-primary:hover{transform:translateY(-6px) scale(1.05); box-shadow:0 40px 80px rgba(59,130,246,0.6)}
+    .btn-primary{background:var(--gradient-hero); color:white; box-shadow:0 20px 40px rgba(59,130,246,0.4)}
+    .btn-primary:hover{transform:translateY(-6px) scale(1.05); box-shadow:0 30px 60px rgba(59,130,246,0.6)}
     .btn-secondary{background:transparent; color:var(--slate-50); border:2px solid rgba(255,255,255,0.3); backdrop-filter:blur(20px)}
     .btn-secondary:hover{border-color:var(--blue-500); background:var(--glass-hover); transform:translateY(-4px)}
 
-    .btn-whitepaper{background:var(--gradient-gold); color:white; box-shadow:0 20px 40px rgba(245,158,11,0.25)}
-    .btn-whitepaper:hover{transform:translateY(-6px) scale(1.03); box-shadow:0 40px 80px rgba(245,158,11,0.35)}
+    .btn-whitepaper{background:var(--gradient-gold); color:white; box-shadow:0 16px 32px rgba(245,158,11,0.25)}
+    .btn-whitepaper:hover{transform:translateY(-6px) scale(1.03); box-shadow:0 30px 60px rgba(245,158,11,0.35)}
 
-    /* Floating Feature Cards (unchanged) */
-    .hero-visual{position:relative; height:500px; margin-top:100px}
-    .feature-card{position:absolute; background:linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); backdrop-filter:blur(30px); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-2xl); padding:40px; box-shadow:var(--shadow-premium); max-width:380px; transition:all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); animation:float 8s ease-in-out infinite}
+    /* Floating Feature Cards */
+    .hero-visual{position:relative; height:400px; margin-top:80px; display:none}
+    .feature-card{position:absolute; background:linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); backdrop-filter:blur(30px); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-2xl); padding:30px; box-shadow:var(--shadow-premium); max-width:320px; transition:all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); animation:float 8s ease-in-out infinite}
     .feature-card:nth-child(1){top:10%; right:5%; animation-delay:0s}
     .feature-card:nth-child(2){top:45%; left:5%; animation-delay:-2s}
     .feature-card:nth-child(3){bottom:10%; right:15%; animation-delay:-4s}
     .feature-card:hover{transform:translateY(-20px) scale(1.02) rotate(2deg); box-shadow:0 50px 100px rgba(0,0,0,0.6)}
-    .feature-icon{width:72px; height:72px; border-radius:var(--radius-xl); margin-bottom:24px; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:900; box-shadow:var(--shadow-glow)}
+    .feature-icon{width:60px; height:60px; border-radius:var(--radius-xl); margin-bottom:20px; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:900; box-shadow:var(--shadow-glow)}
 
-    /* Sections (unchanged) */
-    section{padding:140px 0; position:relative}
-    .section-header{max-width:900px; margin:0 auto 80px; text-align:center}
-    .section-header h2{font-size:clamp(40px, 6vw, 60px); font-weight:900; margin-bottom:20px; letter-spacing:-0.02em; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; position:relative}
-    .section-header h2::after{content:''; position:absolute; bottom:-16px; left:50%; transform:translateX(-50%); width:80px; height:4px; background:var(--gradient-gold); border-radius:4px}
-    .section-header p{font-size:22px; color:var(--slate-200); max-width:700px; margin:0 auto; line-height:1.7}
+    /* Sections */
+    section{padding:80px 0; position:relative}
+    .section-header{max-width:900px; margin:0 auto 60px; text-align:center; padding:0 16px}
+    .section-header h2{font-size:clamp(32px, 5vw, 52px); font-weight:900; margin-bottom:16px; letter-spacing:-0.02em; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; position:relative}
+    .section-header h2::after{content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:60px; height:4px; background:var(--gradient-gold); border-radius:4px}
+    .section-header p{font-size:clamp(16px, 2.5vw, 20px); color:var(--slate-200); max-width:700px; margin:0 auto; line-height:1.6}
 
-    /* Deposit USDT card styles (NEW) */
-    .deposit-section{padding-top:80px; padding-bottom:80px}
-    .deposit-wrap{max-width:760px; margin:0 auto; background:linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:20px; border:1px solid rgba(255,255,255,0.08); padding:24px; display:grid; gap:18px; grid-template-columns:1fr; box-shadow:0 30px 60px rgba(0,0,0,0.6)}
-    /* WARNING text color set to red as requested */
-    .deposit-warning{background:rgba(255,255,255,0.04); border-radius:12px; padding:12px 16px; color:var(--red-500); display:flex; gap:12px; align-items:center; font-weight:700; font-size:14px; border:1px solid rgba(255,255,255,0.04)}
-    .deposit-grid{display:grid; grid-template-columns:220px 1fr; gap:18px; align-items:center}
-    .deposit-qr{width:220px; height:220px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.06); overflow:hidden}
-    .deposit-qr img{width:190px; height:190px; object-fit:contain; display:block}
+    /* Deposit USDT card styles */
+    .deposit-section{padding-top:60px; padding-bottom:60px}
+    .deposit-wrap{max-width:760px; margin:0 auto; background:linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:20px; border:1px solid rgba(255,255,255,0.08); padding:20px; display:grid; gap:16px; grid-template-columns:1fr; box-shadow:0 20px 40px rgba(0,0,0,0.6)}
+    .deposit-warning{background:rgba(255,255,255,0.04); border-radius:12px; padding:12px 16px; color:var(--red-500); display:flex; gap:10px; align-items:center; font-weight:700; font-size:13px; border:1px solid rgba(255,255,255,0.04)}
+    .deposit-grid{display:grid; grid-template-columns:1fr; gap:24px; align-items:center}
+    .deposit-qr{width:100%; max-width:220px; height:auto; aspect-ratio:1/1; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.06); overflow:hidden; margin:0 auto}
+    .deposit-qr img{width:85%; height:85%; object-fit:contain; display:block}
 
-    .deposit-info{display:flex; flex-direction:column; gap:12px}
-    .deposit-address{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.02); padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.06); font-weight:700; color:var(--slate-50); overflow:hidden}
-    .addr-text{font-family:monospace; font-size:13px; color:var(--slate-50); word-break:break-all}
-    .copy-btn{background:transparent; border:0; color:var(--slate-50); padding:8px 10px; border-radius:10px; cursor:pointer; font-weight:800}
+    .deposit-info{display:flex; flex-direction:column; gap:16px}
+    .deposit-address{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.02); padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,0.06); font-weight:700; color:var(--slate-50); overflow:hidden}
+    .addr-text{font-family:monospace; font-size:12px; color:var(--slate-50); word-break:break-all; flex:1}
+    .copy-btn{background:transparent; border:0; color:var(--slate-50); padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:800; flex-shrink:0; font-size:14px}
     .copy-btn:active{transform:scale(.98)}
-    .copy-btn.copied{background:rgba(255,255,255,0.05); padding:8px 12px}
-    .deposit-actions{display:flex; gap:12px; align-items:center; margin-top:6px}
-    .deposit-exchange{display:flex; gap:12px; align-items:center; padding:14px 16px; border-radius:14px; background:linear-gradient(145deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.06); cursor:pointer; text-decoration:none; color:var(--slate-50); font-weight:800}
-    .deposit-exchange img{width:28px; height:28px; object-fit:contain; border-radius:6px}
-    .deposit-sub{color:var(--slate-400); font-weight:600; font-size:14px}
+    .copy-btn.copied{background:rgba(255,255,255,0.05)}
+    .deposit-actions{display:flex; gap:12px; align-items:center; margin-top:8px; flex-wrap:wrap}
+    .deposit-exchange{display:flex; gap:10px; align-items:center; padding:12px 16px; border-radius:14px; background:linear-gradient(145deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.06); cursor:pointer; text-decoration:none; color:var(--slate-50); font-weight:800; font-size:14px}
+    .deposit-exchange img{width:24px; height:24px; object-fit:contain; border-radius:6px}
+    .deposit-sub{color:var(--slate-400); font-weight:600; font-size:13px}
 
     /* small copy toast */
-    .copy-toast{position:fixed; right:20px; bottom:20px; background:linear-gradient(135deg,var(--blue-600),var(--blue-800)); color:white; padding:10px 14px; border-radius:12px; font-weight:700; box-shadow:var(--shadow-glow); opacity:0; transform:translateY(8px); transition:opacity .28s, transform .28s; z-index:2000}
+    .copy-toast{position:fixed; right:20px; bottom:20px; background:linear-gradient(135deg,var(--blue-600),var(--blue-800)); color:white; padding:10px 14px; border-radius:12px; font-weight:700; box-shadow:var(--shadow-glow); opacity:0; transform:translateY(8px); transition:opacity .28s, transform .28s; z-index:2000; font-size:14px}
     .copy-toast.show{opacity:1; transform:translateY(0)}
 
-    /* Floating Deposit button (GREEN now) */
+    /* Floating Deposit button */
     .floating-deposit{
       position:fixed;
-      right:20px;
-      bottom:20px;
+      right:16px;
+      bottom:16px;
       z-index:2100;
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      padding:12px 18px;
+      gap:8px;
+      padding:12px 20px;
       border-radius:999px;
       background:var(--gradient-emerald);
       color:#fff;
       font-weight:800;
-      font-size:15px;
+      font-size:14px;
       text-decoration:none;
-      box-shadow:0 18px 40px rgba(5,150,105,0.22);
+      box-shadow:0 12px 30px rgba(5,150,105,0.22);
       transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+      white-space:nowrap;
     }
     .floating-deposit:active{transform:translateY(1px) scale(.995)}
     .floating-deposit:hover{transform:translateY(-4px)}
-    .floating-deposit .dot{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.95); box-shadow:0 6px 18px rgba(0,0,0,0.25)}
+    .floating-deposit .dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.95); box-shadow:0 6px 18px rgba(0,0,0,0.25)}
 
-    @media (max-width:480px){
-      .floating-deposit{right:14px; bottom:14px; padding:14px 16px; font-size:14px}
-    }
-
-    /* Features Grid (unchanged) */
-    .features-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(350px, 1fr)); gap:40px; margin-top:80px}
-    .feature{background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.03)); backdrop-filter:blur(25px); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-2xl); padding:60px 40px; text-align:center; position:relative; overflow:hidden; transition:all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
+    /* Features Grid */
+    .features-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:30px; margin-top:60px}
+    .feature{background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.03)); backdrop-filter:blur(25px); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-2xl); padding:40px 24px; text-align:center; position:relative; overflow:hidden; transition:all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
     .feature::before{content:''; position:absolute; top:0; left:0; right:0; height:6px; background:var(--gradient-hero)}
     .feature::after{content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 30%, rgba(59,130,246,0.1), transparent 50%); opacity:0; transition:opacity 0.4s}
     .feature:hover::after{opacity:1}
-    .feature:hover{transform:translateY(-16px); border-color:var(--blue-500); box-shadow:var(--shadow-premium)}
-    .feature-icon-large{width:120px; height:120px; margin:0 auto 32px; background:var(--gradient-hero); border-radius:var(--radius-2xl); display:flex; align-items:center; justify-content:center; font-size:48px; color:white; box-shadow:var(--shadow-glow); transition:transform 0.4s}
+    .feature:hover{transform:translateY(-12px); border-color:var(--blue-500); box-shadow:var(--shadow-premium)}
+    .feature-icon-large{width:100px; height:100px; margin:0 auto 28px; background:var(--gradient-hero); border-radius:var(--radius-2xl); display:flex; align-items:center; justify-content:center; font-size:40px; color:white; box-shadow:var(--shadow-glow); transition:transform 0.4s}
     .feature:hover .feature-icon-large{transform:scale(1.1) rotateY(360deg)}
-    .feature h3{font-size:28px; font-weight:800; margin-bottom:20px; letter-spacing:-0.01em}
+    .feature h3{font-size:24px; font-weight:800; margin-bottom:16px; letter-spacing:-0.01em}
+    .feature p{font-size:16px; color:var(--slate-200); line-height:1.6}
 
     /* Tokenomics */
-    .tokenomics{display:grid; grid-template-columns:2fr 1fr; gap:80px; align-items:start; margin-top:80px}
-    @media (max-width:1024px){.tokenomics{grid-template-columns:1fr; gap:60px}}
+    .tokenomics{display:grid; grid-template-columns:2fr 1fr; gap:60px; align-items:start; margin-top:60px}
+    .tokenomics-main h3{font-size:28px; font-weight:900; margin-bottom:24px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text}
+    
+    .pie-container{display:flex; flex-direction:column; align-items:center; gap:40px}
+    .token-pie{width:100%; max-width:360px; height:auto; position:relative}
+    .pie-chart-svg{width:100%; height:auto}
+    .pie-chart-center{position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center}
+    .pie-center-number{font-size:28px; font-weight:900; color:var(--slate-50)}
+    .pie-center-label{font-size:14px; color:var(--slate-400); margin-top:4px}
+    
+    .allocations{display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; width:100%}
+    .allocation-item{padding:16px; background:var(--glass); border-radius:16px; border:1px solid rgba(255,255,255,0.1)}
+    .allocation-label{font-size:14px; color:var(--slate-200); margin-bottom:6px}
+    .allocation-value{font-size:20px; font-weight:900; color:var(--slate-50)}
 
     /* CTA Section */
-    .cta-section{background:var(--gradient-hero); position:relative; clip-path:polygon(0 20%, 100% 0, 100% 85%, 0 100%); overflow:hidden}
+    .cta-section{background:var(--gradient-hero); position:relative; overflow:hidden; padding:100px 0}
     .cta-section::before{content:''; position:absolute; inset:0; background:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)}
-    .cta-content{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:160px 24px; text-align:center}
-    .cta-section h2{font-size:clamp(48px, 7vw, 72px); font-weight:900; margin-bottom:28px; letter-spacing:-0.02em}
+    .cta-content{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:0 24px; text-align:center}
+    .cta-section h2{font-size:clamp(36px, 6vw, 56px); font-weight:900; margin-bottom:24px; letter-spacing:-0.02em; color:white}
 
     /* Footer */
-    footer{background:var(--slate-900); border-top:1px solid rgba(255,255,255,0.1); padding:80px 0 40px}
-    .footer-content{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:60px; margin-bottom:60px}
-    .social-links{display:flex; gap:20px; margin-top:32px}
-    .social-btn{width:56px; height:56px; border-radius:var(--radius-xl); background:var(--glass); display:flex; align-items:center; justify-content:center; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size:20px}
+    footer{background:var(--slate-900); border-top:1px solid rgba(255,255,255,0.1); padding:60px 0 30px}
+    .footer-content{display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:40px; margin-bottom:40px}
+    .social-links{display:flex; gap:16px; margin-top:24px}
+    .social-btn{width:48px; height:48px; border-radius:var(--radius-xl); background:var(--glass); display:flex; align-items:center; justify-content:center; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size:18px; text-decoration:none}
     .social-btn:hover{background:var(--gradient-hero); transform:translateY(-6px) rotate(360deg); box-shadow:var(--shadow-glow)}
 
     /* Premium Animations */
@@ -230,32 +239,108 @@
     @keyframes glowPulse{0%{box-shadow:0 0 20px rgba(245,158,11,0.5)} 100%{box-shadow:0 0 40px rgba(245,158,11,0.8)}}
     @keyframes shine{0%{transform:translateX(-100%) translateY(-100%)} 100%{transform:translateX(100%) translateY(100%)}}
     @keyframes pieFill{0%{stroke-dashoffset:314} 100%{stroke-dashoffset:0}}
-    @keyframes fadeInUp{from{opacity:0; transform:translateY(60px)} to{opacity:1; transform:translateY(0)}}
+    @keyframes fadeInUp{from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:translateY(0)}}
 
-    .fade-in-up{opacity:0; animation:fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards}
+    .fade-in-up{opacity:0; animation:fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards}
 
-    /* Responsive */
-    @media (max-width:1024px){
-      .container{padding:0 20px}
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .hero-visual{display:block}
+      .hero{padding:160px 0 100px}
+      .hero-stats{gap:40px}
+      .cta-buttons{gap:24px}
+      .btn{padding:18px 36px; font-size:16px}
+      .features-grid{gap:40px}
+      .feature{padding:50px 30px}
+      .deposit-grid{grid-template-columns:220px 1fr}
+      .tokenomics{gap:80px}
+    }
+
+    @media (min-width: 1024px) {
+      .logo{font-size:28px; gap:16px}
+      .logo-icon-img{width:56px; height:56px}
+      nav.desktop-nav{gap:32px}
+      .hero-logo{width:96px; height:96px}
+      .hero h1{font-size:clamp(60px, 10vw, 100px)}
+      .hero-subtitle{font-size:clamp(22px, 4vw, 32px)}
+      .hero-stats{gap:60px}
+      .hero-visual{height:500px}
+      .feature-card{padding:40px; max-width:380px}
+      section{padding:120px 0}
+      .section-header{margin-bottom:80px}
+      .deposit-section{padding:100px 0}
+      .features-grid{margin-top:80px}
+      .tokenomics{margin-top:80px}
+      .cta-section{padding:140px 0}
+      footer{padding:80px 0 40px}
+    }
+
+    @media (max-width: 767px) {
+      /* Header adjustments for mobile */
+      .header-inner{padding:10px 0}
+      .logo{font-size:20px}
+      .logo-icon-img{width:40px; height:40px}
+      
+      /* Hide desktop nav on mobile */
       nav.desktop-nav{display:none}
       .hamburger{display:flex}
-      .cta-buttons{flex-direction:column; align-items:stretch}
-      .btn{width:100%; justify-content:center}
-      .token-pie{width:300px; height:300px}
-      .pie-center-number{font-size:36px}
-      .hero{padding:120px 0 80px}
-      .hero-visual{display:none}
-      header{padding:10px 0}
-      /* make deposit grid stack on mobile */
-      .deposit-grid{grid-template-columns:1fr; grid-auto-rows:auto}
-      .deposit-qr{width:100%; height:auto; padding:18px}
-      .deposit-qr img{width:100%; height:auto; max-width:320px}
-    }
-    @media (max-width:480px){
-      .logo{font-size:22px}
-      .header-inner{padding:10px 6px}
-      .hamburger{width:48px; height:40px}
+      
+      /* Hero adjustments */
+      .hero{padding:100px 0 60px; min-height:auto}
+      .hero-badge{padding:8px 20px; font-size:13px}
+      .hero-stats{grid-template-columns:repeat(3, 1fr); gap:16px; margin:30px 0}
+      .stat{font-size:clamp(28px, 5vw, 40px)}
+      .stat-label{font-size:11px}
+      .cta-buttons{flex-direction:column; gap:12px; margin:30px 0}
+      .btn{width:100%; padding:14px 24px; font-size:15px}
+      
+      /* Deposit section */
       .deposit-wrap{padding:16px}
+      .deposit-warning{flex-direction:column; text-align:center; padding:12px}
+      .deposit-actions{justify-content:center}
+      
+      /* Tokenomics */
+      .tokenomics{grid-template-columns:1fr; gap:40px}
+      .tokenomics-main h3{font-size:24px}
+      .allocations{grid-template-columns:1fr; max-width:300px; margin:0 auto}
+      
+      /* Footer */
+      .footer-content{grid-template-columns:1fr; text-align:center}
+      .social-links{justify-content:center}
+      
+      /* Floating button */
+      .floating-deposit{right:12px; bottom:12px; padding:10px 16px; font-size:13px}
+    }
+
+    @media (max-width: 480px) {
+      .container{padding:0 16px}
+      .logo{font-size:18px; gap:8px}
+      .logo-icon-img{width:36px; height:36px}
+      .hero h1{font-size:clamp(36px, 8vw, 44px)}
+      .hero-subtitle{font-size:clamp(16px, 3.5vw, 18px); margin-bottom:30px}
+      .hero-stats{gap:12px}
+      .stat{font-size:clamp(24px, 4vw, 32px)}
+      .section-header h2{font-size:clamp(28px, 5vw, 36px)}
+      .section-header p{font-size:clamp(15px, 2.5vw, 17px)}
+      .feature{padding:30px 20px}
+      .feature-icon-large{width:80px; height:80px; font-size:32px}
+      .feature h3{font-size:20px}
+      .deposit-warning{font-size:12px}
+      .addr-text{font-size:11px}
+      .copy-toast{right:12px; bottom:12px; font-size:13px}
+      .mobile-panel{max-width:calc(100% - 32px); margin-top:70px}
+    }
+
+    /* Fix for very small screens */
+    @media (max-width: 360px) {
+      .hero h1{font-size:32px}
+      .hero-subtitle{font-size:16px}
+      .hero-stats{grid-template-columns:repeat(3, 1fr); gap:8px}
+      .stat{font-size:24px}
+      .stat-label{font-size:10px}
+      .btn{font-size:14px; padding:12px 20px}
+      .features-grid{grid-template-columns:1fr}
+      .floating-deposit{font-size:12px; padding:8px 12px}
     }
   </style>
 </head>
@@ -267,14 +352,14 @@
   <header id="header" role="banner">
     <div class="container">
       <div class="header-inner">
-        <div href="#" class="logo" aria-label="ASRD home">
+        <a href="#" class="logo" aria-label="ASRD home">
           <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
                alt="ASRD coin logo"
                class="logo-icon-img">
           ASRD
-        </div>
+        </a>
 
-        <!-- Desktop nav (Deposit link removed from nav list) -->
+        <!-- Desktop nav -->
         <nav class="desktop-nav" aria-label="Main navigation">
           <a href="#features" class="nav-link">Features</a>
           <a href="#tokenomics" class="nav-link">Tokenomics</a>
@@ -286,7 +371,7 @@
              target="_blank" rel="noopener noreferrer"
              class="nav-whitepaper" aria-label="Read the ASRD whitepaper">📄 Whitepaper</a>
 
-          <!-- CHANGED: Buy ASRD -> Deposit USDT (links to deposit section) -->
+          <!-- Deposit USDT -->
           <a href="#deposit" class="nav-cta" aria-label="Deposit USDT">Deposit USDT</a>
         </nav>
 
@@ -300,7 +385,7 @@
     </div>
   </header>
 
-  <!-- Mobile overlay & sliding panel (Deposit removed from links; Buy became Deposit CTA) -->
+  <!-- Mobile overlay & sliding panel -->
   <div id="mobileMenu" class="mobile-overlay" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
     <aside class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
@@ -312,7 +397,7 @@
                  class="mobile-logo">
             <div style="font-weight:900;font-size:18px">ASRD</div>
           </div>
-          <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:0;color:var(--slate-200);font-weight:800;font-size:18px;padding:10px;border-radius:10px">✕</button>
+          <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:0;color:var(--slate-200);font-weight:800;font-size:18px;padding:8px;border-radius:10px;cursor:pointer">✕</button>
         </div>
 
         <nav class="mobile-links" aria-label="Mobile navigation">
@@ -323,12 +408,12 @@
 
           <!-- mobile whitepaper link -->
           <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-             target="_blank" rel="noopener noreferrer" class="mobile-cta" data-close style="text-decoration:none">
+             target="_blank" rel="noopener noreferrer" class="mobile-cta" data-close>
              📄 Read Whitepaper
           </a>
 
-          <!-- CHANGED: Mobile Deposit -> Deposit USDT (closes menu with data-close) -->
-          <a href="#deposit" class="mobile-cta" data-close style="text-decoration:none">🚀 Deposit USDT</a>
+          <!-- Mobile Deposit -->
+          <a href="#deposit" class="mobile-cta" data-close>🚀 Deposit USDT</a>
         </nav>
 
         <div class="mobile-disclaimer">Informational only. Read the whitepaper for technical & legal details.</div>
@@ -342,11 +427,11 @@
     <div class="container">
       <div class="hero-content">
         <!-- HERO COIN LOGO ROW -->
-        <div style="margin-bottom:28px; display:flex; align-items:center; gap:16px;">
+        <div style="margin-bottom:24px; display:flex; align-items:center; gap:12px;">
           <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
                alt="ASRD coin"
                class="hero-logo">
-          <span style="font-weight:700; letter-spacing:0.08em; font-size:13px; text-transform:uppercase; color:#E2E8F0;">
+          <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
             ASRD Utility Token
           </span>
         </div>
@@ -402,7 +487,7 @@
     </div>
   </section>
 
-  <!-- DEPOSIT moved to second section (immediately after hero) -->
+  <!-- DEPOSIT moved to second section -->
   <section id="deposit" class="deposit-section">
     <div class="container">
       <div class="section-header">
@@ -416,17 +501,15 @@
 
         <div class="deposit-grid">
           <div class="deposit-qr" aria-hidden="true">
-            <!-- Image path points to the developer-supplied file. Replace if needed. -->
             <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/Trustwallet%20deposit%20USDT.png" alt="USDT QR code">
           </div>
 
           <div class="deposit-info" aria-live="polite">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
               <div>
-                <div style="font-weight:900; font-size:18px; margin-bottom:6px">Receive USDT</div>
+                <div style="font-weight:900; font-size:18px; margin-bottom:4px">Receive USDT</div>
                 <div class="deposit-sub">BEP20 (Binance Smart Chain)</div>
               </div>
-              <!-- small copy hint for mobile -->
               <div style="font-size:12px; color:var(--slate-400)">Scan or copy address</div>
             </div>
 
@@ -437,7 +520,8 @@
               <button class="copy-btn" id="copyBtn" aria-label="Copy address" title="Copy address">📋</button>
             </div>
 
-              <a href="#" class="btn btn-secondary" style="padding:12px 18px; border-radius:12px; font-size:14px;" id="viewOnExplorer">View on Explorer</a>
+            <div class="deposit-actions">
+              <a href="#" class="btn btn-secondary" style="padding:12px 18px; border-radius:12px; font-size:14px; text-decoration:none" id="viewOnExplorer">View on Explorer</a>
             </div>
 
             <div style="margin-top:8px; color:var(--slate-400); font-size:13px">
@@ -449,7 +533,7 @@
     </div>
   </section>
 
-  <!-- Features (now third section) -->
+  <!-- Features -->
   <section id="features">
     <div class="container">
       <div class="section-header">
@@ -493,12 +577,12 @@
       <div class="tokenomics">
         <div class="tokenomics-main fade-in-up">
           <h3>Every Transaction Creates Value</h3>
-          <p style="font-size:20px; color:var(--slate-200); margin-bottom:40px; line-height:1.7; max-width:700px">
+          <p style="font-size:18px; color:var(--slate-200); margin-bottom:30px; line-height:1.6; max-width:700px">
             <strong>2% transfer tax:</strong> 1% <span style="color:var(--red-500)">burned forever</span> + 1% to <span style="color:var(--emerald-500)">treasury</span> for buybacks, liquidity, and ecosystem grants.
           </p>
 
           <div class="pie-container">
-            <div class="token-pie float">
+            <div class="token-pie">
               <svg class="pie-chart-svg" viewBox="0 0 360 360" role="img" aria-label="Token allocation chart">
                 <defs>
                   <linearGradient id="liqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -530,39 +614,39 @@
 
             <div class="allocations">
               <div class="allocation-item liquidity">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">💧 Liquidity & Market</div>
+                <div class="allocation-label">💧 Liquidity & Market</div>
                 <div class="allocation-value">100%</div>
               </div>
               <div class="allocation-item fee">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">⚙️ Transfer Tax</div>
+                <div class="allocation-label">⚙️ Transfer Tax</div>
                 <div class="allocation-value">2.00%</div>
               </div>
               <div class="allocation-item burn">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">🔥 Burn</div>
+                <div class="allocation-label">🔥 Burn</div>
                 <div class="allocation-value">1.00%</div>
               </div>
               <div class="allocation-item treasury">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">💎 Treasury</div>
+                <div class="allocation-label">💎 Treasury</div>
                 <div class="allocation-value">1.00%</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div style="background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.02)); padding:48px; border-radius:var(--radius-2xl); border:1px solid rgba(255,255,255,0.15); height:fit-content; box-shadow:var(--shadow-premium)" class="fade-in-up">
-          <h3 style="font-size:28px; font-weight:900; margin-bottom:32px; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text">Key Facts</h3>
-          <div style="display:grid; gap:20px; font-size:16px; line-height:1.6">
+        <div style="background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.02)); padding:40px 30px; border-radius:var(--radius-2xl); border:1px solid rgba(255,255,255,0.15); height:fit-content; box-shadow:var(--shadow-premium)" class="fade-in-up">
+          <h3 style="font-size:24px; font-weight:900; margin-bottom:24px; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text">Key Facts</h3>
+          <div style="display:grid; gap:16px; font-size:15px; line-height:1.6">
             <div><strong>Token:</strong> ASRD (BEP-20)</div>
             <div><strong>Decimals:</strong> 18</div>
             <div><strong>Launch:</strong> Fair - 100% unlocked</div>
             <div><strong>LP:</strong> Burned & Locked</div>
-            <div style="margin-top:32px">
-              <a href="https://bscscan.com/token/0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB#code" class="btn btn-primary" style="width:100%; justify-content:center">View Contract →</a>
+            <div style="margin-top:24px">
+              <a href="https://bscscan.com/token/0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB#code" class="btn btn-primary" style="width:100%; justify-content:center; text-decoration:none">View Contract →</a>
 
               <!-- whitepaper button in Key Facts -->
               <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
                  class="btn btn-whitepaper" target="_blank" rel="noopener noreferrer"
-                 style="width:100%; justify-content:center; margin-top:12px">📄 Read Whitepaper</a>
+                 style="width:100%; justify-content:center; margin-top:12px; text-decoration:none">📄 Read Whitepaper</a>
             </div>
           </div>
         </div>
@@ -575,16 +659,16 @@
     <div class="container">
       <div class="cta-content fade-in-up">
         <h2>Ready to Power the Future?</h2>
-        <p style="font-size:22px; color:rgba(255,255,255,0.95); margin-bottom:60px; max-width:700px; margin-left:auto; margin-right:auto">
+        <p style="font-size:20px; color:rgba(255,255,255,0.95); margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto">
           Join thousands of builders creating the next digital economy with ASRD.
         </p>
         <div class="cta-buttons">
-          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:24px 56px; font-size:18px">🚀 Get Started</a>
-          <a href="#features" class="btn btn-secondary" style="padding:24px 56px; font-size:18px">Explore Features</a>
+          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:20px 40px; font-size:16px; text-decoration:none">🚀 Get Started</a>
+          <a href="#features" class="btn btn-secondary" style="padding:20px 40px; font-size:16px; text-decoration:none">Explore Features</a>
 
           <!-- CTA whitepaper link -->
           <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-             target="_blank" rel="noopener noreferrer" class="btn btn-whitepaper" style="padding:24px 56px; font-size:18px">📄 Read Whitepaper</a>
+             target="_blank" rel="noopener noreferrer" class="btn btn-whitepaper" style="padding:20px 40px; font-size:16px; text-decoration:none">📄 Read Whitepaper</a>
         </div>
       </div>
     </div>
@@ -595,8 +679,8 @@
     <div class="container">
       <div class="footer-content">
         <div class="fade-in-up">
-          <h4 style="font-size:28px; font-weight:900; margin-bottom:24px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text">ASRD</h4>
-          <p style="color:var(--slate-400); margin-bottom:32px; max-width:300px">Powering sustainable digital infrastructure on BSC.</p>
+          <h4 style="font-size:24px; font-weight:900; margin-bottom:20px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text">ASRD</h4>
+          <p style="color:var(--slate-400); margin-bottom:24px; max-width:300px">Powering sustainable digital infrastructure on BSC.</p>
           <div class="social-links">
             <a href="#" class="social-btn" aria-label="Telegram">📱</a>
             <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
@@ -605,13 +689,13 @@
           </div>
 
           <!-- footer whitepaper link -->
-          <div style="margin-top:18px">
+          <div style="margin-top:16px">
             <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-               target="_blank" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper">Read Whitepaper (PDF)</a>
+               target="_blank" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper" style="font-size:14px">Read Whitepaper (PDF)</a>
           </div>
         </div>
-        <div class="fade-in-up" style="grid-column:span 3">
-          <div style="text-align:center; color:var(--slate-400); font-size:14px; letter-spacing:0.025em">
+        <div class="fade-in-up" style="grid-column:1/-1">
+          <div style="text-align:center; color:var(--slate-400); font-size:13px; letter-spacing:0.025em; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px">
             © 2025 ASRD. The utility token of the future. Not financial advice. DYOR.
           </div>
         </div>
@@ -619,7 +703,7 @@
     </div>
   </footer>
 
-  <!-- floating Deposit button (GREEN) -->
+  <!-- floating Deposit button -->
   <a href="#deposit" id="floatingDeposit" class="floating-deposit" role="button" aria-label="Deposit USDT">
     <span class="dot" aria-hidden="true"></span>
     Deposit USDT
@@ -635,7 +719,9 @@
     function createParticles() {
       const particles = document.getElementById('particles');
       if (!particles) return;
-      for(let i = 0; i < 50; i++) {
+      particles.innerHTML = '';
+      const particleCount = window.innerWidth < 768 ? 25 : 50;
+      for(let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -650,13 +736,10 @@
        Header scroll effect
        --------------------------- */
     window.addEventListener('scroll', () => {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 100);
-      // small parallax for feature cards
-      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-      document.querySelectorAll('.feature-card').forEach((card, i) => {
-        const factor = (window.innerWidth <= 1024) ? 0.02 : 0.08;
-        card.style.transform = `translateY(${scrolled * factor * (i + 1)}px)`;
-      });
+      const header = document.getElementById('header');
+      if (header) {
+        header.classList.toggle('scrolled', window.scrollY > 100);
+      }
     });
 
     /* ---------------------------
@@ -670,7 +753,7 @@
         const target = document.querySelector(href);
         if (target) {
           // account for fixed header offset
-          const headerOffset = document.getElementById('header').offsetHeight || 96;
+          const headerOffset = document.getElementById('header')?.offsetHeight || 80;
           const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - headerOffset - 12;
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -681,12 +764,11 @@
     /* ---------------------------
        Intersection observer for reveal & pie animation
        --------------------------- */
-    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -80px 0px' };
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('inview');
-          entry.target.style.animationPlayState = 'running';
           if (entry.target.querySelector('.pie-chart-svg')) {
             const circles = entry.target.querySelectorAll('circle[stroke-dasharray]');
             circles.forEach((circle, index) => {
@@ -738,13 +820,20 @@
         document.body.style.overflow = '';
       }
 
-      menuToggle.addEventListener('click', (e) => {
-        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        if (expanded) closeMenu(); else openMenu();
-      });
+      if (menuToggle) {
+        menuToggle.addEventListener('click', (e) => {
+          const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          if (expanded) closeMenu(); else openMenu();
+        });
+      }
 
-      mobileClose.addEventListener('click', closeMenu);
-      mobileBackdrop.addEventListener('click', closeMenu);
+      if (mobileClose) {
+        mobileClose.addEventListener('click', closeMenu);
+      }
+
+      if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', closeMenu);
+      }
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
@@ -752,32 +841,23 @@
         }
       });
 
-      mobileMenu.querySelectorAll('[data-close]').forEach(el => {
-        el.addEventListener('click', () => {
-          setTimeout(closeMenu, 120);
+      if (mobileMenu) {
+        mobileMenu.querySelectorAll('[data-close]').forEach(el => {
+          el.addEventListener('click', () => {
+            setTimeout(closeMenu, 120);
+          });
         });
-      });
-
-      mobileMenu.addEventListener('focusout', (e) => {
-        if (menuToggle.getAttribute('aria-expanded') !== 'true') return;
-        setTimeout(() => {
-          const active = document.activeElement;
-          if (!mobilePanel.contains(active) && active !== menuToggle) {
-            closeMenu();
-          }
-        }, 150);
-      });
+      }
     })();
 
     /* ---------------------------
-       Deposit copy-to-clipboard + small interactions (IMPROVED)
+       Deposit copy-to-clipboard + small interactions
        --------------------------- */
     (function(){
       const copyBtn = document.getElementById('copyBtn');
       const depositAddressEl = document.getElementById('depositAddress');
       const copyToast = document.getElementById('copyToast');
       const viewExplorer = document.getElementById('viewOnExplorer');
-      const depositBinance = document.getElementById('depositBinance');
 
       // address string (trimmed)
       const address = depositAddressEl ? depositAddressEl.textContent.trim() : '';
@@ -860,13 +940,6 @@
           window.open(explorerUrl, '_blank', 'noopener');
         });
       }
-
-      if (depositBinance) {
-        depositBinance.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.open('https://www.binance.com/en/support/faq/360002502072', '_blank', 'noopener');
-        });
-      }
     })();
 
     /* ---------------------------
@@ -881,7 +954,7 @@
         if (!target) return;
 
         // compute offset scroll (account for fixed header)
-        const headerOffset = document.getElementById('header').offsetHeight || 96;
+        const headerOffset = document.getElementById('header')?.offsetHeight || 80;
         const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - headerOffset - 12;
         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -903,919 +976,9 @@
       });
     })();
 
-    // Initialize particles
-    createParticles();
-  </script>
-</body>
-</html><!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>ASRD — Powering the Next Digital Economy</title>
-  <meta name="description" content="ASRD — The utility token powering seamless digital services, DeFi integrations, and sustainable ecosystem growth on BSC." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* Premium Visual System (unchanged variables) */
-    :root{
-      --blue-900:#1E3A8A; --blue-800:#1E40AF; --blue-600:#3B82F6; --blue-500:#60A5FA;
-      --gold-900:#B45309; --gold-700:#D97706; --gold-500:#F59E0B; --gold-400:#FBBF24;
-      --emerald-600:#059669; --emerald-500:#10B981; --emerald-400:#34D399;
-      --red-500:#EF4444; --red-600:#DC2626;
-      --slate-900:#0F172A; --slate-800:#1E293B; --slate-700:#334155; --slate-600:#475569;
-      --slate-50:#F8FAFC; --slate-200:#E2E8F0; --slate-400:#94A3B8;
-
-      --glass: rgba(255,255,255,0.08); --glass-hover: rgba(255,255,255,0.12);
-      --gradient-hero: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 30%, #60A5FA 70%, #1E40AF 100%);
-      --gradient-gold: linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #FBBF24 100%);
-      --gradient-emerald: linear-gradient(135deg, #059669 0%, #10B981 100%);
-
-      --radius-xl: 28px; --radius-2xl: 36px;
-      --shadow-glow: 0 0 40px rgba(59,130,246,0.3);
-      --shadow-premium: 0 35px 80px rgba(0,0,0,0.5);
-    }
-
-    /* Core Reset */
-    *{box-sizing:border-box; margin:0; padding:0}
-    html{scroll-behavior:smooth; scroll-padding-top:120px}
-    body{font-family:'Inter', ui-sans-serif, sans-serif; background:linear-gradient(180deg,var(--slate-900) 0%, var(--slate-800) 40%, var(--slate-700) 100%); color:var(--slate-50); overflow-x:hidden; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
-
-    /* Particles Background */
-    .particles{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.3}
-    .particle{position:absolute; width:4px; height:4px; background:radial-gradient(circle, var(--blue-500) 0%, transparent 70%); border-radius:50%; animation:float 20s linear infinite}
-
-    /* Container */
-    .container{max-width:1440px; margin:0 auto; padding:0 24px; position:relative; z-index:10}
-
-    /* Premium Header */
-    header{position:fixed; top:0; left:0; right:0; z-index:1000; backdrop-filter:blur(25px); background:var(--glass); border-bottom:1px solid rgba(255,255,255,0.1); transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
-    header.scrolled{background:rgba(255,255,255,0.15)}
-    .header-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-
-    .logo{display:flex; align-items:center; gap:16px; font-size:28px; font-weight:800; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text}
-
-    .logo-icon-img{
-      width:56px;
-      height:56px;
-      border-radius:50%;
-      object-fit:cover;
-      padding:0;
-      display:block;
-      vertical-align:middle;
-      background:#0F172A;
-      box-shadow:0 12px 30px rgba(0,0,0,0.7);
-    }
-
-    .hero-logo{width:96px; height:96px; border-radius:50%; object-fit:cover; padding:0; display:block; background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 65%); box-shadow:0 18px 40px rgba(15,23,42,0.85);}
-
-    .mobile-logo{width:48px; height:48px; border-radius:50%; object-fit:cover; padding:0; display:block; background:#0F172A;}
-
-    /* Desktop nav */
-    nav.desktop-nav{display:flex; gap:32px; align-items:center}
-    .nav-link{position:relative; padding:12px 0; color:var(--slate-200); font-weight:600; letter-spacing:0.025em; transition:all 0.3s ease}
-    .nav-link::after{content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--gradient-hero); transition:width 0.4s ease; border-radius:2px}
-    .nav-link:hover{color:var(--slate-50); }
-    .nav-link:hover::after{width:100%}
-    .nav-cta{padding:12px 22px; background:var(--gradient-hero); border-radius:50px; color:white; font-weight:800; font-size:15px; letter-spacing:0.025em; box-shadow:0 14px 30px rgba(59,130,246,0.35); transition:all 0.2s ease}
-
-    /* ADDED: gold nav button for whitepaper */
-    .nav-whitepaper{padding:10px 18px; background:var(--gradient-gold); border-radius:50px; color:white; font-weight:800; font-size:14px; letter-spacing:0.02em; box-shadow:0 12px 28px rgba(245,158,11,0.25); text-decoration:none}
-
-    /* Hamburger for tablet & mobile */
-    .hamburger{
-      display:none;
-      width:52px; height:44px; border-radius:12px;
-      background:transparent; border:1px solid rgba(255,255,255,0.06);
-      display:flex; align-items:center; justify-content:center; gap:6px;
-    }
-    .hamburger .bar{width:24px; height:2px; background:var(--slate-50); transition:all .25s ease}
-    .hamburger[aria-expanded="true"] .bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
-    .hamburger[aria-expanded="true"] .bar:nth-child(2){opacity:0; transform:scaleX(0)}
-    .hamburger[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-    /* Mobile menu (sliding overlay) */
-    .mobile-overlay{position:fixed; inset:0; z-index:1200; display:none; align-items:flex-start; justify-content:center}
-    .mobile-overlay.open{display:flex}
-    .mobile-backdrop{position:absolute; inset:0; background:rgba(3,6,12,0.6); backdrop-filter:blur(4px); opacity:0; transition:opacity .28s ease}
-    .mobile-backdrop.open{opacity:1}
-    .mobile-panel{position:relative; width:100%; max-width:420px; margin-top:80px; background:linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border-radius:20px; border:1px solid rgba(255,255,255,0.08); box-shadow:0 40px 100px rgba(0,0,0,0.6); transform:translateY(-10px) scale(.98); opacity:0; transition:transform .28s cubic-bezier(.2,.9,.25,1), opacity .28s; overflow:hidden}
-    .mobile-panel.open{transform:none; opacity:1}
-    .mobile-panel .panel-inner{padding:28px 20px}
-    .mobile-panel .mobile-links{display:flex; flex-direction:column; gap:12px; margin-top:12px}
-    .mobile-links a{display:block; padding:16px 18px; border-radius:12px; font-weight:700; color:var(--slate-50); background:transparent; text-decoration:none}
-    .mobile-links a:hover{background:rgba(255,255,255,0.03)}
-    .mobile-cta{margin-top:18px; padding:14px; border-radius:12px; text-align:center; font-weight:900; background:var(--gradient-hero); color:white; display:block}
-    .mobile-disclaimer{font-size:13px; color:var(--slate-400); margin-top:14px}
-
-    /* Hero (unchanged) */
-    .hero{padding:160px 0 120px; position:relative; min-height:100vh; display:flex; align-items:center}
-    .hero-bg{position:absolute; inset:0; background:var(--gradient-hero); opacity:0.08; border-radius:0 0 var(--radius-2xl) var(--radius-2xl)}
-    .hero-content{max-width:900px; position:relative; z-index:2}
-
-    .hero-badge{position:relative; display:inline-flex; padding:12px 28px; background:var(--glass-hover); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.2); border-radius:50px; font-size:15px; font-weight:700; color:var(--slate-200); margin-bottom:32px; box-shadow:0 10px 30px rgba(0,0,0,0.3)}
-    .hero-badge::before{content:''; position:absolute; inset:0; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); border-radius:50px; animation:shine 3s infinite}
-
-    .hero h1{font-size:clamp(60px, 10vw, 100px); font-weight:900; line-height:1.05; margin-bottom:28px; letter-spacing:-0.02em; background:linear-gradient(135deg, var(--slate-50) 0%, #E2E8F0 50%, var(--blue-500) 100%); -webkit-background-clip:text; background-clip:text; position:relative}
-    .hero h1::after{content:''; position:absolute; bottom:-12px; left:0; right:0; height:4px; background:var(--gradient-gold); border-radius:4px; animation:glowPulse 2s ease-in-out infinite alternate}
-
-    .hero-subtitle{font-size:clamp(22px, 4vw, 32px); font-weight:400; color:var(--slate-200); margin-bottom:48px; line-height:1.5; max-width:700px}
-
-    .hero-stats{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:40px; margin:60px 0}
-    .stat-item{text-align:center; position:relative}
-    .stat{font-size:clamp(44px, 8vw, 64px); font-weight:900; line-height:1; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; margin-bottom:8px; position:relative}
-    .stat-label{font-size:14px; color:var(--slate-400); font-weight:600; letter-spacing:0.05em; text-transform:uppercase}
-
-    .cta-buttons{display:flex; flex-wrap:wrap; gap:24px; margin:60px 0}
-    .btn{position:relative; padding:20px 40px; border-radius:50px; font-weight:800; font-size:16px; text-decoration:none; display:inline-flex; align-items:center; gap:12px; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); overflow:hidden}
-    .btn::before{content:''; position:absolute; inset:0; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%); opacity:0; transition:opacity 0.4s}
-    .btn:hover::before{opacity:1; animation:shine 1.5s}
-    .btn-primary{background:var(--gradient-hero); color:white; box-shadow:0 25px 50px rgba(59,130,246,0.4)}
-    .btn-primary:hover{transform:translateY(-6px) scale(1.05); box-shadow:0 40px 80px rgba(59,130,246,0.6)}
-    .btn-secondary{background:transparent; color:var(--slate-50); border:2px solid rgba(255,255,255,0.3); backdrop-filter:blur(20px)}
-    .btn-secondary:hover{border-color:var(--blue-500); background:var(--glass-hover); transform:translateY(-4px)}
-
-    .btn-whitepaper{background:var(--gradient-gold); color:white; box-shadow:0 20px 40px rgba(245,158,11,0.25)}
-    .btn-whitepaper:hover{transform:translateY(-6px) scale(1.03); box-shadow:0 40px 80px rgba(245,158,11,0.35)}
-
-    /* Floating Feature Cards (unchanged) */
-    .hero-visual{position:relative; height:500px; margin-top:100px}
-    .feature-card{position:absolute; background:linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); backdrop-filter:blur(30px); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-2xl); padding:40px; box-shadow:var(--shadow-premium); max-width:380px; transition:all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); animation:float 8s ease-in-out infinite}
-    .feature-card:nth-child(1){top:10%; right:5%; animation-delay:0s}
-    .feature-card:nth-child(2){top:45%; left:5%; animation-delay:-2s}
-    .feature-card:nth-child(3){bottom:10%; right:15%; animation-delay:-4s}
-    .feature-card:hover{transform:translateY(-20px) scale(1.02) rotate(2deg); box-shadow:0 50px 100px rgba(0,0,0,0.6)}
-    .feature-icon{width:72px; height:72px; border-radius:var(--radius-xl); margin-bottom:24px; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:900; box-shadow:var(--shadow-glow)}
-
-    /* Sections (unchanged) */
-    section{padding:140px 0; position:relative}
-    .section-header{max-width:900px; margin:0 auto 80px; text-align:center}
-    .section-header h2{font-size:clamp(40px, 6vw, 60px); font-weight:900; margin-bottom:20px; letter-spacing:-0.02em; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; position:relative}
-    .section-header h2::after{content:''; position:absolute; bottom:-16px; left:50%; transform:translateX(-50%); width:80px; height:4px; background:var(--gradient-gold); border-radius:4px}
-    .section-header p{font-size:22px; color:var(--slate-200); max-width:700px; margin:0 auto; line-height:1.7}
-
-    /* Deposit USDT card styles (NEW) */
-    .deposit-section{padding-top:80px; padding-bottom:80px}
-    .deposit-wrap{max-width:760px; margin:0 auto; background:linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:20px; border:1px solid rgba(255,255,255,0.08); padding:24px; display:grid; gap:18px; grid-template-columns:1fr; box-shadow:0 30px 60px rgba(0,0,0,0.6)}
-    /* WARNING text color set to red as requested */
-    .deposit-warning{background:rgba(255,255,255,0.04); border-radius:12px; padding:12px 16px; color:var(--red-500); display:flex; gap:12px; align-items:center; font-weight:700; font-size:14px; border:1px solid rgba(255,255,255,0.04)}
-    .deposit-grid{display:grid; grid-template-columns:220px 1fr; gap:18px; align-items:center}
-    .deposit-qr{width:220px; height:220px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.06); overflow:hidden}
-    .deposit-qr img{width:190px; height:190px; object-fit:contain; display:block}
-
-    .deposit-info{display:flex; flex-direction:column; gap:12px}
-    .deposit-address{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.02); padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.06); font-weight:700; color:var(--slate-50); overflow:hidden}
-    .addr-text{font-family:monospace; font-size:13px; color:var(--slate-50); word-break:break-all}
-    .copy-btn{background:transparent; border:0; color:var(--slate-50); padding:8px 10px; border-radius:10px; cursor:pointer; font-weight:800}
-    .copy-btn:active{transform:scale(.98)}
-    .copy-btn.copied{background:rgba(255,255,255,0.05); padding:8px 12px}
-    .deposit-actions{display:flex; gap:12px; align-items:center; margin-top:6px}
-    .deposit-exchange{display:flex; gap:12px; align-items:center; padding:14px 16px; border-radius:14px; background:linear-gradient(145deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.06); cursor:pointer; text-decoration:none; color:var(--slate-50); font-weight:800}
-    .deposit-exchange img{width:28px; height:28px; object-fit:contain; border-radius:6px}
-    .deposit-sub{color:var(--slate-400); font-weight:600; font-size:14px}
-
-    /* small copy toast */
-    .copy-toast{position:fixed; right:20px; bottom:20px; background:linear-gradient(135deg,var(--blue-600),var(--blue-800)); color:white; padding:10px 14px; border-radius:12px; font-weight:700; box-shadow:var(--shadow-glow); opacity:0; transform:translateY(8px); transition:opacity .28s, transform .28s; z-index:2000}
-    .copy-toast.show{opacity:1; transform:translateY(0)}
-
-    /* Floating Deposit button (GREEN now) */
-    .floating-deposit{
-      position:fixed;
-      right:20px;
-      bottom:20px;
-      z-index:2100;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 18px;
-      border-radius:999px;
-      background:var(--gradient-emerald);
-      color:#fff;
-      font-weight:800;
-      font-size:15px;
-      text-decoration:none;
-      box-shadow:0 18px 40px rgba(5,150,105,0.22);
-      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
-    }
-    .floating-deposit:active{transform:translateY(1px) scale(.995)}
-    .floating-deposit:hover{transform:translateY(-4px)}
-    .floating-deposit .dot{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.95); box-shadow:0 6px 18px rgba(0,0,0,0.25)}
-
-    @media (max-width:480px){
-      .floating-deposit{right:14px; bottom:14px; padding:14px 16px; font-size:14px}
-    }
-
-    /* Features Grid (unchanged) */
-    .features-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(350px, 1fr)); gap:40px; margin-top:80px}
-    .feature{background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.03)); backdrop-filter:blur(25px); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-2xl); padding:60px 40px; text-align:center; position:relative; overflow:hidden; transition:all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)}
-    .feature::before{content:''; position:absolute; top:0; left:0; right:0; height:6px; background:var(--gradient-hero)}
-    .feature::after{content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 30%, rgba(59,130,246,0.1), transparent 50%); opacity:0; transition:opacity 0.4s}
-    .feature:hover::after{opacity:1}
-    .feature:hover{transform:translateY(-16px); border-color:var(--blue-500); box-shadow:var(--shadow-premium)}
-    .feature-icon-large{width:120px; height:120px; margin:0 auto 32px; background:var(--gradient-hero); border-radius:var(--radius-2xl); display:flex; align-items:center; justify-content:center; font-size:48px; color:white; box-shadow:var(--shadow-glow); transition:transform 0.4s}
-    .feature:hover .feature-icon-large{transform:scale(1.1) rotateY(360deg)}
-    .feature h3{font-size:28px; font-weight:800; margin-bottom:20px; letter-spacing:-0.01em}
-
-    /* Tokenomics */
-    .tokenomics{display:grid; grid-template-columns:2fr 1fr; gap:80px; align-items:start; margin-top:80px}
-    @media (max-width:1024px){.tokenomics{grid-template-columns:1fr; gap:60px}}
-
-    /* CTA Section */
-    .cta-section{background:var(--gradient-hero); position:relative; clip-path:polygon(0 20%, 100% 0, 100% 85%, 0 100%); overflow:hidden}
-    .cta-section::before{content:''; position:absolute; inset:0; background:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)}
-    .cta-content{position:relative; z-index:2; max-width:900px; margin:0 auto; padding:160px 24px; text-align:center}
-    .cta-section h2{font-size:clamp(48px, 7vw, 72px); font-weight:900; margin-bottom:28px; letter-spacing:-0.02em}
-
-    /* Footer */
-    footer{background:var(--slate-900); border-top:1px solid rgba(255,255,255,0.1); padding:80px 0 40px}
-    .footer-content{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:60px; margin-bottom:60px}
-    .social-links{display:flex; gap:20px; margin-top:32px}
-    .social-btn{width:56px; height:56px; border-radius:var(--radius-xl); background:var(--glass); display:flex; align-items:center; justify-content:center; transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size:20px}
-    .social-btn:hover{background:var(--gradient-hero); transform:translateY(-6px) rotate(360deg); box-shadow:var(--shadow-glow)}
-
-    /* Premium Animations */
-    @keyframes float{0%,100%{transform:translateY(0) rotate(0deg)} 33%{transform:translateY(-20px) rotate(2deg)} 66%{transform:translateY(-10px) rotate(-1deg)}}
-    @keyframes glowPulse{0%{box-shadow:0 0 20px rgba(245,158,11,0.5)} 100%{box-shadow:0 0 40px rgba(245,158,11,0.8)}}
-    @keyframes shine{0%{transform:translateX(-100%) translateY(-100%)} 100%{transform:translateX(100%) translateY(100%)}}
-    @keyframes pieFill{0%{stroke-dashoffset:314} 100%{stroke-dashoffset:0}}
-    @keyframes fadeInUp{from{opacity:0; transform:translateY(60px)} to{opacity:1; transform:translateY(0)}}
-
-    .fade-in-up{opacity:0; animation:fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards}
-
-    /* Responsive */
-    @media (max-width:1024px){
-      .container{padding:0 20px}
-      nav.desktop-nav{display:none}
-      .hamburger{display:flex}
-      .cta-buttons{flex-direction:column; align-items:stretch}
-      .btn{width:100%; justify-content:center}
-      .token-pie{width:300px; height:300px}
-      .pie-center-number{font-size:36px}
-      .hero{padding:120px 0 80px}
-      .hero-visual{display:none}
-      header{padding:10px 0}
-      /* make deposit grid stack on mobile */
-      .deposit-grid{grid-template-columns:1fr; grid-auto-rows:auto}
-      .deposit-qr{width:100%; height:auto; padding:18px}
-      .deposit-qr img{width:100%; height:auto; max-width:320px}
-    }
-    @media (max-width:480px){
-      .logo{font-size:22px}
-      .header-inner{padding:10px 6px}
-      .hamburger{width:48px; height:40px}
-      .deposit-wrap{padding:16px}
-    }
-  </style>
-</head>
-<body>
-  <!-- Premium Particle System -->
-  <div class="particles" id="particles" aria-hidden="true"></div>
-
-  <!-- Header with coin image logo -->
-  <header id="header" role="banner">
-    <div class="container">
-      <div class="header-inner">
-        <div href="#" class="logo" aria-label="ASRD home">
-          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
-               alt="ASRD coin logo"
-               class="logo-icon-img">
-          ASRD
-        </div>
-
-        <!-- Desktop nav (Deposit link removed from nav list) -->
-        <nav class="desktop-nav" aria-label="Main navigation">
-          <a href="#features" class="nav-link">Features</a>
-          <a href="#tokenomics" class="nav-link">Tokenomics</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#key-facts" class="nav-link">Contact</a>
-
-          <!-- Read Whitepaper link in header (desktop) -->
-          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-             target="_blank" rel="noopener noreferrer"
-             class="nav-whitepaper" aria-label="Read the ASRD whitepaper">📄 Whitepaper</a>
-
-          <!-- CHANGED: Buy ASRD -> Deposit USDT (links to deposit section) -->
-          <a href="#deposit" class="nav-cta" aria-label="Deposit USDT">Deposit USDT</a>
-        </nav>
-
-        <!-- Hamburger (tablet & mobile) -->
-        <button id="menuToggle" class="hamburger" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile overlay & sliding panel (Deposit removed from links; Buy became Deposit CTA) -->
-  <div id="mobileMenu" class="mobile-overlay" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
-    <aside class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
-      <div class="panel-inner">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
-          <div style="display:flex; align-items:center; gap:10px">
-            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
-                 alt="ASRD"
-                 class="mobile-logo">
-            <div style="font-weight:900;font-size:18px">ASRD</div>
-          </div>
-          <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:0;color:var(--slate-200);font-weight:800;font-size:18px;padding:10px;border-radius:10px">✕</button>
-        </div>
-
-        <nav class="mobile-links" aria-label="Mobile navigation">
-          <a href="#features" data-close>Features</a>
-          <a href="#tokenomics" data-close>Tokenomics</a>
-          <a href="#about" data-close>About</a>
-          <a href="#contact" data-close>Contact</a>
-
-          <!-- mobile whitepaper link -->
-          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-             target="_blank" rel="noopener noreferrer" class="mobile-cta" data-close style="text-decoration:none">
-             📄 Read Whitepaper
-          </a>
-
-          <!-- CHANGED: Mobile Deposit -> Deposit USDT (closes menu with data-close) -->
-          <a href="#deposit" class="mobile-cta" data-close style="text-decoration:none">🚀 Deposit USDT</a>
-        </nav>
-
-        <div class="mobile-disclaimer">Informational only. Read the whitepaper for technical & legal details.</div>
-      </div>
-    </aside>
-  </div>
-
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="container">
-      <div class="hero-content">
-        <!-- HERO COIN LOGO ROW -->
-        <div style="margin-bottom:28px; display:flex; align-items:center; gap:16px;">
-          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
-               alt="ASRD coin"
-               class="hero-logo">
-          <span style="font-weight:700; letter-spacing:0.08em; font-size:13px; text-transform:uppercase; color:#E2E8F0;">
-            ASRD Utility Token
-          </span>
-        </div>
-
-        <div class="hero-badge fade-in-up">🔥 BEP-20 Utility Token</div>
-        <h1 class="fade-in-up">Powering the Next Digital Economy</h1>
-        <p class="hero-subtitle fade-in-up">Sustainable growth through deflationary mechanics, treasury-funded buybacks, and developer ecosystem support. Built for utility that endures.</p>
-
-        <div class="hero-stats fade-in-up" role="list" aria-label="Key stats">
-          <div class="stat-item" role="listitem">
-            <div class="stat">4M</div>
-            <div class="stat-label">Total Supply</div>
-          </div>
-          <div class="stat-item" role="listitem">
-            <div class="stat">2%</div>
-            <div class="stat-label">Transfer Fee</div>
-          </div>
-          <div class="stat-item" role="listitem">
-            <div class="stat">100%</div>
-            <div class="stat-label">Circulating</div>
-          </div>
-        </div>
-
-        <div class="cta-buttons fade-in-up" role="group" aria-label="Primary actions">
-          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🚀 Buy on DEX</a>
-          <a href="#tokenomics" class="btn btn-secondary">View Tokenomics</a>
-
-          <!-- hero whitepaper CTA -->
-          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-             class="btn btn-whitepaper" target="_blank" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">
-             📄 Read Whitepaper
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <div class="feature-card fade-in-up">
-          <div class="feature-icon" style="background:var(--gradient-hero)">⚡</div>
-          <h4>Lightning Transfers</h4>
-          <p>BEP-20 optimized for instant, low-cost transactions across the BSC ecosystem.</p>
-        </div>
-        <div class="feature-card fade-in-up">
-          <div class="feature-icon" style="background:var(--gradient-emerald)">🔥</div>
-          <h4>Deflationary Burn</h4>
-          <p>1% permanent supply reduction per transfer creates compounding scarcity.</p>
-        </div>
-        <div class="feature-card fade-in-up">
-          <div class="feature-icon" style="background:var(--gradient-gold)">💎</div>
-          <h4>Treasury Power</h4>
-          <p>1% funds ecosystem growth, buybacks, and strategic developer grants.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEPOSIT moved to second section (immediately after hero) -->
-  <section id="deposit" class="deposit-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Deposit USDT</h2>
-      </div>
-
-      <div class="deposit-wrap fade-in-up" role="region" aria-label="Receive USDT">
-        <div class="deposit-warning" role="status">
-          ⚠️ Only send Tether USD (BEP20) assets to this address. Other assets will be lost forever.
-        </div>
-
-        <div class="deposit-grid">
-          <div class="deposit-qr" aria-hidden="true">
-            <!-- Image path points to the developer-supplied file. Replace if needed. -->
-            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/Trustwallet%20deposit%20USDT.png" alt="USDT QR code">
-          </div>
-
-          <div class="deposit-info" aria-live="polite">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-              <div>
-                <div style="font-weight:900; font-size:18px; margin-bottom:6px">Receive USDT</div>
-                <div class="deposit-sub">BEP20 (Binance Smart Chain)</div>
-              </div>
-              <!-- small copy hint for mobile -->
-              <div style="font-size:12px; color:var(--slate-400)">Scan or copy address</div>
-            </div>
-
-            <div class="deposit-address" id="depositAddressRow">
-              <div style="flex:1; min-width:0;">
-                <div class="addr-text" id="depositAddress">0x84613C0fFac0891B6878fD644529f5e2Dc4FCB35</div>
-              </div>
-              <button class="copy-btn" id="copyBtn" aria-label="Copy address" title="Copy address">📋</button>
-            </div>
-
-              <a href="#" class="btn btn-secondary" style="padding:12px 18px; border-radius:12px; font-size:14px;" id="viewOnExplorer">View on Explorer</a>
-            </div>
-
-            <div style="margin-top:8px; color:var(--slate-400); font-size:13px">
-              NOTE: Confirm network before sending. Token contract: <strong>USDT (BEP-20)</strong>.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features (now third section) -->
-  <section id="features">
-    <div class="container">
-      <div class="section-header">
-        <h2>Why ASRD Dominates</h2>
-        <p>Engineered for maximum utility, security, and sustainable growth in the BSC ecosystem.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature fade-in-up">
-          <div class="feature-icon-large">🛡️</div>
-          <h3>Fortress Security</h3>
-          <p>External audits, multisig protection, timelock governance, and continuous security monitoring.</p>
-        </div>
-        <div class="feature fade-in-up">
-          <div class="feature-icon-large">⚙️</div>
-          <h3>Developer Ecosystem</h3>
-          <p>Treasury grants fuel APIs, integrations, and tooling for BSC-native applications.</p>
-        </div>
-        <div class="feature fade-in-up">
-          <div class="feature-icon-large">📈</div>
-          <h3>Mathematical Growth</h3>
-          <p>Deflation + treasury operations = compounding value creation for all holders.</p>
-        </div>
-        <div class="feature fade-in-up">
-          <div class="feature-icon-large">🌐</div>
-          <h3>BSC Native Power</h3>
-          <p>Sub-second confirmations, minimal fees, full DeFi composability.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tokenomics -->
-  <section id="tokenomics">
-    <div class="container">
-      <div class="section-header">
-        <h2>Transparent Tokenomics</h2>
-        <p>Fair launch. 100% circulating. Mechanics engineered for exponential growth.</p>
-      </div>
-
-      <div class="tokenomics">
-        <div class="tokenomics-main fade-in-up">
-          <h3>Every Transaction Creates Value</h3>
-          <p style="font-size:20px; color:var(--slate-200); margin-bottom:40px; line-height:1.7; max-width:700px">
-            <strong>2% transfer tax:</strong> 1% <span style="color:var(--red-500)">burned forever</span> + 1% to <span style="color:var(--emerald-500)">treasury</span> for buybacks, liquidity, and ecosystem grants.
-          </p>
-
-          <div class="pie-container">
-            <div class="token-pie float">
-              <svg class="pie-chart-svg" viewBox="0 0 360 360" role="img" aria-label="Token allocation chart">
-                <defs>
-                  <linearGradient id="liqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#1E40AF"/>
-                  </linearGradient>
-                  <linearGradient id="burnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#EF4444"/><stop offset="100%" stop-color="#DC2626"/>
-                  </linearGradient>
-                  <linearGradient id="treasuryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#059669"/>
-                  </linearGradient>
-                  <linearGradient id="feeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/>
-                  </linearGradient>
-                </defs>
-
-                <circle cx="180" cy="180" r="160" fill="none" stroke="#1E293B" stroke-width="35"/>
-                <circle cx="180" cy="180" r="160" fill="none" stroke="url(#liqGrad)" stroke-width="35" stroke-dasharray="1006 1006" stroke-dashoffset="1006" pathLength="1" />
-                <circle cx="180" cy="180" r="140" fill="none" stroke="url(#feeGrad)" stroke-width="25" stroke-dasharray="44.1 628.3" stroke-dashoffset="672.4" pathLength="1" />
-                <circle cx="180" cy="180" r="120" fill="none" stroke="url(#burnGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="314.15" pathLength="1" />
-                <circle cx="180" cy="180" r="100" fill="none" stroke="url(#treasuryGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="292.1" pathLength="1" />
-                <circle cx="180" cy="180" r="70" fill="url(#liqGrad)" opacity="0.15"/>
-              </svg>
-              <div class="pie-chart-center" aria-hidden="true">
-                <div class="pie-center-number">4,000,000</div>
-                <div class="pie-center-label">ASRD Total Supply</div>
-              </div>
-            </div>
-
-            <div class="allocations">
-              <div class="allocation-item liquidity">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">💧 Liquidity & Market</div>
-                <div class="allocation-value">100%</div>
-              </div>
-              <div class="allocation-item fee">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">⚙️ Transfer Tax</div>
-                <div class="allocation-value">2.00%</div>
-              </div>
-              <div class="allocation-item burn">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">🔥 Burn</div>
-                <div class="allocation-value">1.00%</div>
-              </div>
-              <div class="allocation-item treasury">
-                <div class="allocation-label" style="font-weight:800; margin-bottom:8px">💎 Treasury</div>
-                <div class="allocation-value">1.00%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style="background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.02)); padding:48px; border-radius:var(--radius-2xl); border:1px solid rgba(255,255,255,0.15); height:fit-content; box-shadow:var(--shadow-premium)" class="fade-in-up">
-          <h3 style="font-size:28px; font-weight:900; margin-bottom:32px; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text">Key Facts</h3>
-          <div style="display:grid; gap:20px; font-size:16px; line-height:1.6">
-            <div><strong>Token:</strong> ASRD (BEP-20)</div>
-            <div><strong>Decimals:</strong> 18</div>
-            <div><strong>Launch:</strong> Fair - 100% unlocked</div>
-            <div><strong>LP:</strong> Burned & Locked</div>
-            <div style="margin-top:32px">
-              <a href="https://bscscan.com/token/0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB#code" class="btn btn-primary" style="width:100%; justify-content:center">View Contract →</a>
-
-              <!-- whitepaper button in Key Facts -->
-              <section id="key-facts">
-              <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-                 class="btn btn-whitepaper" target="_blank" rel="noopener noreferrer"
-                 style="width:100%; justify-content:center; margin-top:12px">📄 Read Whitepaper</a>
-                 </section>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section" id="about">
-    <div class="container">
-      <div class="cta-content fade-in-up">
-        <h2>Ready to Power the Future?</h2>
-        <p style="font-size:22px; color:rgba(255,255,255,0.95); margin-bottom:60px; max-width:700px; margin-left:auto; margin-right:auto">
-          Join thousands of builders creating the next digital economy with ASRD.
-        </p>
-        <div class="cta-buttons">
-          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:24px 56px; font-size:18px">🚀 Get Started</a>
-          <a href="#features" class="btn btn-secondary" style="padding:24px 56px; font-size:18px">Explore Features</a>
-
-          <!-- CTA whitepaper link -->
-          <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-             target="_blank" rel="noopener noreferrer" class="btn btn-whitepaper" style="padding:24px 56px; font-size:18px">📄 Read Whitepaper</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="container">
-      <div class="footer-content">
-        <div class="fade-in-up">
-          <h4 style="font-size:28px; font-weight:900; margin-bottom:24px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text">ASRD</h4>
-          <p style="color:var(--slate-400); margin-bottom:32px; max-width:300px">Powering sustainable digital infrastructure on BSC.</p>
-          <div class="social-links">
-            <a href="#" class="social-btn" aria-label="Telegram">📱</a>
-            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
-            <a href="#" class="social-btn" aria-label="Discord">💬</a>
-            <a href="#" class="social-btn" aria-label="GitHub">📂</a>
-          </div>
-
-          <!-- footer whitepaper link -->
-          <div style="margin-top:18px">
-            <a href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/main/ASRD%20White%20Paper.pdf"
-               target="_blank" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper">Read Whitepaper (PDF)</a>
-          </div>
-        </div>
-        <div class="fade-in-up" style="grid-column:span 3">
-          <div style="text-align:center; color:var(--slate-400); font-size:14px; letter-spacing:0.025em">
-            © 2025 ASRD. The utility token of the future. Not financial advice. DYOR.
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- floating Deposit button (GREEN) -->
-  <a href="#deposit" id="floatingDeposit" class="floating-deposit" role="button" aria-label="Deposit USDT">
-    <span class="dot" aria-hidden="true"></span>
-    Deposit USDT
-  </a>
-
-  <!-- copy toast (hidden by default) -->
-  <div id="copyToast" class="copy-toast" role="status" aria-live="polite">Copied</div>
-
-  <script>
-    /* ---------------------------
-       Particle System
-       --------------------------- */
-    function createParticles() {
-      const particles = document.getElementById('particles');
-      if (!particles) return;
-      for(let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-        particles.appendChild(particle);
-      }
-    }
-
-    /* ---------------------------
-       Header scroll effect
-       --------------------------- */
-    window.addEventListener('scroll', () => {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 100);
-      // small parallax for feature cards
-      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-      document.querySelectorAll('.feature-card').forEach((card, i) => {
-        const factor = (window.innerWidth <= 1024) ? 0.02 : 0.08;
-        card.style.transform = `translateY(${scrolled * factor * (i + 1)}px)`;
-      });
-    });
-
-    /* ---------------------------
-       Smooth in-page scrolling for hash links
-       --------------------------- */
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          // account for fixed header offset
-          const headerOffset = document.getElementById('header').offsetHeight || 96;
-          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - headerOffset - 12;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-      });
-    });
-
-    /* ---------------------------
-       Intersection observer for reveal & pie animation
-       --------------------------- */
-    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -80px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('inview');
-          entry.target.style.animationPlayState = 'running';
-          if (entry.target.querySelector('.pie-chart-svg')) {
-            const circles = entry.target.querySelectorAll('circle[stroke-dasharray]');
-            circles.forEach((circle, index) => {
-              setTimeout(() => {
-                circle.style.animation = 'pieFill 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
-              }, index * 160);
-            });
-          }
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in-up, .feature, .tokenomics-main').forEach(el => observer.observe(el));
-
-    /* ---------------------------
-       Mobile menu toggle logic (hamburger)
-       --------------------------- */
-    (function () {
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const mobileBackdrop = document.getElementById('mobileBackdrop');
-      const mobilePanel = document.getElementById('mobilePanel');
-      const mobileClose = document.getElementById('mobileClose');
-      let lastFocused = null;
-
-      if (!menuToggle || !mobileMenu) return;
-
-      function openMenu() {
-        lastFocused = document.activeElement;
-        menuToggle.setAttribute('aria-expanded', 'true');
-        mobileMenu.classList.add('open');
-        mobileBackdrop.classList.add('open');
-        mobilePanel.classList.add('open');
-        mobileMenu.removeAttribute('aria-hidden');
-        const firstLink = mobileMenu.querySelector('.mobile-links a');
-        if (firstLink) firstLink.focus();
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeMenu() {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.remove('open');
-        mobileBackdrop.classList.remove('open');
-        mobilePanel.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        if (lastFocused) lastFocused.focus();
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-      }
-
-      menuToggle.addEventListener('click', (e) => {
-        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        if (expanded) closeMenu(); else openMenu();
-      });
-
-      mobileClose.addEventListener('click', closeMenu);
-      mobileBackdrop.addEventListener('click', closeMenu);
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-          closeMenu();
-        }
-      });
-
-      mobileMenu.querySelectorAll('[data-close]').forEach(el => {
-        el.addEventListener('click', () => {
-          setTimeout(closeMenu, 120);
-        });
-      });
-
-      mobileMenu.addEventListener('focusout', (e) => {
-        if (menuToggle.getAttribute('aria-expanded') !== 'true') return;
-        setTimeout(() => {
-          const active = document.activeElement;
-          if (!mobilePanel.contains(active) && active !== menuToggle) {
-            closeMenu();
-          }
-        }, 150);
-      });
-    })();
-
-    /* ---------------------------
-       Deposit copy-to-clipboard + small interactions (IMPROVED)
-       --------------------------- */
-    (function(){
-      const copyBtn = document.getElementById('copyBtn');
-      const depositAddressEl = document.getElementById('depositAddress');
-      const copyToast = document.getElementById('copyToast');
-      const viewExplorer = document.getElementById('viewOnExplorer');
-      const depositBinance = document.getElementById('depositBinance');
-
-      // address string (trimmed)
-      const address = depositAddressEl ? depositAddressEl.textContent.trim() : '';
-
-      function showToast(message = 'Copied') {
-        copyToast.textContent = message;
-        copyToast.classList.add('show');
-        // hide after 1600ms
-        setTimeout(() => copyToast.classList.remove('show'), 1600);
-      }
-
-      async function copyToClipboard(text) {
-        // Try Clipboard API first
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          try {
-            await navigator.clipboard.writeText(text);
-            return true;
-          } catch (err) {
-            // fallthrough to execCommand fallback
-          }
-        }
-
-        // Fallback: create a temporary textarea and exec copy
-        try {
-          const ta = document.createElement('textarea');
-          ta.value = text;
-          // avoid scrolling to bottom
-          ta.style.position = 'fixed';
-          ta.style.left = '-9999px';
-          document.body.appendChild(ta);
-          ta.focus();
-          ta.select();
-          const successful = document.execCommand('copy');
-          document.body.removeChild(ta);
-          return successful;
-        } catch (e) {
-          return false;
-        }
-      }
-
-      if (copyBtn && depositAddressEl) {
-        copyBtn.addEventListener('click', async (e) => {
-          e.preventDefault();
-          // visual feedback on button
-          copyBtn.disabled = true;
-          copyBtn.classList.add('copied');
-          const originalHTML = copyBtn.innerHTML;
-          copyBtn.innerHTML = 'Copied';
-
-          const ok = await copyToClipboard(address);
-          if (ok) {
-            showToast('Copied');
-          } else {
-            showToast('Copy failed — select & copy');
-            // select the address text to help user copy manually
-            try {
-              const range = document.createRange();
-              range.selectNodeContents(depositAddressEl);
-              const sel = window.getSelection();
-              sel.removeAllRanges();
-              sel.addRange(range);
-            } catch (err) {
-              // ignore
-            }
-          }
-
-          // revert button state after short delay
-          setTimeout(() => {
-            copyBtn.disabled = false;
-            copyBtn.classList.remove('copied');
-            copyBtn.innerHTML = originalHTML;
-          }, 1400);
-        });
-      }
-
-      if (viewExplorer) {
-        viewExplorer.addEventListener('click', (e) => {
-          e.preventDefault();
-          const explorerUrl = 'https://bscscan.com/address/' + encodeURIComponent(address);
-          window.open(explorerUrl, '_blank', 'noopener');
-        });
-      }
-
-      if (depositBinance) {
-        depositBinance.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.open('https://www.binance.com/en/support/faq/360002502072', '_blank', 'noopener');
-        });
-      }
-    })();
-
-    /* ---------------------------
-       Floating Deposit button: smooth scroll + close mobile menu if open
-       --------------------------- */
-    (function(){
-      const floating = document.getElementById('floatingDeposit');
-      if (!floating) return;
-      floating.addEventListener('click', function(e){
-        e.preventDefault();
-        const target = document.querySelector('#deposit');
-        if (!target) return;
-
-        // compute offset scroll (account for fixed header)
-        const headerOffset = document.getElementById('header').offsetHeight || 96;
-        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerOffset - 12;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-
-        // close mobile menu if it's open (basic close)
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileBackdrop = document.getElementById('mobileBackdrop');
-        const mobilePanel = document.getElementById('mobilePanel');
-        if (mobileMenu && mobileMenu.classList.contains('open')) {
-          mobileMenu.classList.remove('open');
-          if (mobileBackdrop) mobileBackdrop.classList.remove('open');
-          if (mobilePanel) mobilePanel.classList.remove('open');
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-        }
-      });
-    })();
-
-    // Initialize particles
-    createParticles();
+    // Initialize particles on load and resize
+    window.addEventListener('load', createParticles);
+    window.addEventListener('resize', createParticles);
   </script>
 </body>
 </html>
