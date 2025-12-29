@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <div class="animated-bg">
@@ -86,6 +86,10 @@
           <i class="fas fa-map-marked-alt"></i>
           Roadmap
         </a>
+        <a href="#risks" class="mobile-nav-link">
+          <i class="fas fa-exclamation-triangle"></i>
+          Risk Analysis
+        </a>
         <a href="index.html#deposit" class="mobile-nav-link">
           <i class="fas fa-wallet"></i>
           Deposit USDT
@@ -109,22 +113,22 @@
           and strategic roadmap of the ASRD ecosystem token on BNB Smart Chain.
         </p>
 
-        <div class="hero-stats">
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.4s">
-            <div class="stat">4,000,000</div>
-            <div class="stat-label">Total Supply</div>
+        <div class="whitepaper-stats">
+          <div class="whitepaper-stat-card animate-fade-in-up" style="animation-delay: 0.4s">
+            <div class="whitepaper-stat-number">4,000,000</div>
+            <div class="whitepaper-stat-label">Total Supply</div>
           </div>
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.5s">
-            <div class="stat">2%</div>
-            <div class="stat-label">Transfer Tax</div>
+          <div class="whitepaper-stat-card animate-fade-in-up" style="animation-delay: 0.5s">
+            <div class="whitepaper-stat-number">2%</div>
+            <div class="whitepaper-stat-label">Transfer Tax</div>
           </div>
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.6s">
-            <div class="stat">BEP-20</div>
-            <div class="stat-label">Token Standard</div>
+          <div class="whitepaper-stat-card animate-fade-in-up" style="animation-delay: 0.6s">
+            <div class="whitepaper-stat-number">BEP-20</div>
+            <div class="whitepaper-stat-label">Token Standard</div>
           </div>
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.7s">
-            <div class="stat">100%</div>
-            <div class="stat-label">Circulating</div>
+          <div class="whitepaper-stat-card animate-fade-in-up" style="animation-delay: 0.7s">
+            <div class="whitepaper-stat-number">100%</div>
+            <div class="whitepaper-stat-label">Circulating</div>
           </div>
         </div>
 
@@ -400,6 +404,59 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="risks" class="section">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 11</span>
+        <h2 class="section-title">Risk Analysis</h2>
+        <p class="section-subtitle">
+          Comprehensive identification and mitigation of potential challenges
+        </p>
+      </div>
+
+      <div class="risk-visualization">
+        <div class="risk-card technical animate-fade-in-left" style="animation-delay: 0.2s">
+          <div class="risk-icon">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3 class="risk-title">Technical Risks</h3>
+          <ul class="risk-items">
+            <li class="risk-item">Smart contract vulnerabilities despite audits</li>
+            <li class="risk-item">Dependency on BSC network security</li>
+            <li class="risk-item">Potential governance key compromise</li>
+            <li class="risk-item">Integration and compatibility issues</li>
+          </ul>
+        </div>
+
+        <div class="risk-card market animate-fade-in-left" style="animation-delay: 0.4s">
+          <div class="risk-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="risk-title">Market Risks</h3>
+          <ul class="risk-items">
+            <li class="risk-item">Low liquidity leading to high volatility</li>
+            <li class="risk-item">Failure to attract developer adoption</li>
+            <li class="risk-item">Intense competition in DeFi space</li>
+            <li class="risk-item">Macroeconomic crypto market cycles</li>
+          </ul>
+        </div>
+
+        <div class="risk-card regulatory animate-fade-in-left" style="animation-delay: 0.6s">
+          <div class="risk-icon">
+            <i class="fas fa-gavel"></i>
+          </div>
+          <h3 class="risk-title">Regulatory Risks</h3>
+          <ul class="risk-items">
+            <li class="risk-item">Changing utility token classification</li>
+            <li class="risk-item">Unfavorable tax treatment mechanisms</li>
+            <li class="risk-item">Jurisdictional compliance complexity</li>
+            <li class="risk-item">Global regulatory fragmentation</li>
+          </ul>
         </div>
       </div>
     </div>
