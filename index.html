@@ -70,35 +70,96 @@
     </aside>
   </div>
 
-  <!-- Hero Video Section -->
-  <section class="hero-video-section" id="home">
-    <div class="hero-video-container">
-      <div class="video-overlay"></div>
-      <video 
-        class="hero-video" 
-        autoplay 
-        muted 
-        loop 
-        playsinline
-        preload="metadata"
-        aria-label="ASRD promotional video showing digital economy concepts"
-        poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
-      >
-        <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      
-      <div class="video-content container">
-        <div style="margin-bottom:24px; display:flex; align-items:center; gap:12px;">
-          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
-               alt="ASRD coin"
-               class="logo-img logo-lg">
-          <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
-            ASRD Utility Token
-          </span>
+  <!-- Video Player Section -->
+  <section class="video-player-section" id="video-section">
+    <div class="container">
+      <div class="video-player-wrapper">
+        <div class="video-header">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
+                 alt="ASRD coin"
+                 class="logo-img logo-md">
+            <div>
+              <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
+                ASRD Utility Token
+              </span>
+              <h2 style="margin-top:4px; margin-bottom:0; font-size:clamp(24px, 5vw, 36px);">Introducing ASRD</h2>
+            </div>
+          </div>
+          <div class="hero-badge">🎬 Watch Our Story</div>
         </div>
 
-        <div class="hero-badge fade-in-up">🔥 BEP-20 Utility Token</div>
+        <div class="video-player-container">
+          <div class="video-player">
+            <video 
+              id="asrdVideo"
+              class="video-element"
+              autoplay
+              muted
+              playsinline
+              loop
+              preload="metadata"
+              poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
+              aria-label="ASRD promotional video showing digital economy concepts"
+            >
+              <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            
+            <div class="video-controls">
+              <button class="control-btn play-pause-btn" id="playPauseBtn" aria-label="Play/Pause">
+                <i class="fas fa-pause"></i>
+              </button>
+              
+              <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="time-display">
+                  <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                </div>
+              </div>
+              
+              <button class="control-btn volume-btn" id="volumeBtn" aria-label="Toggle Mute">
+                <i class="fas fa-volume-up"></i>
+              </button>
+              
+              <button class="control-btn fullscreen-btn" id="fullscreenBtn" aria-label="Toggle Fullscreen">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            
+            <div class="video-overlay">
+              <div class="overlay-content">
+                <h3>Powering the Next Digital Economy</h3>
+                <p>Watch how ASRD is revolutionizing digital finance</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="video-info">
+            <div class="info-item">
+              <i class="fas fa-play-circle"></i>
+              <span>Autoplays for the best experience</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-volume-mute"></i>
+              <span>Start muted for mobile compatibility</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Optimized for all devices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Content Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
         <h1 class="fade-in-up">Powering the Next Digital Economy</h1>
         <p class="hero-subtitle fade-in-up">Sustainable growth through deflationary mechanics, treasury-funded buybacks, and developer ecosystem support. Built for utility that endures.</p>
 
@@ -123,10 +184,24 @@
           <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">📄 Read Whitepaper</a>
         </div>
       </div>
-      
-      <button class="video-control-btn" id="videoControl" aria-label="Pause video" title="Pause video">
-        <i class="fas fa-pause"></i>
-      </button>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="floating-card fade-in-up">
+          <div class="floating-icon" style="background:var(--gradient-hero)">⚡</div>
+          <h4>Lightning Transfers</h4>
+          <p>BEP-20 optimized for instant, low-cost transactions across the BSC ecosystem.</p>
+        </div>
+        <div class="floating-card fade-in-up">
+          <div class="floating-icon" style="background:var(--gradient-emerald)">🔥</div>
+          <h4>Deflationary Burn</h4>
+          <p>1% permanent supply reduction per transfer creates compounding scarcity.</p>
+        </div>
+        <div class="floating-card fade-in-up">
+          <div class="floating-icon" style="background:var(--gradient-gold)">💎</div>
+          <h4>Treasury Power</h4>
+          <p>1% funds ecosystem growth, buybacks, and strategic developer grants.</p>
+        </div>
+      </div>
     </div>
   </section>
 
