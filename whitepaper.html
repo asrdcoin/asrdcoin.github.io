@@ -55,14 +55,43 @@
       overflow: hidden;
     }
     .bg-grid {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(59,130,246,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.1) 1px, transparent 1px);
-      background-size: cover;
-      mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
-    }
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 360'>\
+  <defs>\
+    <linearGradient id='liqGrad' x1='0%' y1='0%' x2='100%' y2='0%'>\
+      <stop offset='0%' stop-color='%233B82F6'/>\
+      <stop offset='100%' stop-color='%2360A5FA'/>\
+    </linearGradient>\
+    <linearGradient id='feeGrad' x1='0%' y1='0%' x2='100%' y2='0%'>\
+      <stop offset='0%' stop-color='%23F59E0B'/>\
+      <stop offset='100%' stop-color='%23FBBF24'/>\
+    </linearGradient>\
+    <linearGradient id='burnGrad' x1='0%' y1='0%' x2='100%' y2='0%'>\
+      <stop offset='0%' stop-color='%23EF4444'/>\
+      <stop offset='100%' stop-color='%23DC2626'/>\
+    </linearGradient>\
+    <linearGradient id='treasuryGrad' x1='0%' y1='0%' x2='100%' y2='0%'>\
+      <stop offset='0%' stop-color='%2310B981'/>\
+      <stop offset='100%' stop-color='%2334D399'/>\
+    </linearGradient>\
+  </defs>\
+
+  <circle cx='180' cy='180' r='160' fill='none' stroke='%231E293B' stroke-width='35'/>\
+  <circle cx='180' cy='180' r='160' fill='none' stroke='url(%23liqGrad)' stroke-width='35' stroke-dasharray='1006 1006' stroke-dashoffset='1006'/>\
+  <circle cx='180' cy='180' r='140' fill='none' stroke='url(%23feeGrad)' stroke-width='25' stroke-dasharray='44.1 628.3' stroke-dashoffset='672.4'/>\
+  <circle cx='180' cy='180' r='120' fill='none' stroke='url(%23burnGrad)' stroke-width='25' stroke-dasharray='22.05 314.15' stroke-dashoffset='314.15'/>\
+  <circle cx='180' cy='180' r='100' fill='none' stroke='url(%23treasuryGrad)' stroke-width='25' stroke-dasharray='22.05 314.15' stroke-dashoffset='292.1'/>\
+  <circle cx='180' cy='180' r='70' fill='url(%23liqGrad)' opacity='0.15'/>\
+</svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  /* Soft vignette mask */
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
+}
     .floating-orb {
       position: absolute;
       border-radius: 50%;
