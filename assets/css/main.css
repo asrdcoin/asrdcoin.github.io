@@ -3335,3 +3335,141 @@ strong {
 .compact-video-player.paused .play-btn .fa-play {
   display: inline-block;
 }
+
+/* ==========================================================================
+   Simple Video Player Section
+   ========================================================================== */
+
+.simple-video-section {
+  padding: 40px 0 30px;
+  background: linear-gradient(180deg, var(--slate-900) 0%, var(--slate-800) 100%);
+}
+
+.simple-video-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.simple-video-wrapper {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.simple-video-element {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  background: #000;
+}
+
+/* Custom video controls styling */
+.simple-video-element::-webkit-media-controls-panel {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+}
+
+.simple-video-element::-webkit-media-controls-play-button,
+.simple-video-element::-webkit-media-controls-mute-button,
+.simple-video-element::-webkit-media-controls-fullscreen-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.simple-video-element::-webkit-media-controls-play-button:hover,
+.simple-video-element::-webkit-media-controls-mute-button:hover,
+.simple-video-element::-webkit-media-controls-fullscreen-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.simple-video-element::-webkit-media-controls-current-time-display,
+.simple-video-element::-webkit-media-controls-time-remaining-display {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.video-note {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 3px solid var(--blue-500);
+  font-size: 14px;
+  color: var(--slate-300);
+}
+
+.video-note p {
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.video-note i {
+  color: var(--blue-400);
+  font-size: 16px;
+  width: 20px;
+}
+
+/* Responsive video sizing */
+@media (max-width: 767px) {
+  .simple-video-section {
+    padding: 30px 0 20px;
+  }
+  
+  .simple-video-container {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  .simple-video-wrapper {
+    border-radius: 8px;
+  }
+  
+  .simple-video-element {
+    border-radius: 8px;
+    max-height: 300px;
+  }
+  
+  .video-note {
+    font-size: 13px;
+    padding: 12px;
+  }
+  
+  .video-note p {
+    margin: 6px 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .simple-video-element {
+    max-height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .simple-video-element {
+    max-height: 450px;
+  }
+}
+
+/* Hero section adjustment */
+.hero {
+  padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 30px;
+  }
+}
