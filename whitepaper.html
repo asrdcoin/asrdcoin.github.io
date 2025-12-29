@@ -10,6 +10,103 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    /* Additional mobile fixes for whitepaper */
+    @media (max-width: 767px) {
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--space-sm) !important;
+      }
+      
+      .hero-stats .feature-card {
+        padding: 20px 15px !important;
+        min-height: auto !important;
+      }
+      
+      .hero-stats .stat {
+        font-size: 24px !important;
+      }
+      
+      .hero-stats .stat-label {
+        font-size: 11px !important;
+      }
+      
+      .token-details {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--space-sm) !important;
+      }
+      
+      .token-detail {
+        padding: 20px 15px !important;
+      }
+      
+      .detail-value {
+        font-size: 18px !important;
+      }
+      
+      .phase-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .phase-title {
+        font-size: 22px !important;
+      }
+      
+      .phase-period {
+        font-size: 12px !important;
+        padding: 6px 15px !important;
+      }
+      
+      .roadmap-phase {
+        padding-left: 40px;
+        margin-bottom: 50px;
+      }
+      
+      .phase-content {
+        padding: 20px !important;
+      }
+      
+      .phase-details {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-stats {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .token-details {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .hero-actions .btn {
+        width: 100%;
+      }
+      
+      .content-card {
+        padding: 25px 20px !important;
+      }
+      
+      .card-icon {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 24px !important;
+      }
+      
+      .card-title {
+        font-size: 20px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="animated-bg">
@@ -60,7 +157,7 @@
           </a>
         </nav>
 
-        <button class="mobile-toggle" id="mobileMenuBtn">
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Mobile menu toggle">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -68,33 +165,57 @@
       </div>
     </div>
 
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-      <nav class="mobile-nav">
-        <a href="index.html" class="mobile-nav-link">
-          <i class="fas fa-home"></i>
-          Home
-        </a>
-        <a href="#executive-summary" class="mobile-nav-link">
-          <i class="fas fa-file-alt"></i>
-          Whitepaper
-        </a>
-        <a href="#tokenomics" class="mobile-nav-link">
-          <i class="fas fa-chart-pie"></i>
-          Tokenomics
-        </a>
-        <a href="#roadmap" class="mobile-nav-link">
-          <i class="fas fa-map-marked-alt"></i>
-          Roadmap
-        </a>
-        <a href="#risks" class="mobile-nav-link">
-          <i class="fas fa-exclamation-triangle"></i>
-          Risk Analysis
-        </a>
-        <a href="index.html#deposit" class="mobile-nav-link">
-          <i class="fas fa-wallet"></i>
-          Deposit USDT
-        </a>
-      </nav>
+      <div class="mobile-backdrop" id="mobileBackdrop"></div>
+      <div class="mobile-panel" id="mobilePanel">
+        <div class="panel-inner">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 20px;">
+            <div style="display:flex; align-items:center; gap: 10px;">
+              <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
+                   alt="ASRD logo"
+                   class="logo-img logo-sm">
+              <span style="font-weight: 800; font-size: 18px;">ASRD</span>
+            </div>
+            <button id="closeMobileMenu" style="background: none; border: none; color: var(--slate-300); font-size: 20px; cursor: pointer;">×</button>
+          </div>
+          
+          <div class="mobile-links">
+            <a href="index.html" class="mobile-nav-link">
+              <i class="fas fa-home"></i>
+              Home
+            </a>
+            <a href="#executive-summary" class="mobile-nav-link">
+              <i class="fas fa-file-alt"></i>
+              Executive Summary
+            </a>
+            <a href="#tokenomics" class="mobile-nav-link">
+              <i class="fas fa-chart-pie"></i>
+              Tokenomics
+            </a>
+            <a href="#architecture" class="mobile-nav-link">
+              <i class="fas fa-code"></i>
+              Architecture
+            </a>
+            <a href="#roadmap" class="mobile-nav-link">
+              <i class="fas fa-map-marked-alt"></i>
+              Roadmap
+            </a>
+            <a href="#risks" class="mobile-nav-link">
+              <i class="fas fa-exclamation-triangle"></i>
+              Risk Analysis
+            </a>
+            <a href="index.html#deposit" class="mobile-cta">
+              <i class="fas fa-wallet"></i>
+              Deposit USDT
+            </a>
+          </div>
+          
+          <div class="mobile-disclaimer">
+            Informational only. Read the whitepaper for technical & legal details.
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -113,22 +234,23 @@
           and strategic roadmap of the ASRD ecosystem token on BNB Smart Chain.
         </p>
 
-        <div class="hero-stats">
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.4s">
-            <div class="stat">4 Million</div>
-            <div class="stat-label">Total Supply</div>
+        <!-- FIXED: Mobile responsive hero stats -->
+        <div class="whitepaper-stats animate-fade-in-up" style="animation-delay: 0.4s">
+          <div class="whitepaper-stat-card">
+            <div class="whitepaper-stat-number">4 Million</div>
+            <div class="whitepaper-stat-label">Total Supply</div>
           </div>
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.5s">
-            <div class="stat">2%</div>
-            <div class="stat-label">Transfer Tax</div>
+          <div class="whitepaper-stat-card">
+            <div class="whitepaper-stat-number">2%</div>
+            <div class="whitepaper-stat-label">Transfer Tax</div>
           </div>
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.6s">
-            <div class="stat">BEP-20</div>
-            <div class="stat-label">Token Standard</div>
+          <div class="whitepaper-stat-card">
+            <div class="whitepaper-stat-number">BEP-20</div>
+            <div class="whitepaper-stat-label">Token Standard</div>
           </div>
-          <div class="feature-card animate-fade-in-up" style="animation-delay: 0.7s">
-            <div class="stat">100%</div>
-            <div class="stat-label">Circulating</div>
+          <div class="whitepaper-stat-card">
+            <div class="whitepaper-stat-number">100%</div>
+            <div class="whitepaper-stat-label">Circulating</div>
           </div>
         </div>
 
@@ -161,7 +283,7 @@
   <section id="executive-summary" class="section">
     <div class="container">
       <div class="section-header animate-fade-in-up">
-        <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 1</span>
+        <span class="section-tag">Chapter 1</span>
         <h2 class="section-title">Executive Summary</h2>
         <p class="section-subtitle">
           Comprehensive overview of ASRD's mission, architecture, and value proposition
@@ -208,7 +330,7 @@
   <section id="tokenomics" class="section">
     <div class="container">
       <div class="section-header animate-fade-in-up">
-        <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 6</span>
+        <span class="section-tag">Chapter 6</span>
         <h2 class="section-title">Tokenomics</h2>
         <p class="section-subtitle">
           Supply model, fee structure, and economic mechanics
@@ -272,7 +394,7 @@
   <section id="architecture" class="section">
     <div class="container">
       <div class="section-header animate-fade-in-up">
-        <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 4</span>
+        <span class="section-tag">Chapter 4</span>
         <h2 class="section-title">Technical Architecture</h2>
         <p class="section-subtitle">
           Smart contract design, security measures, and system components
@@ -324,7 +446,7 @@
   <section id="roadmap" class="section">
     <div class="container">
       <div class="section-header animate-fade-in-up">
-        <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 10</span>
+        <span class="section-tag">Chapter 10</span>
         <h2 class="section-title">Strategic Roadmap</h2>
         <p class="section-subtitle">
           18-36 month development timeline for sustainable ecosystem growth
@@ -412,7 +534,7 @@
   <section id="risks" class="section">
     <div class="container">
       <div class="section-header animate-fade-in-up">
-        <span class="section-tag" style="display: inline-block; padding: 8px 20px; background: rgba(59,130,246,0.1); border-radius: 50px; color: var(--blue-400); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; margin-bottom: 20px;">Chapter 11</span>
+        <span class="section-tag">Chapter 11</span>
         <h2 class="section-title">Risk Analysis</h2>
         <p class="section-subtitle">
           Comprehensive identification and mitigation of potential challenges
@@ -571,34 +693,50 @@
   </a>
 
   <script>
+    // Mobile menu functionality
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
+    const mobilePanel = document.getElementById('mobilePanel');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
     
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenuBtn.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
-
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      mobileBackdrop.classList.add('open');
+      mobilePanel.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenuFunc() {
+      mobileMenu.classList.remove('open');
+      mobileBackdrop.classList.remove('open');
+      mobilePanel.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+    mobileBackdrop.addEventListener('click', closeMobileMenuFunc);
+    
+    // Close mobile menu when clicking on links
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMobileMenuFunc);
     });
 
+    // Header scroll effect
     window.addEventListener('scroll', () => {
       const header = document.getElementById('header');
       if (header) {
         header.classList.toggle('scrolled', window.scrollY > 100);
       }
       
+      // Back to top button
       const backToTop = document.getElementById('backToTop');
       if (backToTop) {
         backToTop.classList.toggle('visible', window.scrollY > 500);
       }
       
+      // Floating nav highlighting
       const sections = document.querySelectorAll('section[id]');
       const floatingNavItems = document.querySelectorAll('.floating-nav-item');
       
@@ -621,6 +759,7 @@
       });
     });
 
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -641,6 +780,7 @@
       });
     });
 
+    // Intersection Observer for animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -658,6 +798,7 @@
       observer.observe(el);
     });
 
+    // Initialize animations on load
     document.addEventListener('DOMContentLoaded', () => {
       const animateElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left');
       animateElements.forEach((el, index) => {
