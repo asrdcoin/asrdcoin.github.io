@@ -117,30 +117,49 @@
       justify-content: space-between;
       padding: 16px 0;
     }
+   /* Replace your existing logo rules with this */
     .logo {
-      display: inline-flex;
+      display: inline-flex;      /* compact inline block */
       align-items: center;
-      gap: 10px;              /* tighter spacing */
-      font-size: 22px;        /* slightly reduced for balance */
+      gap: 10px;
+      font-size: 22px;
       font-weight: 800;
-      line-height: 1;         /* IMPORTANT: removes vertical font padding */
-      background: var(--gradient-hero);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      line-height: 1;            /* important: prevents extra vertical spacing */
       text-decoration: none;
+      -webkit-font-smoothing:antialiased;
+      vertical-align: middle;
+    }
+    
+    /* Use a single img element (no padded wrapper). Make it block-level to remove inline gaps */
+    .logo-icon {
+      width: 48px;               /* desktop default, override in media queries if needed */
+      height: 48px;
+      padding: 0;                /* important: remove artificial space */
+      margin: 0;
+      display: block;            /* removes baseline gap */
+      border-radius: 50%;
+      object-fit: cover;         /* fill the circle, hides transparent PNG padding */
+      background: #0F172A;       /* fallback behind the image */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+    
+    /* mobile overrides (optional) */
+    @media (max-width: 767px) {
+      .logo-icon { width: 40px; height: 40px; }
+      .logo { font-size: 18px; gap: 8px; }
+    }
+    
+    /* if you must keep a wrapper span, make sure it has no padding and overflow:hidden */
+    .logo-wrap {
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      border-radius: 50%;
+      overflow: hidden;
     }
 
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    padding: 0;             /* no artificial space */
-    margin: 0;
-    border-radius: 50%;
-    object-fit: contain;    /* correct for logos */
-    display: block;         /* removes inline-image gaps */
-    box-shadow: 0 6px 14px rgba(0,0,0,0.6);
-  }
     /* Desktop Navigation */
     .desktop-nav {
       display: flex;
