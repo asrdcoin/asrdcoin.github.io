@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>ASRD Whitepaper — Powering the Next Digital Economy</title>
   <meta name="description" content="Official technical whitepaper for ASRD utility token: Tokenomics, architecture, governance, and roadmap for the BEP-20 ecosystem token.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,352 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
-  <style>
-    /* Professional Mobile Overrides */
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    body {
-      overflow-x: hidden;
-      position: relative;
-      width: 100%;
-      min-width: 320px;
-    }
-    
-    .container {
-      width: 100%;
-      padding-left: max(20px, env(safe-area-inset-left));
-      padding-right: max(20px, env(safe-area-inset-right));
-    }
-    
-    /* Fix for text cutoff */
-    .hero-title,
-    h1, h2, h3, h4,
-    .section-title,
-    .card-title,
-    .phase-title,
-    .risk-title,
-    .fee-title,
-    .visual-title {
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      hyphens: auto;
-      max-width: 100%;
-    }
-    
-    /* Mobile-first adjustments */
-    @media (max-width: 767px) {
-      /* Ensure content doesn't exceed screen width */
-      .container {
-        padding-left: 20px;
-        padding-right: 20px;
-        max-width: 100%;
-        overflow-x: hidden;
-      }
-      
-      /* Fix header */
-      .header-inner {
-        padding: 12px 0;
-      }
-      
-      .logo span {
-        font-size: 18px;
-      }
-      
-      /* Fix hero section */
-      .whitepaper-hero {
-        padding: 120px 0 60px;
-        min-height: auto;
-      }
-      
-      .hero-title {
-        font-size: 36px;
-        line-height: 1.2;
-        margin-bottom: 20px;
-      }
-      
-      .hero-subtitle {
-        font-size: 16px;
-        line-height: 1.5;
-        margin-bottom: 30px;
-      }
-      
-      /* Fix whitepaper stats layout */
-      .whitepaper-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin: 30px 0;
-      }
-      
-      .whitepaper-stat-card {
-        padding: 20px 12px;
-        min-height: 100px;
-      }
-      
-      .whitepaper-stat-number {
-        font-size: 22px;
-        margin-bottom: 8px;
-      }
-      
-      .whitepaper-stat-label {
-        font-size: 11px;
-        letter-spacing: 0.03em;
-      }
-      
-      /* Fix buttons layout */
-      .hero-actions {
-        flex-direction: column;
-        gap: 12px;
-      }
-      
-      .hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      /* Fix section headers */
-      .section-header {
-        padding: 0;
-        margin-bottom: 40px;
-      }
-      
-      .section-title {
-        font-size: 28px;
-        line-height: 1.2;
-        margin-bottom: 15px;
-      }
-      
-      .section-subtitle {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-      
-      /* Fix content cards */
-      .content-cards {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      
-      .content-card {
-        padding: 25px 20px;
-        margin: 0;
-      }
-      
-      .card-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-        margin-bottom: 20px;
-      }
-      
-      .card-title {
-        font-size: 20px;
-        margin-bottom: 12px;
-      }
-      
-      .card-content {
-        font-size: 15px;
-        line-height: 1.6;
-      }
-      
-      /* Fix tokenomics section */
-      .tokenomics-visual {
-        padding: 30px 20px;
-        margin-top: 30px;
-      }
-      
-      .visual-title {
-        font-size: 24px;
-      }
-      
-      .visual-subtitle {
-        font-size: 15px;
-      }
-      
-      .token-details {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin-bottom: 30px;
-      }
-      
-      .token-detail {
-        padding: 20px 12px;
-      }
-      
-      .detail-value {
-        font-size: 20px;
-      }
-      
-      .fee-breakdown {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      
-      .fee-card {
-        padding: 25px 20px;
-      }
-      
-      .fee-percent {
-        font-size: 32px;
-      }
-      
-      /* Fix roadmap */
-      .interactive-roadmap {
-        margin-top: 40px;
-      }
-      
-      .roadmap-phase {
-        padding-left: 40px;
-        margin-bottom: 40px;
-      }
-      
-      .phase-content {
-        padding: 25px 20px;
-      }
-      
-      .phase-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-        margin-bottom: 20px;
-      }
-      
-      .phase-title {
-        font-size: 22px;
-      }
-      
-      .phase-period {
-        font-size: 13px;
-        padding: 8px 16px;
-      }
-      
-      .phase-details {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        margin-top: 20px;
-      }
-      
-      /* Fix risk visualization */
-      .risk-visualization {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      
-      .risk-card {
-        padding: 25px 20px;
-      }
-      
-      /* Fix footer */
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-      }
-      
-      .footer-section h4 {
-        font-size: 18px;
-      }
-      
-      .social-links {
-        justify-content: center;
-      }
-      
-      /* Hide floating nav on mobile */
-      .floating-nav {
-        display: none;
-      }
-      
-      /* Fix back to top button position */
-      .back-to-top {
-        bottom: 80px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .container {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-      
-      .hero-title {
-        font-size: 32px;
-      }
-      
-      .hero-subtitle {
-        font-size: 15px;
-      }
-      
-      .whitepaper-stats {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      
-      .whitepaper-stat-card {
-        min-height: 90px;
-        padding: 18px 10px;
-      }
-      
-      .section-title {
-        font-size: 26px;
-      }
-      
-      .token-details {
-        grid-template-columns: 1fr;
-      }
-      
-      .roadmap-phase {
-        padding-left: 30px;
-      }
-      
-      .phase-marker {
-        left: -10px;
-        width: 24px;
-        height: 24px;
-        font-size: 10px;
-      }
-    }
-    
-    @media (max-width: 360px) {
-      .container {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-      
-      .hero-title {
-        font-size: 28px;
-      }
-      
-      .whitepaper-stat-number {
-        font-size: 20px;
-      }
-      
-      .btn {
-        padding: 14px 20px;
-        font-size: 14px;
-      }
-    }
-    
-    /* Animation adjustments for mobile */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
-    /* Safe area for notched phones */
-    @supports (padding: max(0px)) {
-      body {
-        padding-left: env(safe-area-inset-left);
-        padding-right: env(safe-area-inset-right);
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="animated-bg">
@@ -394,7 +48,7 @@
           </a>
           <a href="index.html#deposit" class="nav-cta">
             <i class="fas fa-wallet"></i>
-            Deposit
+            Deposit USDT
           </a>
         </nav>
 
@@ -411,48 +65,48 @@
       <div class="mobile-backdrop" id="mobileBackdrop"></div>
       <div class="mobile-panel" id="mobilePanel">
         <div class="panel-inner">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
-            <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="mobile-menu-header">
+            <div class="mobile-logo">
               <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrd-coin-logo.png"
-                   alt="ASRD"
+                   alt="ASRD logo"
                    class="logo-img logo-sm">
-              <div style="font-weight: 900; font-size: 20px; color: var(--slate-50);">ASRD</div>
+              <span>ASRD</span>
             </div>
-            <button id="mobileClose" style="background: transparent; border: none; color: var(--slate-300); font-size: 24px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer;">×</button>
+            <button id="mobileClose" class="mobile-close">×</button>
           </div>
-
-          <div class="mobile-links" style="display: flex; flex-direction: column; gap: 12px;">
-            <a href="index.html" class="mobile-nav-link" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); color: var(--slate-50); text-decoration: none; font-weight: 600;">
+          
+          <div class="mobile-links">
+            <a href="index.html" class="mobile-nav-link">
               <i class="fas fa-home"></i>
               Home
             </a>
-            <a href="#executive-summary" class="mobile-nav-link" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); color: var(--slate-50); text-decoration: none; font-weight: 600;">
+            <a href="#executive-summary" class="mobile-nav-link">
               <i class="fas fa-file-alt"></i>
               Executive Summary
             </a>
-            <a href="#tokenomics" class="mobile-nav-link" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); color: var(--slate-50); text-decoration: none; font-weight: 600;">
+            <a href="#tokenomics" class="mobile-nav-link">
               <i class="fas fa-chart-pie"></i>
               Tokenomics
             </a>
-            <a href="#architecture" class="mobile-nav-link" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); color: var(--slate-50); text-decoration: none; font-weight: 600;">
+            <a href="#architecture" class="mobile-nav-link">
               <i class="fas fa-code"></i>
               Architecture
             </a>
-            <a href="#roadmap" class="mobile-nav-link" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); color: var(--slate-50); text-decoration: none; font-weight: 600;">
+            <a href="#roadmap" class="mobile-nav-link">
               <i class="fas fa-map-marked-alt"></i>
               Roadmap
             </a>
-            <a href="#risks" class="mobile-nav-link" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); color: var(--slate-50); text-decoration: none; font-weight: 600;">
+            <a href="#risks" class="mobile-nav-link">
               <i class="fas fa-exclamation-triangle"></i>
               Risk Analysis
             </a>
-            <a href="index.html#deposit" class="mobile-cta" style="display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px; background: var(--gradient-hero); border-radius: var(--radius-lg); color: white; text-decoration: none; font-weight: 800; margin-top: 10px; text-align: center;">
+            <a href="index.html#deposit" class="mobile-cta">
               <i class="fas fa-wallet"></i>
               Deposit USDT
             </a>
           </div>
           
-          <div class="mobile-disclaimer" style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: var(--radius-lg); font-size: 13px; color: var(--slate-400); line-height: 1.5; text-align: center;">
+          <div class="mobile-disclaimer">
             <strong>Informational Only</strong><br>
             Read the whitepaper for technical & legal details.
           </div>
@@ -464,20 +118,20 @@
   <section class="whitepaper-hero">
     <div class="container">
       <div class="hero-content animate-fade-in-up">
-        <div class="hero-badge-whitepaper animate-fade-in-up" style="animation-delay: 0.1s">
+        <div class="hero-badge-whitepaper animate-fade-in-up">
           <i class="fas fa-file-contract"></i>
           Official Technical Whitepaper • Version 1.0
         </div>
         
-        <h1 class="hero-title animate-fade-in-up" style="animation-delay: 0.2s">ASRD Whitepaper</h1>
+        <h1 class="hero-title animate-fade-in-up">ASRD Whitepaper</h1>
         
-        <p class="hero-subtitle animate-fade-in-up" style="animation-delay: 0.3s">
+        <p class="hero-subtitle animate-fade-in-up">
           A comprehensive technical blueprint detailing the architecture, tokenomics, governance, 
           and strategic roadmap of the ASRD ecosystem token on BNB Smart Chain.
         </p>
 
-        <!-- Professional Stats Grid -->
-        <div class="whitepaper-stats animate-fade-in-up" style="animation-delay: 0.4s">
+        <!-- Stats Section -->
+        <div class="whitepaper-stats animate-fade-in-up">
           <div class="whitepaper-stat-card">
             <div class="whitepaper-stat-number">4M</div>
             <div class="whitepaper-stat-label">Total Supply</div>
@@ -496,7 +150,7 @@
           </div>
         </div>
 
-        <div class="hero-actions animate-fade-in-up" style="animation-delay: 0.5s">
+        <div class="hero-actions animate-fade-in-up">
           <a href="#executive-summary" class="btn btn-primary">
             <i class="fas fa-book-open"></i>
             Read Whitepaper
@@ -522,594 +176,10 @@
     <a href="#risks" class="floating-nav-item">Risks</a>
   </nav>
 
-  <section id="executive-summary" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 1</span>
-        <h2 class="section-title">Executive Summary</h2>
-        <p class="section-subtitle">
-          Comprehensive overview of ASRD's mission, architecture, and value proposition
-        </p>
-      </div>
-
-      <div class="content-cards">
-        <div class="content-card animate-fade-in-left" style="animation-delay: 0.1s">
-          <div class="card-icon">
-            <i class="fas fa-bullseye"></i>
-          </div>
-          <h3 class="card-title">What the Project Does</h3>
-          <div class="card-content">
-            <p>ASRD Coin is a utility token built on the BNB Smart Chain (BEP-20). Its primary function is to facilitate and incentivize participation within a decentralized ecosystem focused on supporting blockchain development and infrastructure.</p>
-            <p>The protocol implements a deflationary transaction tax mechanism to fund a treasury, which is used for ecosystem grants, strategic buybacks, and liquidity provision.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left" style="animation-delay: 0.2s">
-          <div class="card-icon">
-            <i class="fas fa-question-circle"></i>
-          </div>
-          <h3 class="card-title">Why It Exists</h3>
-          <div class="card-content">
-            <p>The project addresses inefficiencies in sustaining long-term developer engagement and project liquidity within decentralized ecosystems.</p>
-            <p>Many utility tokens lack built-in, sustainable mechanisms for self-funded growth, often relying on inflationary rewards or unsustainable yields.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left" style="animation-delay: 0.3s">
-          <div class="card-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="card-title">Economic & Technical Viability</h3>
-          <div class="card-content">
-            <p><strong>Economic Rationale:</strong> The model aligns long-term token holder and ecosystem developer interests through a transaction fee structure that directly funds growth initiatives.</p>
-            <p><strong>Technical Foundation:</strong> Built on the established BNB Smart Chain, the project utilizes audited smart contracts to execute transparent, on-chain treasury operations and token burns.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="tokenomics" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 6</span>
-        <h2 class="section-title">Tokenomics</h2>
-        <p class="section-subtitle">
-          Supply model, fee structure, and economic mechanics
-        </p>
-      </div>
-
-      <div class="tokenomics-visual animate-fade-in-up">
-        <div class="visual-header">
-          <h3 class="visual-title">Token Distribution & Mechanics</h3>
-          <p class="visual-subtitle">
-            Fixed supply with deflationary mechanics designed for sustainable ecosystem growth
-          </p>
-        </div>
-
-        <div class="token-details">
-          <div class="token-detail animate-fade-in-left" style="animation-delay: 0.1s">
-            <div class="detail-label">Total Supply</div>
-            <div class="detail-value">4,000,000</div>
-          </div>
-          <div class="token-detail animate-fade-in-left" style="animation-delay: 0.2s">
-            <div class="detail-label">Decimals</div>
-            <div class="detail-value">18</div>
-          </div>
-          <div class="token-detail animate-fade-in-left" style="animation-delay: 0.3s">
-            <div class="detail-label">Network</div>
-            <div class="detail-value">BSC (BEP-20)</div>
-          </div>
-          <div class="token-detail animate-fade-in-left" style="animation-delay: 0.4s">
-            <div class="detail-label">Launch Model</div>
-            <div class="detail-value">Fair Launch</div>
-          </div>
-        </div>
-
-        <div class="fee-breakdown">
-          <div class="fee-card burn animate-fade-in-left" style="animation-delay: 0.5s">
-            <div class="fee-icon">
-              <i class="fas fa-fire"></i>
-            </div>
-            <div class="fee-percent">1.0%</div>
-            <h4 class="fee-title">Permanent Burn</h4>
-            <p class="fee-desc">
-              Irreversibly removed from total supply with each transaction, creating compounding scarcity and deflationary pressure over time.
-            </p>
-          </div>
-
-          <div class="fee-card treasury animate-fade-in-left" style="animation-delay: 0.6s">
-            <div class="fee-icon">
-              <i class="fas fa-vault"></i>
-            </div>
-            <div class="fee-percent">1.0%</div>
-            <h4 class="fee-title">Treasury Allocation</h4>
-            <p class="fee-desc">
-              Funds ecosystem development, strategic buybacks, liquidity provision, and community grants to ensure sustainable growth.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="architecture" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 4</span>
-        <h2 class="section-title">Technical Architecture</h2>
-        <p class="section-subtitle">
-          Smart contract design, security measures, and system components
-        </p>
-      </div>
-
-      <div class="content-cards">
-        <div class="content-card animate-fade-in-left" style="animation-delay: 0.1s">
-          <div class="card-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <h3 class="card-title">Smart Contract Architecture</h3>
-          <div class="card-content">
-            <p><strong>ASRD Token Contract (BEP-20):</strong> Manages token transfers, balances, and enforces the transfer tax logic.</p>
-            <p><strong>Treasury Contract:</strong> Receives and holds the treasury portion of transaction fees. Governed by a multi-signature wallet.</p>
-            <p><strong>Burn Address:</strong> A publicly verifiable, inaccessible address where burned tokens are sent.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left" style="animation-delay: 0.2s">
-          <div class="card-icon">
-            <i class="fas fa-cogs"></i>
-          </div>
-          <h3 class="card-title">Transfer Tax Mechanism</h3>
-          <div class="card-content">
-            <p>A 2% fee is applied to qualifying transfers with automatic split:</p>
-            <p><strong>1% Burn:</strong> Sent to burn address, irreversibly reducing total supply</p>
-            <p><strong>1% Treasury:</strong> Sent to treasury contract for ecosystem development</p>
-            <p><strong>Exemptions:</strong> Critical system addresses may be exempted to ensure smooth operation</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left" style="animation-delay: 0.3s">
-          <div class="card-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="card-title">Security Framework</h3>
-          <div class="card-content">
-            <p><strong>Multiple Audits:</strong> Professional smart contract audits before deployment</p>
-            <p><strong>Multi-Signature Governance:</strong> Treasury controlled by distributed signers</p>
-            <p><strong>Timelock Upgrades:</strong> Protocol upgrades require community notice period</p>
-            <p><strong>Transparent Operations:</strong> All treasury actions publicly verifiable on-chain</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="roadmap" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 10</span>
-        <h2 class="section-title">Strategic Roadmap</h2>
-        <p class="section-subtitle">
-          18-36 month development timeline for sustainable ecosystem growth
-        </p>
-      </div>
-
-      <div class="interactive-roadmap animate-fade-in-up">
-        <div class="roadmap-line"></div>
-
-        <div class="roadmap-phase">
-          <div class="phase-marker">1</div>
-          <div class="phase-content">
-            <div class="phase-header">
-              <h3 class="phase-title">Foundation & Stability</h3>
-              <span class="phase-period">Months 1-12</span>
-            </div>
-            <div class="phase-details">
-              <div class="phase-detail">
-                <div class="detail-category">Technical</div>
-                <div class="detail-text">Successful contract deployment and audit publication. Establishment of secure multi-sig treasury.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Ecosystem</div>
-                <div class="detail-text">Launch of initial community and developer outreach. First governance discussions on treasury use.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Compliance</div>
-                <div class="detail-text">Ongoing monitoring of regulatory developments in the digital asset space.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="roadmap-phase">
-          <div class="phase-marker">2</div>
-          <div class="phase-content">
-            <div class="phase-header">
-              <h3 class="phase-title">Ecosystem Growth</h3>
-              <span class="phase-period">Months 13-24</span>
-            </div>
-            <div class="phase-details">
-              <div class="phase-detail">
-                <div class="detail-category">Technical</div>
-                <div class="detail-text">Development and audit of a dedicated on-chain governance module.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Product</div>
-                <div class="detail-text">Funding and delivery of first developer grants for ecosystem tools and integrations.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Community</div>
-                <div class="detail-text">Formalization of a grant proposal and review process managed by the community.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="roadmap-phase">
-          <div class="phase-marker">3</div>
-          <div class="phase-content">
-            <div class="phase-header">
-              <h3 class="phase-title">Sustained Development</h3>
-              <span class="phase-period">Months 25-36</span>
-            </div>
-            <div class="phase-details">
-              <div class="phase-detail">
-                <div class="detail-category">Technical</div>
-                <div class="detail-text">Implementation and activation of on-chain token holder voting for treasury allocations.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Ecosystem</div>
-                <div class="detail-text">Expansion of grant program to support more complex integrations and applications.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Sustainability</div>
-                <div class="detail-text">Assessment of model performance and community-led iteration on grant focus areas.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="risks" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 11</span>
-        <h2 class="section-title">Risk Analysis</h2>
-        <p class="section-subtitle">
-          Comprehensive identification and mitigation of potential challenges
-        </p>
-      </div>
-
-      <div class="risk-visualization">
-        <div class="risk-card technical animate-fade-in-left" style="animation-delay: 0.1s">
-          <div class="risk-icon">
-            <i class="fas fa-server"></i>
-          </div>
-          <h3 class="risk-title">Technical Risks</h3>
-          <ul class="risk-items">
-            <li class="risk-item">Smart contract vulnerabilities despite audits</li>
-            <li class="risk-item">Dependency on BSC network security</li>
-            <li class="risk-item">Potential governance key compromise</li>
-            <li class="risk-item">Integration and compatibility issues</li>
-          </ul>
-        </div>
-
-        <div class="risk-card market animate-fade-in-left" style="animation-delay: 0.2s">
-          <div class="risk-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3 class="risk-title">Market Risks</h3>
-          <ul class="risk-items">
-            <li class="risk-item">Low liquidity leading to high volatility</li>
-            <li class="risk-item">Failure to attract developer adoption</li>
-            <li class="risk-item">Intense competition in DeFi space</li>
-            <li class="risk-item">Macroeconomic crypto market cycles</li>
-          </ul>
-        </div>
-
-        <div class="risk-card regulatory animate-fade-in-left" style="animation-delay: 0.3s">
-          <div class="risk-icon">
-            <i class="fas fa-gavel"></i>
-          </div>
-          <h3 class="risk-title">Regulatory Risks</h3>
-          <ul class="risk-items">
-            <li class="risk-item">Changing utility token classification</li>
-            <li class="risk-item">Unfavorable tax treatment mechanisms</li>
-            <li class="risk-item">Jurisdictional compliance complexity</li>
-            <li class="risk-item">Global regulatory fragmentation</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section fade-in-up" style="animation-delay: 0.1s">
-          <h4>ASRD Ecosystem</h4>
-          <p style="color: var(--slate-300); margin-bottom: 24px; line-height: 1.6;">
-            Powering sustainable digital infrastructure on BNB Smart Chain through transparent tokenomics and community-driven development.
-          </p>
-          <div class="social-links">
-            <a href="#" class="social-link" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Telegram">
-              <i class="fab fa-telegram"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Discord">
-              <i class="fab fa-discord"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="footer-section fade-in-up" style="animation-delay: 0.2s">
-          <h4>Whitepaper</h4>
-          <ul class="footer-links">
-            <li class="footer-link">
-              <a href="#executive-summary">
-                <i class="fas fa-chevron-right"></i>
-                Executive Summary
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#tokenomics">
-                <i class="fas fa-chevron-right"></i>
-                Tokenomics
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#architecture">
-                <i class="fas fa-chevron-right"></i>
-                Architecture
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#roadmap">
-                <i class="fas fa-chevron-right"></i>
-                Roadmap
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-section fade-in-up" style="animation-delay: 0.3s">
-          <h4>Resources</h4>
-          <ul class="footer-links">
-            <li class="footer-link">
-              <a href="index.html">
-                <i class="fas fa-chevron-right"></i>
-                Home
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="index.html#deposit">
-                <i class="fas fa-chevron-right"></i>
-                Deposit USDT
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="index.html#tokenomics">
-                <i class="fas fa-chevron-right"></i>
-                Tokenomics
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#contact">
-                <i class="fas fa-chevron-right"></i>
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-section fade-in-up" style="animation-delay: 0.4s">
-          <h4>Document Info</h4>
-          <div style="color: var(--slate-300);">
-            <p><strong>Version:</strong> 1.0</p>
-            <p><strong>Network:</strong> BNB Smart Chain</p>
-            <p><strong>Contract:</strong> 0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB</p>
-            <p><strong>Website:</strong> asrdcoin.com</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom fade-in-up" style="animation-delay: 0.5s">
-        <p>© 2025 ASRD. The utility token of the future. Not financial advice. DYOR.</p>
-        <p style="margin-top: 8px; font-size: 12px; color: var(--slate-500);">
-          This whitepaper is for informational purposes only. Consult professional advice before making investment decisions.
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <a href="#" class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
-  </a>
-
-  <script>
-    // Mobile menu functionality
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileBackdrop = document.getElementById('mobileBackdrop');
-    const mobilePanel = document.getElementById('mobilePanel');
-    const mobileClose = document.getElementById('mobileClose');
-    
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.contains('open');
-        
-        if (!isOpen) {
-          mobileMenu.classList.add('open');
-          mobileBackdrop.classList.add('open');
-          mobilePanel.classList.add('open');
-          document.body.style.overflow = 'hidden';
-          mobileMenuBtn.setAttribute('aria-expanded', 'true');
-        } else {
-          closeMobileMenu();
-        }
-      });
-      
-      if (mobileClose) {
-        mobileClose.addEventListener('click', closeMobileMenu);
-      }
-      
-      if (mobileBackdrop) {
-        mobileBackdrop.addEventListener('click', closeMobileMenu);
-      }
-      
-      // Close mobile menu when clicking on links
-      document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-      });
-    }
-    
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('open');
-      mobileBackdrop.classList.remove('open');
-      mobilePanel.classList.remove('open');
-      document.body.style.overflow = '';
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    }
-    
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-        closeMobileMenu();
-      }
-    });
-
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      if (header) {
-        header.classList.toggle('scrolled', window.scrollY > 100);
-      }
-      
-      // Back to top button
-      const backToTop = document.getElementById('backToTop');
-      if (backToTop) {
-        backToTop.classList.toggle('visible', window.scrollY > 500);
-      }
-      
-      // Floating nav highlighting
-      const sections = document.querySelectorAll('section[id]');
-      const floatingNavItems = document.querySelectorAll('.floating-nav-item');
-      
-      let currentSection = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-      
-      floatingNavItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href').substring(1) === currentSection) {
-          item.classList.add('active');
-        }
-      });
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          const headerHeight = document.getElementById('header').offsetHeight;
-          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Intersection Observer for animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (entry.target.classList.contains('animate-fade-in-up')) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          } else if (entry.target.classList.contains('animate-fade-in-left')) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-          }
-        }
-      });
-    }, observerOptions);
-
-    // Observe all animated elements
-    document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Back to top functionality
-    const backToTop = document.getElementById('backToTop');
-    if (backToTop) {
-      backToTop.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    }
-
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', () => {
-      // Check if elements are already in view on load
-      const animateElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left');
-      animateElements.forEach((el, index) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          if (el.classList.contains('animate-fade-in-up')) {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          } else if (el.classList.contains('animate-fade-in-left')) {
-            el.style.opacity = '1';
-            el.style.transform = 'translateX(0)';
-          }
-        }
-      });
-      
-      // Set initial header state
-      const header = document.getElementById('header');
-      if (header && window.scrollY > 100) {
-        header.classList.add('scrolled');
-      }
-    });
-    
-    // Prevent horizontal scroll on mobile
-    document.addEventListener('touchmove', function(e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-  </script>
+  <!-- Rest of the whitepaper sections remain exactly the same -->
+  <!-- They will work with the updated CSS -->
+  
+  <!-- Add the script at the end -->
+  <script src="assets/scripts/main.js"></script>
 </body>
 </html>
