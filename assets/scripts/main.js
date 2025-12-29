@@ -16,6 +16,83 @@ function debounce(func, wait) {
   };
 }
 
+// ========== VIDEO CONTROLS ==========
+
+function initVideoControls() {
+  const video = document.querySelector('.hero-video');
+  const videoControlBtn = document.getElementById('videoControl');
+  
+  if (!video || !videoControlBtn) return;
+  
+  // Check if video can autoplay
+  const canAutoplay = video.autoplay && video.muted;
+  
+  // Update button based on initial state
+  updateVideoControlButton(video.paused);
+  
+  // Toggle play/pause on button click
+  videoControlBtn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play().catch(e => {
+        console.log('Video play failed:', e);
+        // Fallback: show play button
+        videoControlBtn.innerHTML = '<i class="fas fa-play"></i>';
+      });
+    } else {
+      video.pause();
+    }
+    updateVideoControlButton(video.paused);
+  });
+  
+  // Update button when video state changes
+  video.addEventListener('play', () => updateVideoControlButton(false));
+  video.addEventListener('pause', () => updateVideoControlButton(true));
+  
+  // Handle video loading errors
+  video.addEventListener('error', (e) => {
+    console.error('Video error:', e);
+    videoControlBtn.style.display = 'none';
+    
+    // Fallback to static background
+    document.querySelector('.hero-video-section').style.background = 
+      'linear-gradient(135deg, var(--slate-900) 0%, var(--slate-800) 100%)';
+  });
+  
+  // Optimize for mobile data saving
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  if (isMobile && video) {
+    // Set video to lower quality on mobile to save data
+    video.preload = 'metadata';
+  }
+  
+  // Pause video when not in viewport for performance
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && !video.paused) {
+        video.pause();
+        updateVideoControlButton(true);
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  observer.observe(video);
+}
+
+function updateVideoControlButton(isPaused) {
+  const videoControlBtn = document.getElementById('videoControl');
+  if (!videoControlBtn) return;
+  
+  if (isPaused) {
+    videoControlBtn.innerHTML = '<i class="fas fa-play"></i>';
+    videoControlBtn.setAttribute('aria-label', 'Play video');
+    videoControlBtn.setAttribute('title', 'Play video');
+  } else {
+    videoControlBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    videoControlBtn.setAttribute('aria-label', 'Pause video');
+    videoControlBtn.setAttribute('title', 'Pause video');
+  }
+}
+
 // ========== CORE FUNCTIONS ==========
 
 // Initialize mobile menu based on current page structure
@@ -395,6 +472,7 @@ function initializePage() {
   // Page-specific functions
   if (isIndexPage) {
     console.log('Detected index.html - initializing index-specific features');
+    initVideoControls();
     initCopyToClipboard();
     initFloatingDeposit();
     initParticles();
@@ -455,6 +533,20 @@ window.addEventListener('load', () => {
   // Re-initialize particles on load (for index.html)
   if (document.getElementById('particles')) {
     setTimeout(initParticles, 500);
+  }
+  
+  // Try to play video if it didn't autoplay
+  const video = document.querySelector('.hero-video');
+  if (video && video.paused) {
+    video.play().catch(e => {
+      console.log('Auto-play prevented:', e);
+      // Show play button more prominently
+      const videoControlBtn = document.getElementById('videoControl');
+      if (videoControlBtn) {
+        videoControlBtn.style.opacity = '1';
+        videoControlBtn.style.transform = 'scale(1.2)';
+      }
+    });
   }
 });
 
