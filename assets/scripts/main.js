@@ -19,79 +19,87 @@ function debounce(func, wait) {
 // ========== CORE FUNCTIONS ==========
 
 // Initialize mobile menu based on current page structure
+// ========== SAFE MOBILE MENU FIX ==========
+// Replace the existing initMobileMenu() function with this:
+
 function initMobileMenu() {
-  // Check which page we're on by looking for specific elements
-  const isIndexPage = document.getElementById('menuToggle') !== null;
-  const isWhitepaperPage = document.getElementById('mobileMenuBtn') !== null;
+  console.log('Initializing mobile menu...');
   
-  let menuBtn, mobileMenu, mobileBackdrop, mobilePanel, mobileClose;
+  // Find menu elements for both pages
+  const menuBtn = document.getElementById('menuToggle') || document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
   
-  if (isIndexPage) {
-    // Index.html mobile menu structure
-    menuBtn = document.getElementById('menuToggle');
-    mobileMenu = document.getElementById('mobileMenu');
-    mobileBackdrop = document.getElementById('mobileBackdrop');
-    mobilePanel = document.getElementById('mobilePanel');
-    mobileClose = document.getElementById('mobileClose');
-  } else if (isWhitepaperPage) {
-    // Whitepaper.html mobile menu structure
-    menuBtn = document.getElementById('mobileMenuBtn');
-    mobileMenu = document.getElementById('mobileMenu');
-    mobileBackdrop = document.getElementById('mobileBackdrop');
-    mobilePanel = document.getElementById('mobilePanel');
-    mobileClose = document.getElementById('mobileClose');
-  } else {
-    return; // No mobile menu on this page
+  if (!menuBtn || !mobileMenu) {
+    console.warn('Mobile menu elements not found');
+    return;
   }
   
-  if (!menuBtn || !mobileMenu) return;
+  console.log('Found mobile menu elements');
   
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    mobileBackdrop?.classList.add('open');
-    mobilePanel?.classList.add('open');
+  // Set initial ARIA state
+  menuBtn.setAttribute('aria-expanded', 'false');
+  
+  // Open menu function
+  const openMenu = () => {
+    console.log('Opening menu');
+    mobileMenu.classList.add('active');
     menuBtn.classList.add('active');
     menuBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-  }
+    document.documentElement.style.overflow = 'hidden';
+  };
   
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    mobileBackdrop?.classList.remove('open');
-    mobilePanel?.classList.remove('open');
+  // Close menu function
+  const closeMenu = () => {
+    console.log('Closing menu');
+    mobileMenu.classList.remove('active');
     menuBtn.classList.remove('active');
     menuBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
-  }
+    document.documentElement.style.overflow = '';
+  };
   
-  // Open/close menu on button click
-  menuBtn.addEventListener('click', () => {
-    if (mobileMenu.classList.contains('open')) {
+  // Toggle menu on button click
+  menuBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (mobileMenu.classList.contains('active')) {
       closeMenu();
     } else {
       openMenu();
     }
   });
   
-  // Close menu on close button click
-  if (mobileClose) {
-    mobileClose.addEventListener('click', closeMenu);
+  // Close on close button
+  const closeBtn = document.getElementById('mobileClose');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMenu();
+    });
   }
   
-  // Close menu on backdrop click
-  if (mobileBackdrop) {
-    mobileBackdrop.addEventListener('click', closeMenu);
+  // Close on backdrop click
+  const backdrop = document.getElementById('mobileBackdrop');
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        closeMenu();
+      }
+    });
   }
   
-  // Close menu on Escape key
+  // Close on Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
       closeMenu();
     }
   });
   
-  // Close menu when clicking on mobile links (index.html specific)
-  if (isIndexPage) {
+  // Close menu when clicking on links (for index.html)
+  if (document.querySelector('[data-close]')) {
     document.querySelectorAll('[data-close]').forEach(link => {
       link.addEventListener('click', () => {
         setTimeout(closeMenu, 100);
@@ -99,14 +107,114 @@ function initMobileMenu() {
     });
   }
   
-  // Close menu when clicking on mobile links (whitepaper.html specific)
-  if (isWhitepaperPage) {
+  // Close menu when clicking on links (for whitepaper.html)
+  if (document.querySelector('.mobile-nav-link')) {
     document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(link => {
       link.addEventListener('click', () => {
         setTimeout(closeMenu, 100);
       });
     });
   }
+  
+  // Prevent clicks inside panel from closing
+  const panel = document.getElementById('mobilePanel');
+  if (panel) {
+    panel.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+  
+  console.log('Mobile menu initialized successfully');
+}
+
+// ========== VIDEO FIX FOR MOBILE ==========
+function fixVideoForMobile() {
+  const video = document.getElementById('asrdVideo');
+  if (!video) return;
+  
+  // Ensure mobile compatibility
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+  
+  // Try to play with muted audio (required for mobile autoplay)
+  const playVideo = () => {
+    video.muted = true;
+    video.play().catch(err => {
+      console.log('Video autoplay prevented:', err.name);
+      // Show a play button if needed
+      showVideoPlayButton();
+    });
+  };
+  
+  // Show play button overlay if autoplay fails
+  function showVideoPlayButton() {
+    const container = video.parentElement;
+    if (!container) return;
+    
+    // Remove existing overlay if any
+    const existing = container.querySelector('.video-play-overlay');
+    if (existing) existing.remove();
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'video-play-overlay';
+    overlay.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: inherit;
+    `;
+    
+    const playBtn = document.createElement('div');
+    playBtn.style.cssText = `
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #0A0A0A;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    `;
+    playBtn.innerHTML = '▶';
+    
+    overlay.appendChild(playBtn);
+    container.style.position = 'relative';
+    container.appendChild(overlay);
+    
+    overlay.addEventListener('click', () => {
+      video.muted = false;
+      video.play().then(() => {
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 300);
+      });
+    });
+  }
+  
+  // Initialize video
+  if (video.readyState >= 3) {
+    setTimeout(playVideo, 1000);
+  } else {
+    video.addEventListener('loadeddata', playVideo);
+  }
+  
+  // Auto-unmute on user interaction
+  document.addEventListener('click', function unmuteHandler() {
+    if (video.muted) {
+      video.muted = false;
+    }
+    // Remove listener after first interaction
+    document.removeEventListener('click', unmuteHandler);
+  }, { once: true });
 }
 
 // Header scroll effect
@@ -427,7 +535,7 @@ function initializePage() {
   console.log('Initializing ASRD website...');
   
   // Core functions (run on all pages)
-  initMobileMenu();
+  initMobileMenu();  // This is the fixed version
   initHeaderScroll();
   initSmoothScroll();
   initBackToTop();
@@ -440,7 +548,7 @@ function initializePage() {
   // Page-specific functions
   if (isIndexPage) {
     console.log('Detected index.html - initializing index-specific features');
-    initSimpleVideo(); // Simple video setup
+    fixVideoForMobile();  // ADD THIS LINE
     initCopyToClipboard();
     initFloatingDeposit();
     initParticles();
