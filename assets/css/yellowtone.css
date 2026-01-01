@@ -2685,3 +2685,55 @@ strong {
     padding-right: env(safe-area-inset-right);
   }
 }
+/* ==========================================================================
+   Mobile Background Fix
+   ========================================================================== */
+
+/* Fix for mobile background not showing */
+@media (max-width: 767px) {
+  body {
+    background: var(--gradient-bg) !important;
+    background-attachment: fixed !important;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--gradient-bg-alt);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 1 !important;
+  }
+  
+  /* Ensure mobile menu backdrop doesn't interfere with background */
+  .mobile-backdrop {
+    background: rgba(10, 10, 10, 0.98) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+  
+  /* Make sure body background is always visible */
+  body,
+  html {
+    background-color: #0A0A0A !important;
+  }
+  
+  /* Force the gradient background to show through */
+  .animated-bg {
+    z-index: calc(var(--z-background) - 1) !important;
+  }
+}
+
+/* Extra fix for very small screens */
+@media (max-width: 480px) {
+  body {
+    background: 
+      radial-gradient(circle at top right, var(--charcoal-dark) 0%, var(--deep-charcoal) 70%, #000000 100%),
+      linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%) !important;
+  }
+  
+  body::before {
+    background: var(--gradient-bg-alt) !important;
+    opacity: 1 !important;
+  }
+}
