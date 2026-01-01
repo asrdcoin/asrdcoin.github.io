@@ -530,12 +530,12 @@ function initSimpleVideo() {
 
 // ========== PAGE INITIALIZATION ==========
 
-// Initialize all functions for current page
+/// Initialize all functions for current page
 function initializePage() {
   console.log('Initializing ASRD website...');
   
   // Core functions (run on all pages)
-  initMobileMenu();  // This is the fixed version
+  initMobileMenu();
   initHeaderScroll();
   initSmoothScroll();
   initBackToTop();
@@ -548,48 +548,21 @@ function initializePage() {
   // Page-specific functions
   if (isIndexPage) {
     console.log('Detected index.html - initializing index-specific features');
-    fixVideoForMobile();  // ADD THIS LINE
+    fixVideoForMobile();
     initCopyToClipboard();
     initFloatingDeposit();
     initParticles();
     initViewOnExplorer();
+    initSimpleVideo(); // Add this if not already there
   }
   
   if (isWhitepaperPage) {
     console.log('Detected whitepaper.html - initializing whitepaper-specific features');
     initFloatingNav();
+    initContractCopy(); // Add this line
   }
   
-  // Initialize elements already in view
-  const animateElements = document.querySelectorAll('.fade-in-up, .animate-fade-in-up, .animate-fade-in-left');
-  animateElements.forEach((el) => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      if (el.classList.contains('animate-fade-in-up')) {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      } else if (el.classList.contains('animate-fade-in-left')) {
-        el.style.opacity = '1';
-        el.style.transform = 'translateX(0)';
-      }
-    }
-  });
-  
-  // Prevent horizontal scroll on mobile
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-      document.body.style.overflowX = 'hidden';
-    } else {
-      document.body.style.overflowX = '';
-    }
-  });
-  
-  // Initial check for mobile overflow
-  if (window.innerWidth <= 768) {
-    document.body.style.overflowX = 'hidden';
-  }
-  
-  console.log('ASRD website initialization complete');
+  // ... rest of the function
 }
 
 // ========== EVENT LISTENERS ==========
@@ -681,3 +654,71 @@ document.addEventListener('DOMContentLoaded', function() {
     
     observer.observe(video);
 });
+// Contract address copy functionality for whitepaper
+function initContractCopy() {
+  const contractCopyBtn = document.getElementById('contractCopyBtn');
+  const contractText = document.getElementById('contractAddress');
+  const copyToast = document.getElementById('copyToast');
+  
+  if (!contractCopyBtn || !contractText) return;
+  
+  const fullAddress = contractCopyBtn.getAttribute('data-full-address');
+  
+  // Format to first 6 chars and last 4 chars (including 0x)
+  const formatAddress = (address) => {
+    if (address.length <= 14) return address; // Already short
+    return address.substring(0, 6) + '...' + address.substring(address.length - 4);
+  };
+  
+  // Update displayed text
+  contractText.textContent = formatAddress(fullAddress);
+  
+  async function copyContractAddress() {
+    const originalHTML = contractCopyBtn.innerHTML;
+    
+    try {
+      await navigator.clipboard.writeText(fullAddress);
+      
+      // Visual feedback
+      contractCopyBtn.innerHTML = '✓';
+      contractCopyBtn.classList.add('contract-copied');
+      
+      // Show toast if exists
+      if (copyToast) {
+        copyToast.textContent = 'Contract address copied!';
+        copyToast.classList.add('show');
+        setTimeout(() => copyToast.classList.remove('show'), 1600);
+      }
+      
+      // Revert after 2 seconds
+      setTimeout(() => {
+        contractCopyBtn.innerHTML = originalHTML;
+        contractCopyBtn.classList.remove('contract-copied');
+      }, 2000);
+      
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = fullAddress;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      
+      contractCopyBtn.innerHTML = '✓';
+      contractCopyBtn.classList.add('contract-copied');
+      
+      setTimeout(() => {
+        contractCopyBtn.innerHTML = originalHTML;
+        contractCopyBtn.classList.remove('contract-copied');
+      }, 2000);
+    }
+  }
+  
+  contractCopyBtn.addEventListener('click', copyContractAddress);
+  
+  // Also copy on clicking the address text
+  contractText.addEventListener('click', copyContractAddress);
+}

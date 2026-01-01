@@ -668,13 +668,30 @@
           </ul>
         </div>
 
-        <div class="footer-section fade-in-up">
+                <div class="footer-section fade-in-up">
           <h4>Document Info</h4>
-          <div style="color: var(--slate-300);">
+          <div style="color: var(--light-text); width: 100%;">
             <p><strong>Version:</strong> 1.0</p>
             <p><strong>Network:</strong> BNB Smart Chain</p>
-            <p><strong>Contract:</strong> 0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB</p>
-            <p><strong>Website:</strong> asrdcoin.com</p>
+            
+            <!-- Contract Address with Copy Button -->
+            <div class="contract-address-container">
+              <p style="margin-bottom: 8px;"><strong>Contract:</strong></p>
+              <div class="contract-address-wrapper">
+                <span class="contract-text" id="contractAddress">
+                  0x32BC...F74DB
+                </span>
+                <button class="contract-copy-btn" id="contractCopyBtn" 
+                        data-full-address="0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB">
+                  📋
+                </button>
+              </div>
+              <small style="color: var(--medium-gray); font-size: 11px;">
+                First 5 and last 5 characters shown
+              </small>
+            </div>
+            
+            <p style="margin-top: 16px;"><strong>Website:</strong> asrdcoin.com</p>
             <p><strong>Last Updated:</strong> January 2025</p>
           </div>
         </div>
