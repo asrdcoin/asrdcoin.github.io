@@ -33,7 +33,7 @@
           <a href="#deposit" class="nav-cta" aria-label="Deposit USDT">Deposit USDT</a>
         </nav>
 
-        <button id="menuToggle" class="mobile-toggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+        <button id="mobileMenuBtn" class="mobile-toggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -42,32 +42,54 @@
     </div>
   </header>
 
+    <!-- Mobile Menu - Updated for yellowtone theme -->
   <div id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
-    <aside class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
+    <div class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
       <div class="panel-inner">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
-          <div style="display:flex; align-items:center; gap:10px">
+        <div class="mobile-menu-header">
+          <div class="mobile-logo">
             <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
-                 alt="ASRD"
+                 alt="ASRD logo"
                  class="logo-img logo-sm">
-            <div style="font-weight:900;font-size:18px">ASRD</div>
+            <span>ASRD</span>
           </div>
-          <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:0;color:var(--slate-200);font-weight:800;font-size:18px;padding:8px;border-radius:10px;cursor:pointer">✕</button>
+          <button id="mobileClose" class="mobile-close" aria-label="Close menu">×</button>
         </div>
 
         <nav class="mobile-links" aria-label="Mobile navigation">
-          <a href="#features" data-close>Features</a>
-          <a href="#tokenomics" data-close>Tokenomics</a>
-          <a href="#about" data-close>About</a>
-          <a href="#contact" data-close>Contact</a>
-          <a href="whitepaper.html" rel="noopener noreferrer" class="mobile-cta" data-close>📄 Read Whitepaper</a>
-          <a href="#deposit" class="mobile-cta" data-close>🚀 Deposit USDT</a>
+          <a href="#features" class="mobile-nav-link" data-close>
+            <i class="fas fa-star"></i>
+            Features
+          </a>
+          <a href="#tokenomics" class="mobile-nav-link" data-close>
+            <i class="fas fa-chart-pie"></i>
+            Tokenomics
+          </a>
+          <a href="#about" class="mobile-nav-link" data-close>
+            <i class="fas fa-info-circle"></i>
+            About
+          </a>
+          <a href="#contact" class="mobile-nav-link" data-close>
+            <i class="fas fa-envelope"></i>
+            Contact
+          </a>
+          <a href="whitepaper.html" class="mobile-nav-link" rel="noopener noreferrer" data-close>
+            <i class="fas fa-file-alt"></i>
+            Whitepaper
+          </a>
+          <a href="#deposit" class="mobile-cta" data-close>
+            <i class="fas fa-wallet"></i>
+            Deposit USDT
+          </a>
         </nav>
 
-        <div class="mobile-disclaimer">Informational only. Read the whitepaper for technical & legal details.</div>
+        <div class="mobile-disclaimer">
+          <strong>Informational Only</strong><br>
+          Read the whitepaper for technical & legal details.
+        </div>
       </div>
-    </aside>
+    </div>
   </div>
 
   <!-- Hero Content Section -->
