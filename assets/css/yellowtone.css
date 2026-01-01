@@ -2718,22 +2718,138 @@ strong {
     background-color: #0A0A0A !important;
   }
   
-  /* Force the gradient background to show through */
-  .animated-bg {
-    z-index: calc(var(--z-background) - 1) !important;
+  /* Make sure hero sections have proper background */
+  .hero, .whitepaper-hero {
+    background: transparent !important;
+  }
+}
+/* ==========================================================================
+   Video Player Styles for Yellowtone Theme
+   ========================================================================== */
+
+.simple-video-section {
+  padding: 30px 0;
+  background: transparent !important;
+  position: relative;
+  z-index: var(--z-base);
+  margin: 40px 0;
+}
+
+.simple-video-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(10, 10, 10, 0.7) !important;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(232, 185, 49, 0.2) !important;
+  width: calc(100% - 20px);
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
+}
+
+.simple-video-wrapper {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.simple-video-element {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+  border-radius: 8px;
+}
+
+/* Fix for older browsers that don't support aspect-ratio */
+@supports not (aspect-ratio: 16 / 9) {
+  .simple-video-wrapper::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
+  }
+  
+  .simple-video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 
-/* Extra fix for very small screens */
-@media (max-width: 480px) {
-  body {
-    background: 
-      radial-gradient(circle at top right, var(--charcoal-dark) 0%, var(--deep-charcoal) 70%, #000000 100%),
-      linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%) !important;
+/* Mobile-specific fixes for video player */
+@media (max-width: 767px) {
+  .simple-video-section {
+    padding: 20px 0;
+    margin: 20px 0;
   }
   
-  body::before {
-    background: var(--gradient-bg-alt) !important;
-    opacity: 1 !important;
+  .simple-video-container {
+    padding: 12px;
+    border-radius: 12px;
+    width: calc(100% - 16px);
+    margin: 0 auto;
+  }
+  
+  .simple-video-wrapper {
+    border-radius: 8px;
+  }
+  
+  /* Fix for Safari on iOS */
+  @supports (-webkit-touch-callout: none) {
+    .simple-video-wrapper {
+      max-height: 60vh; /* Limit height on iOS */
+    }
+  }
+}
+
+/* For very small mobile screens (portrait) */
+@media (max-width: 480px) and (orientation: portrait) {
+  .simple-video-wrapper {
+    aspect-ratio: 4 / 3; /* Better ratio for portrait mobile */
+    max-height: 50vh; /* Further limit height */
+  }
+}
+
+/* For mobile landscape */
+@media (max-width: 900px) and (orientation: landscape) {
+  .simple-video-wrapper {
+    aspect-ratio: 21 / 9; /* Ultra-wide for landscape */
+    max-height: 70vh;
+  }
+}
+
+/* For tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .simple-video-wrapper {
+    aspect-ratio: 16 / 10; /* Slightly taller for tablets */
+  }
+}
+
+/* Desktop specific fixes */
+@media (min-width: 1024px) {
+  .simple-video-container {
+    max-width: 800px;
+  }
+  
+  .simple-video-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Hero section adjustment to account for video */
+.hero {
+  padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 40px;
   }
 }
