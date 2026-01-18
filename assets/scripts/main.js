@@ -20,25 +20,24 @@ function debounce(func, wait) {
 
 // Initialize mobile menu based on current page structure
 // ========== SAFE MOBILE MENU FIX ==========
-// Replace the existing initMobileMenu() function with this:
 
 function initMobileMenu() {
   console.log('Initializing mobile menu...');
-  
+
   // Find menu elements for both pages
   const menuBtn = document.getElementById('menuToggle') || document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  
+
   if (!menuBtn || !mobileMenu) {
     console.warn('Mobile menu elements not found');
     return;
   }
-  
+
   console.log('Found mobile menu elements');
-  
+
   // Set initial ARIA state
   menuBtn.setAttribute('aria-expanded', 'false');
-  
+
   // Open menu function
   const openMenu = () => {
     console.log('Opening menu');
@@ -48,7 +47,7 @@ function initMobileMenu() {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
   };
-  
+
   // Close menu function
   const closeMenu = () => {
     console.log('Closing menu');
@@ -58,19 +57,19 @@ function initMobileMenu() {
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
   };
-  
+
   // Toggle menu on button click
   menuBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (mobileMenu.classList.contains('active')) {
       closeMenu();
     } else {
       openMenu();
     }
   });
-  
+
   // Close on close button
   const closeBtn = document.getElementById('mobileClose');
   if (closeBtn) {
@@ -80,7 +79,7 @@ function initMobileMenu() {
       closeMenu();
     });
   }
-  
+
   // Close on backdrop click
   const backdrop = document.getElementById('mobileBackdrop');
   if (backdrop) {
@@ -90,14 +89,14 @@ function initMobileMenu() {
       }
     });
   }
-  
+
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
       closeMenu();
     }
   });
-  
+
   // Close menu when clicking on links (for index.html)
   if (document.querySelector('[data-close]')) {
     document.querySelectorAll('[data-close]').forEach(link => {
@@ -106,7 +105,7 @@ function initMobileMenu() {
       });
     });
   }
-  
+
   // Close menu when clicking on links (for whitepaper.html)
   if (document.querySelector('.mobile-nav-link')) {
     document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(link => {
@@ -115,7 +114,7 @@ function initMobileMenu() {
       });
     });
   }
-  
+
   // Prevent clicks inside panel from closing
   const panel = document.getElementById('mobilePanel');
   if (panel) {
@@ -123,7 +122,7 @@ function initMobileMenu() {
       e.stopPropagation();
     });
   }
-  
+
   console.log('Mobile menu initialized successfully');
 }
 
@@ -131,11 +130,11 @@ function initMobileMenu() {
 function fixVideoForMobile() {
   const video = document.getElementById('asrdVideo');
   if (!video) return;
-  
+
   // Ensure mobile compatibility
   video.setAttribute('playsinline', '');
   video.setAttribute('webkit-playsinline', '');
-  
+
   // Try to play with muted audio (required for mobile autoplay)
   const playVideo = () => {
     video.muted = true;
@@ -145,16 +144,16 @@ function fixVideoForMobile() {
       showVideoPlayButton();
     });
   };
-  
+
   // Show play button overlay if autoplay fails
   function showVideoPlayButton() {
     const container = video.parentElement;
     if (!container) return;
-    
+
     // Remove existing overlay if any
     const existing = container.querySelector('.video-play-overlay');
     if (existing) existing.remove();
-    
+
     const overlay = document.createElement('div');
     overlay.className = 'video-play-overlay';
     overlay.style.cssText = `
@@ -171,7 +170,7 @@ function fixVideoForMobile() {
       z-index: 10;
       border-radius: inherit;
     `;
-    
+
     const playBtn = document.createElement('div');
     playBtn.style.cssText = `
       width: 60px;
@@ -186,11 +185,11 @@ function fixVideoForMobile() {
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     `;
     playBtn.innerHTML = '▶';
-    
+
     overlay.appendChild(playBtn);
     container.style.position = 'relative';
     container.appendChild(overlay);
-    
+
     overlay.addEventListener('click', () => {
       video.muted = false;
       video.play().then(() => {
@@ -199,14 +198,14 @@ function fixVideoForMobile() {
       });
     });
   }
-  
+
   // Initialize video
   if (video.readyState >= 3) {
     setTimeout(playVideo, 1000);
   } else {
     video.addEventListener('loadeddata', playVideo);
   }
-  
+
   // Auto-unmute on user interaction
   document.addEventListener('click', function unmuteHandler() {
     if (video.muted) {
@@ -221,11 +220,11 @@ function fixVideoForMobile() {
 function initHeaderScroll() {
   const header = document.getElementById('header');
   if (!header) return;
-  
+
   const handleScroll = () => {
     header.classList.toggle('scrolled', window.scrollY > 100);
   };
-  
+
   window.addEventListener('scroll', debounce(handleScroll, 10));
   handleScroll(); // Initial check
 }
@@ -236,16 +235,16 @@ function initSmoothScroll() {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (!href || href === '#' || href === '#!') return;
-      
+
       e.preventDefault();
-      
+
       const targetElement = document.querySelector(href);
       if (!targetElement) return;
-      
+
       const header = document.getElementById('header');
       const headerHeight = header ? header.offsetHeight : 80;
       const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-      
+
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
@@ -258,14 +257,14 @@ function initSmoothScroll() {
 function initBackToTop() {
   const backToTop = document.getElementById('backToTop');
   if (!backToTop) return;
-  
+
   const toggleButton = () => {
     backToTop.classList.toggle('visible', window.scrollY > 500);
   };
-  
+
   window.addEventListener('scroll', debounce(toggleButton, 10));
   toggleButton(); // Initial check
-  
+
   backToTop.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({
@@ -279,20 +278,20 @@ function initBackToTop() {
 function initFloatingNav() {
   const floatingNavItems = document.querySelectorAll('.floating-nav-item');
   if (floatingNavItems.length === 0) return;
-  
+
   const updateActiveNav = () => {
     const sections = document.querySelectorAll('section[id]');
     let currentSection = '';
-    
+
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 100;
       const sectionHeight = section.clientHeight;
-      
+
       if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
         currentSection = section.getAttribute('id');
       }
     });
-    
+
     floatingNavItems.forEach(item => {
       item.classList.remove('active');
       if (item.getAttribute('href').substring(1) === currentSection) {
@@ -300,7 +299,7 @@ function initFloatingNav() {
       }
     });
   };
-  
+
   window.addEventListener('scroll', debounce(updateActiveNav, 50));
   updateActiveNav(); // Initial check
 }
@@ -309,17 +308,17 @@ function initFloatingNav() {
 function initAnimations() {
   const animateElements = document.querySelectorAll('.fade-in-up, .animate-fade-in-up, .animate-fade-in-left, .feature-card, .tokenomics-main');
   if (animateElements.length === 0) return;
-  
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
   };
-  
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('inview');
-        
+
         // Special handling for pie chart animations
         if (entry.target.querySelector('.pie-chart-svg')) {
           const circles = entry.target.querySelectorAll('circle[stroke-dasharray]');
@@ -329,7 +328,7 @@ function initAnimations() {
             }, index * 160);
           });
         }
-        
+
         // For fade-in animations
         if (entry.target.classList.contains('animate-fade-in-up')) {
           entry.target.style.opacity = '1';
@@ -341,7 +340,7 @@ function initAnimations() {
       }
     });
   }, observerOptions);
-  
+
   animateElements.forEach(el => observer.observe(el));
 }
 
@@ -352,18 +351,142 @@ function initCopyToClipboard() {
   const copyBtn = document.getElementById('copyBtn');
   const depositAddressEl = document.getElementById('depositAddress');
   const copyToast = document.getElementById('copyToast');
-  
+
   if (!copyBtn || !depositAddressEl) return;
-  
+
   const address = depositAddressEl.textContent.trim();
-  
+
   function showToast(message = 'Copied') {
     if (!copyToast) return;
     copyToast.textContent = message;
     copyToast.classList.add('show');
     setTimeout(() => copyToast.classList.remove('show'), 1600);
   }
-  
+
+  // Add after the initCopyToClipboard function (around line 220)
+  function initStakeCopyToClipboard() {
+    const copyBtn = document.getElementById('copyStakeBtn');
+    const stakeAddressEl = document.getElementById('stakeAddress');
+    const copyToast = document.getElementById('copyToast');
+
+    if (!copyBtn || !stakeAddressEl) return;
+
+    const address = stakeAddressEl.textContent.trim();
+
+    function showToast(message = 'Copied') {
+      if (!copyToast) return;
+      copyToast.textContent = message;
+      copyToast.classList.add('show');
+      setTimeout(() => copyToast.classList.remove('show'), 1600);
+    }
+
+    async function copyToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      }
+
+      // Fallback for older browsers
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        return successful;
+      } catch (e) {
+        console.error('Fallback copy failed:', e);
+        return false;
+      }
+    }
+
+    copyBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const originalHTML = copyBtn.innerHTML;
+
+      copyBtn.disabled = true;
+      copyBtn.classList.add('copied');
+      copyBtn.innerHTML = 'Copied!';
+
+      const ok = await copyToClipboard(address);
+      if (ok) {
+        showToast('Copied');
+      } else {
+        showToast('Copy failed — select & copy');
+        try {
+          const range = document.createRange();
+          range.selectNodeContents(stakeAddressEl);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        } catch (err) {}
+      }
+
+      setTimeout(() => {
+        copyBtn.disabled = false;
+        copyBtn.classList.remove('copied');
+        copyBtn.innerHTML = originalHTML;
+      }, 1500);
+    });
+  }
+
+// Add after the initFloatingDeposit function (around line 260)
+  function initFloatingStake() {
+    const floatingStake = document.getElementById('floatingStake');
+    if (!floatingStake) return;
+
+    floatingStake.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector('#stake');
+      if (!target) return;
+
+      const header = document.getElementById('header');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+// Add after the initViewOnExplorer function (around line 290)
+  function initStakeViewOnExplorer() {
+    const viewExplorer = document.getElementById('viewOnExplorerStake');
+    const stakeAddressEl = document.getElementById('stakeAddress');
+
+    if (!viewExplorer || !stakeAddressEl) {
+      console.log('Stake view explorer elements not found:', {
+        viewExplorer: !!viewExplorer,
+        stakeAddressEl: !!stakeAddressEl
+      });
+      return;
+    }
+
+    const address = stakeAddressEl.textContent.trim();
+    console.log('Stake view explorer address:', address);
+
+    viewExplorer.addEventListener('click', (e) => {
+      e.preventDefault();
+      const explorerUrl = 'https://bscscan.com/address/0x05a39Eb458f28e7A0d4FDDBD7df5021601754424#tokentxns';
+      console.log('Opening staking explorer URL:', explorerUrl);
+      window.open(explorerUrl, '_blank', 'noopener,noreferrer');
+    });
+
+    // Also make sure the link is properly set
+    viewExplorer.href = '#';
+    viewExplorer.setAttribute('data-address', address);
+  }
+
   async function copyToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       try {
@@ -373,7 +496,7 @@ function initCopyToClipboard() {
         console.error('Failed to copy:', err);
       }
     }
-    
+
     // Fallback for older browsers
     try {
       const textArea = document.createElement('textarea');
@@ -391,15 +514,15 @@ function initCopyToClipboard() {
       return false;
     }
   }
-  
+
   copyBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     const originalHTML = copyBtn.innerHTML;
-    
+
     copyBtn.disabled = true;
     copyBtn.classList.add('copied');
     copyBtn.innerHTML = 'Copied!';
-    
+
     const ok = await copyToClipboard(address);
     if (ok) {
       showToast('Copied');
@@ -413,7 +536,7 @@ function initCopyToClipboard() {
         sel.addRange(range);
       } catch (err) {}
     }
-    
+
     setTimeout(() => {
       copyBtn.disabled = false;
       copyBtn.classList.remove('copied');
@@ -426,16 +549,16 @@ function initCopyToClipboard() {
 function initFloatingDeposit() {
   const floatingDeposit = document.getElementById('floatingDeposit');
   if (!floatingDeposit) return;
-  
+
   floatingDeposit.addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.querySelector('#deposit');
     if (!target) return;
-    
+
     const header = document.getElementById('header');
     const headerHeight = header ? header.offsetHeight : 80;
     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-    
+
     window.scrollTo({
       top: targetPosition,
       behavior: 'smooth'
@@ -447,11 +570,11 @@ function initFloatingDeposit() {
 function initParticles() {
   const particles = document.getElementById('particles');
   if (!particles) return;
-  
+
   function createParticles() {
     particles.innerHTML = '';
     const particleCount = window.innerWidth < 768 ? 25 : 50;
-    
+
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
@@ -462,25 +585,37 @@ function initParticles() {
       particles.appendChild(particle);
     }
   }
-  
+
   createParticles();
   window.addEventListener('resize', debounce(createParticles, 250));
 }
 
-// View on explorer button
+// View on explorer button - FIXED VERSION
 function initViewOnExplorer() {
   const viewExplorer = document.getElementById('viewOnExplorer');
   const depositAddressEl = document.getElementById('depositAddress');
-  
-  if (!viewExplorer || !depositAddressEl) return;
-  
+
+  if (!viewExplorer || !depositAddressEl) {
+    console.log('View explorer elements not found:', {
+      viewExplorer: !!viewExplorer,
+      depositAddressEl: !!depositAddressEl
+    });
+    return;
+  }
+
   const address = depositAddressEl.textContent.trim();
-  
+  console.log('View explorer address:', address);
+
   viewExplorer.addEventListener('click', (e) => {
     e.preventDefault();
     const explorerUrl = 'https://bscscan.com/address/' + encodeURIComponent(address);
+    console.log('Opening explorer URL:', explorerUrl);
     window.open(explorerUrl, '_blank', 'noopener,noreferrer');
   });
+
+  // Also make sure the link is properly set
+  viewExplorer.href = '#';
+  viewExplorer.setAttribute('data-address', address);
 }
 
 // ========== SIMPLE VIDEO SETUP ==========
@@ -488,7 +623,7 @@ function initViewOnExplorer() {
 function initSimpleVideo() {
   const video = document.getElementById('asrdVideo');
   if (!video) return;
-  
+
   // Try to play video automatically (muted as required by browsers)
   const playVideo = () => {
     video.play().catch(error => {
@@ -497,18 +632,18 @@ function initSimpleVideo() {
       video.controls = true;
     });
   };
-  
+
   // Start muted for autoplay compliance
   video.muted = true;
-  
+
   // Play video on load
   video.addEventListener('loadeddata', playVideo);
-  
+
   // If video is already loaded, play immediately
   if (video.readyState >= 3) {
     playVideo();
   }
-  
+
   // Add a click handler to unmute when user interacts
   video.addEventListener('click', () => {
     if (video.muted) {
@@ -516,7 +651,7 @@ function initSimpleVideo() {
       video.play();
     }
   });
-  
+
   // Show unmute instructions after 3 seconds
   setTimeout(() => {
     if (video.muted) {
@@ -530,39 +665,39 @@ function initSimpleVideo() {
 
 // ========== PAGE INITIALIZATION ==========
 
-/// Initialize all functions for current page
+/// Initialize all functions for current page - FIXED VERSION
 function initializePage() {
   console.log('Initializing ASRD website...');
-  
+
   // Core functions (run on all pages)
   initMobileMenu();
   initHeaderScroll();
   initSmoothScroll();
   initBackToTop();
   initAnimations();
-  
-  // Check which page we're on
-  const isIndexPage = document.getElementById('menuToggle') !== null;
-  const isWhitepaperPage = document.getElementById('mobileMenuBtn') !== null;
-  
-  // Page-specific functions
-  if (isIndexPage) {
-    console.log('Detected index.html - initializing index-specific features');
+
+// Check for index.html features
+  const hasDepositSection = document.getElementById('deposit') !== null;
+  const hasCopyButton = document.getElementById('copyBtn') !== null;
+  const hasFloatingDeposit = document.getElementById('floatingDeposit') !== null;
+  const hasStakeSection = document.getElementById('stake') !== null;
+
+  if (hasDepositSection || hasCopyButton || hasFloatingDeposit || hasStakeSection) {
+    console.log('Detected index.html features - initializing index-specific features');
     fixVideoForMobile();
     initCopyToClipboard();
     initFloatingDeposit();
     initParticles();
     initViewOnExplorer();
-    initSimpleVideo(); // Add this if not already there
+    initSimpleVideo();
+
+    // Add staking features
+    if (hasStakeSection) {
+      initStakeCopyToClipboard();
+      initFloatingStake();
+      initStakeViewOnExplorer();
+    }
   }
-  
-  if (isWhitepaperPage) {
-    console.log('Detected whitepaper.html - initializing whitepaper-specific features');
-    initFloatingNav();
-    initContractCopy(); // Add this line
-  }
-  
-  // ... rest of the function
 }
 
 // ========== EVENT LISTENERS ==========
@@ -577,7 +712,7 @@ window.addEventListener('load', () => {
   if (header && window.scrollY > 100) {
     header.classList.add('scrolled');
   }
-  
+
   // Re-initialize particles on load (for index.html)
   if (document.getElementById('particles')) {
     setTimeout(initParticles, 500);
@@ -600,125 +735,68 @@ window.addEventListener('error', function(e) {
 
 // Log when script loads
 console.log('ASRD main.js loaded successfully');
+
 // Enhanced video unmute script
 document.addEventListener('DOMContentLoaded', function() {
-    const video = document.getElementById('asrdVideo');
-    
-    if (!video) return;
-    
-    // Function to unmute and play video
-    function unmuteVideo() {
-        video.muted = false;
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                // Video started playing successfully
-                console.log("ASRD: Video playing unmuted");
-            }).catch(error => {
-                // Auto-play was prevented
-                console.log("ASRD: Auto-play prevented, waiting for user interaction");
-            });
-        }
+  const video = document.getElementById('asrdVideo');
+
+  if (!video) return;
+
+  // Function to unmute and play video
+  function unmuteVideo() {
+    video.muted = false;
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Video started playing successfully
+        console.log("ASRD: Video playing unmuted");
+      }).catch(error => {
+        // Auto-play was prevented
+        console.log("ASRD: Auto-play prevented, waiting for user interaction");
+      });
     }
-    
-    // Try to unmute immediately on desktop browsers
-    setTimeout(unmuteVideo, 500);
-    
-    // For mobile browsers and stricter autoplay policies
-    // Unmute on any user interaction
-    const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
-    
-    interactionEvents.forEach(eventType => {
-        document.addEventListener(eventType, function unmuteOnce() {
-            if (video.muted) {
-                video.muted = false;
-                video.play().catch(e => {});
-            }
-            // Remove the event listener after first interaction
-            interactionEvents.forEach(type => {
-                document.removeEventListener(type, unmuteOnce);
-            });
-        }, { once: true });
+  }
+
+  // Try to unmute immediately on desktop browsers
+  setTimeout(unmuteVideo, 500);
+
+  // For mobile browsers and stricter autoplay policies
+  // Unmute on any user interaction
+  const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll'];
+
+  interactionEvents.forEach(eventType => {
+    document.addEventListener(eventType, function unmuteOnce() {
+      if (video.muted) {
+        video.muted = false;
+        video.play().catch(e => {});
+      }
+      // Remove the event listener after first interaction
+      interactionEvents.forEach(type => {
+        document.removeEventListener(type, unmuteOnce);
+      });
+    }, { once: true });
+  });
+
+  // Also unmute when video enters viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && video.muted) {
+        video.muted = false;
+        video.play().catch(e => {});
+      }
     });
-    
-    // Also unmute when video enters viewport
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && video.muted) {
-                video.muted = false;
-                video.play().catch(e => {});
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    observer.observe(video);
+  }, { threshold: 0.5 });
+
+  observer.observe(video);
 });
+
 // Contract address copy functionality for whitepaper
 function initContractCopy() {
   const contractCopyBtn = document.getElementById('contractCopyBtn');
   const contractText = document.getElementById('contractAddress');
   const copyToast = document.getElementById('copyToast');
-  
+
   if (!contractCopyBtn || !contractText) return;
-  
-  const fullAddress = contractCopyBtn.getAttribute('data-full-address');
-  
-  // Format to first 6 chars and last 4 chars (including 0x)
-  const formatAddress = (address) => {
-    if (address.length <= 14) return address; // Already short
-    return address.substring(0, 6) + '...' + address.substring(address.length - 4);
-  };
-  
-  // Update displayed text
-  contractText.textContent = formatAddress(fullAddress);
-  
-  async function copyContractAddress() {
-    const originalHTML = contractCopyBtn.innerHTML;
-    
-    try {
-      await navigator.clipboard.writeText(fullAddress);
-      
-      // Visual feedback
-      contractCopyBtn.innerHTML = '✓';
-      contractCopyBtn.classList.add('contract-copied');
-      
-      // Show toast if exists
-      if (copyToast) {
-        copyToast.textContent = 'Contract address copied!';
-        copyToast.classList.add('show');
-        setTimeout(() => copyToast.classList.remove('show'), 1600);
-      }
-      
-      // Revert after 2 seconds
-      setTimeout(() => {
-        contractCopyBtn.innerHTML = originalHTML;
-        contractCopyBtn.classList.remove('contract-copied');
-      }, 2000);
-      
-    } catch (err) {
-      console.error('Failed to copy:', err);
-      
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea');
-      textArea.value = fullAddress;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      
-      contractCopyBtn.innerHTML = '✓';
-      contractCopyBtn.classList.add('contract-copied');
-      
-      setTimeout(() => {
-        contractCopyBtn.innerHTML = originalHTML;
-        contractCopyBtn.classList.remove('contract-copied');
-      }, 2000);
-    }
-  }
-  
-  contractCopyBtn.addEventListener('click', copyContractAddress);
-  
-  // Also copy on clicking the address text
-  contractText.addEventListener('click', copyContractAddress);
-}
+
+  const fullAddress = contractCopyBtn.getAttribute('data-full-address');}

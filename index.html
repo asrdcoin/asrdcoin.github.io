@@ -12,360 +12,415 @@
   <link rel="stylesheet" href="assets/css/yellowtone.css">
 </head>
 <body>
-  <div class="particles" id="particles" aria-hidden="true"></div>
+<div class="particles" id="particles" aria-hidden="true"></div>
 
-  <header class="header" id="header" role="banner">
-    <div class="container">
-      <div class="header-inner">
-        <a class="logo" aria-label="ASRD home">
+<header class="header" id="header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="ASRD home">
+        <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
+             alt="ASRD coin logo"
+             class="logo-img">
+        ASRD
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#tokenomics" class="nav-link">Tokenomics</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="whitepaper.html" rel="noopener noreferrer" class="nav-whitepaper" aria-label="Read the ASRD whitepaper">📄 Whitepaper</a>
+        <a href="#deposit" class="nav-cta" aria-label="Deposit USDT">Deposit USDT</a>
+        <a href="#stake" class="nav-cta" aria-label="Stake ASRD">Stake ASRD</a>
+        <a href="https://clients.asrdcoin.com/" class="nav-link">➜] Login</a>
+      </nav>
+
+      <button id="mobileMenuBtn" class="mobile-toggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu - Updated for yellowtone theme -->
+<div id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
+  <div class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
+    <div class="panel-inner">
+      <div class="mobile-menu-header">
+        <div class="mobile-logo">
           <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
-               alt="ASRD coin logo"
-               class="logo-img">
-          ASRD
+               alt="ASRD logo"
+               class="logo-img logo-sm">
+          <span>ASRD</span>
+        </div>
+        <button id="mobileClose" class="mobile-close" aria-label="Close menu">×</button>
+      </div>
+
+      <nav class="mobile-links" aria-label="Mobile navigation">
+        <a href="#features" class="mobile-nav-link" data-close>
+          <i class="fas fa-star"></i>
+          Features
         </a>
+        <a href="#tokenomics" class="mobile-nav-link" data-close>
+          <i class="fas fa-chart-pie"></i>
+          Tokenomics
+        </a>
+        <a href="#about" class="mobile-nav-link" data-close>
+          <i class="fas fa-info-circle"></i>
+          About
+        </a>
+        <a href="#contact" class="mobile-nav-link" data-close>
+          <i class="fas fa-envelope"></i>
+          Contact
+        </a>
+        <a href="whitepaper.html" class="mobile-nav-link" rel="noopener noreferrer" data-close>
+          <i class="fas fa-file-alt"></i>
+          Whitepaper
+        </a>
+        <a href="#stake" class="mobile-nav-link" data-close>
+          <i class="fas fa-coins"></i>
+          Stake ASRD
+        </a>
+        <a href="#deposit" class="mobile-cta" data-close>
+          <i class="fas fa-wallet"></i>
+          Deposit USDT
+        </a>
+        <a href="#stake" class="mobile-cta" data-close style="background: var(--gradient-emerald);">
+          <i class="fas fa-coins"></i>
+          Stake ASRD
+        </a>
+      </nav>
 
-        <nav class="desktop-nav" aria-label="Main navigation">
-          <a href="#features" class="nav-link">Features</a>
-          <a href="#tokenomics" class="nav-link">Tokenomics</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#contact" class="nav-link">Contact</a>
-          <a href="whitepaper.html" rel="noopener noreferrer" class="nav-whitepaper" aria-label="Read the ASRD whitepaper">📄 Whitepaper</a>
-          <a href="#deposit" class="nav-cta" aria-label="Deposit USDT">Deposit USDT</a>
-        </nav>
-
-        <button id="mobileMenuBtn" class="mobile-toggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+      <div class="mobile-disclaimer">
+        <strong>Informational Only</strong><br>
+        Read the whitepaper for technical & legal details.
       </div>
     </div>
-  </header>
+  </div>
+</div>
 
-    <!-- Mobile Menu - Updated for yellowtone theme -->
-  <div id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
-    <div class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
-      <div class="panel-inner">
-        <div class="mobile-menu-header">
-          <div class="mobile-logo">
-            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
-                 alt="ASRD logo"
-                 class="logo-img logo-sm">
-            <span>ASRD</span>
+<!-- Hero Content Section -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+      <div style="margin-bottom:24px; display:flex; align-items:center; gap:12px;">
+        <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
+             alt="ASRD coin"
+             class="logo-img logo-lg">
+        <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
+            ASRD Utility Token
+          </span>
+      </div>
+
+      <div class="hero-badge fade-in-up">🔥 BEP-20 Utility Token</div>
+      <h1 class="fade-in-up">Powering the Next Digital Economy</h1>
+      <p class="hero-subtitle fade-in-up">Sustainable growth through deflationary mechanics, treasury-funded buybacks, and developer ecosystem support. Built for utility that endures.</p>
+
+      <!-- Video Section - Fixed with proper margin and positioning -->
+      <div style="margin: 40px 0; position: relative; z-index: 1;">
+        <div class="simple-video-container">
+          <div class="simple-video-wrapper">
+            <video
+                    id="asrdVideo"
+                    class="simple-video-element"
+                    controls
+                    playsinline
+                    autoplay
+                    loop
+                    preload="metadata"
+                    poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
+                    aria-label="ASRD promotional video showing digital economy concepts"
+            >
+              <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
-          <button id="mobileClose" class="mobile-close" aria-label="Close menu">×</button>
+        </div>
+      </div>
+
+      <div class="cta-buttons fade-in-up" role="group" aria-label="Primary actions">
+        <a href="https://clients.asrdcoin.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">👤 Client Login</a>
+        <a href="#tokenomics" class="btn btn-secondary">View Tokenomics</a>
+        <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">📄 Read Whitepaper</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="floating-card fade-in-up">
+        <div class="floating-icon" style="background:var(--gradient-hero)">⚡</div>
+        <h4>Lightning Transfers</h4>
+        <p>BEP-20 optimized for instant, low-cost transactions across the BSC ecosystem.</p>
+      </div>
+      <div class="floating-card fade-in-up">
+        <div class="floating-icon" style="background:var(--gradient-emerald)">🔥</div>
+        <h4>Deflationary Burn</h4>
+        <p>1% permanent supply reduction per transfer creates compounding scarcity.</p>
+      </div>
+      <div class="floating-card fade-in-up">
+        <div class="floating-icon" style="background:var(--gradient-gold)">💎</div>
+        <h4>Treasury Power</h4>
+        <p>1% funds ecosystem growth, buybacks, and strategic developer grants.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deposit" class="deposit-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Deposit USDT</h2>
+    </div>
+
+    <div class="deposit-wrap fade-in-up" role="region" aria-label="Receive USDT">
+      <div class="deposit-warning" role="status">
+        ⚠️ Only send Tether USD (BEP20) assets to this address. Other assets will be lost forever.
+      </div>
+
+      <div class="deposit-grid">
+        <div class="deposit-qr" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/Trustwallet%20deposit%20USDT.png" alt="USDT QR code">
         </div>
 
-        <nav class="mobile-links" aria-label="Mobile navigation">
-          <a href="#features" class="mobile-nav-link" data-close>
-            <i class="fas fa-star"></i>
-            Features
-          </a>
-          <a href="#tokenomics" class="mobile-nav-link" data-close>
-            <i class="fas fa-chart-pie"></i>
-            Tokenomics
-          </a>
-          <a href="#about" class="mobile-nav-link" data-close>
-            <i class="fas fa-info-circle"></i>
-            About
-          </a>
-          <a href="#contact" class="mobile-nav-link" data-close>
-            <i class="fas fa-envelope"></i>
-            Contact
-          </a>
-          <a href="whitepaper.html" class="mobile-nav-link" rel="noopener noreferrer" data-close>
-            <i class="fas fa-file-alt"></i>
-            Whitepaper
-          </a>
-          <a href="#deposit" class="mobile-cta" data-close>
-            <i class="fas fa-wallet"></i>
-            Deposit USDT
-          </a>
-        </nav>
+        <div class="deposit-info" aria-live="polite">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+            <div>
+              <div style="font-weight:900; font-size:18px; margin-bottom:4px">Receive USDT</div>
+              <div class="deposit-sub">BEP20 (Binance Smart Chain)</div>
+            </div>
+            <div style="font-size:12px; color:var(--slate-400)">Scan or copy address</div>
+          </div>
 
-        <div class="mobile-disclaimer">
-          <strong>Informational Only</strong><br>
-          Read the whitepaper for technical & legal details.
+          <div class="deposit-address" id="depositAddressRow">
+            <div style="flex:1; min-width:0;">
+              <div class="addr-text" id="depositAddress">0x84613C0fFac0891B6878fD644529f5e2Dc4FCB35</div>
+            </div>
+            <button class="copy-btn" id="copyBtn" aria-label="Copy address" title="Copy address">📋</button>
+          </div>
+
+          <div class="deposit-actions">
+            <a href="#" class="btn btn-secondary" style="padding:12px 18px; border-radius:12px; font-size:14px; text-decoration:none" id="viewOnExplorer">View on Explorer</a>
+          </div>
+
+          <div style="margin-top:8px; color:var(--slate-400); font-size:13px">
+            NOTE: Confirm network before sending. Token contract: <strong>USDT (BEP-20)</strong>.
+          </div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Hero Content Section -->
-  <section class="hero" id="home">
-    <div class="container">
-      <div class="hero-content">
-        <div style="margin-bottom:24px; display:flex; align-items:center; gap:12px;">
-          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
-               alt="ASRD coin"
-               class="logo-img logo-lg">
-          <span style="font-weight:700; letter-spacing:0.08em; font-size:12px; text-transform:uppercase; color:#E2E8F0;">
-            ASRD Utility Token
-          </span>
-        </div>
-        
-        <div class="hero-badge fade-in-up">🔥 BEP-20 Utility Token</div>
-        <h1 class="fade-in-up">Powering the Next Digital Economy</h1>
-        <p class="hero-subtitle fade-in-up">Sustainable growth through deflationary mechanics, treasury-funded buybacks, and developer ecosystem support. Built for utility that endures.</p>
-
-        <!-- Video Section - Fixed with proper margin and positioning -->
-        <div style="margin: 40px 0; position: relative; z-index: 1;">
-          <div class="simple-video-container">
-            <div class="simple-video-wrapper">
-              <video 
-                id="asrdVideo"
-                class="simple-video-element"
-                controls
-                playsinline
-                autoplay
-                loop
-                preload="metadata"
-                poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
-                aria-label="ASRD promotional video showing digital economy concepts"
-              >
-                <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-        </div>
-
-        <div class="cta-buttons fade-in-up" role="group" aria-label="Primary actions">
-          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🚀 Buy on DEX</a>
-          <a href="#tokenomics" class="btn btn-secondary">View Tokenomics</a>
-          <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">📄 Read Whitepaper</a>
-        </div>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <div class="floating-card fade-in-up">
-          <div class="floating-icon" style="background:var(--gradient-hero)">⚡</div>
-          <h4>Lightning Transfers</h4>
-          <p>BEP-20 optimized for instant, low-cost transactions across the BSC ecosystem.</p>
-        </div>
-        <div class="floating-card fade-in-up">
-          <div class="floating-icon" style="background:var(--gradient-emerald)">🔥</div>
-          <h4>Deflationary Burn</h4>
-          <p>1% permanent supply reduction per transfer creates compounding scarcity.</p>
-        </div>
-        <div class="floating-card fade-in-up">
-          <div class="floating-icon" style="background:var(--gradient-gold)">💎</div>
-          <h4>Treasury Power</h4>
-          <p>1% funds ecosystem growth, buybacks, and strategic developer grants.</p>
-        </div>
-      </div>
+<section id="stake" class="deposit-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Stake ASRD Coin</h2>
     </div>
-  </section>
 
-  <section id="deposit" class="deposit-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Deposit USDT</h2>
+    <div class="deposit-wrap fade-in-up" role="region" aria-label="Stake ASRD">
+      <div class="deposit-warning" role="status">
+        ⚠️ Only send ASRD (BEP20) assets to this address. Other assets will be lost forever.
       </div>
 
-      <div class="deposit-wrap fade-in-up" role="region" aria-label="Receive USDT">
-        <div class="deposit-warning" role="status">
-          ⚠️ Only send Tether USD (BEP20) assets to this address. Other assets will be lost forever.
+      <div class="deposit-grid">
+        <div class="deposit-qr" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/ASRDStakingQR.jpeg" alt="ASRD Staking QR code">
         </div>
 
-        <div class="deposit-grid">
-          <div class="deposit-qr" aria-hidden="true">
-            <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/Trustwallet%20deposit%20USDT.png" alt="USDT QR code">
+        <div class="deposit-info" aria-live="polite">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+            <div>
+              <div style="font-weight:900; font-size:18px; margin-bottom:4px">Stake ASRD Coin</div>
+              <div class="deposit-sub">BEP20 (Binance Smart Chain)</div>
+            </div>
+            <div style="font-size:12px; color:var(--slate-400)">Scan or copy address</div>
           </div>
 
-          <div class="deposit-info" aria-live="polite">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
-              <div>
-                <div style="font-weight:900; font-size:18px; margin-bottom:4px">Receive USDT</div>
-                <div class="deposit-sub">BEP20 (Binance Smart Chain)</div>
-              </div>
-              <div style="font-size:12px; color:var(--slate-400)">Scan or copy address</div>
+          <div class="deposit-address" id="stakeAddressRow">
+            <div style="flex:1; min-width:0;">
+              <div class="addr-text" id="stakeAddress">0x05a39Eb458f28e7A0d4FDDBD7df5021601754424</div>
             </div>
+            <button class="copy-btn" id="copyStakeBtn" aria-label="Copy staking address" title="Copy staking address">📋</button>
+          </div>
 
-            <div class="deposit-address" id="depositAddressRow">
-              <div style="flex:1; min-width:0;">
-                <div class="addr-text" id="depositAddress">0x84613C0fFac0891B6878fD644529f5e2Dc4FCB35</div>
-              </div>
-              <button class="copy-btn" id="copyBtn" aria-label="Copy address" title="Copy address">📋</button>
-            </div>
+          <div class="deposit-actions">
+            <a href="#" class="btn btn-secondary" style="padding:12px 18px; border-radius:12px; font-size:14px; text-decoration:none" id="viewOnExplorerStake">View on Explorer</a>
+          </div>
 
-            <div class="deposit-actions">
-              <a href="#" class="btn btn-secondary" style="padding:12px 18px; border-radius:12px; font-size:14px; text-decoration:none" id="viewOnExplorer">View on Explorer</a>
-            </div>
-
-            <div style="margin-top:8px; color:var(--slate-400); font-size:13px">
-              NOTE: Confirm network before sending. Token contract: <strong>USDT (BEP-20)</strong>.
-            </div>
+          <div style="margin-top:8px; color:var(--slate-400); font-size:13px">
+            NOTE: Confirm network before sending. Token contract: <strong>ASRD (BEP-20)</strong>.
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="features" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Why ASRD Dominates</h2>
-        <p>Engineered for maximum utility, security, and sustainable growth in the BSC ecosystem.</p>
+<section id="features" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Why ASRD Dominates</h2>
+      <p>Engineered for maximum utility, security, and sustainable growth in the BSC ecosystem.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">🛡️</div>
+        <h3>Fortress Security</h3>
+        <p>External audits, multisig protection, timelock governance, and continuous security monitoring.</p>
       </div>
-
-      <div class="features-grid">
-        <div class="feature-card fade-in-up">
-          <div class="feature-icon">🛡️</div>
-          <h3>Fortress Security</h3>
-          <p>External audits, multisig protection, timelock governance, and continuous security monitoring.</p>
-        </div>
-        <div class="feature-card fade-in-up">
-          <div class="feature-icon">⚙️</div>
-          <h3>Developer Ecosystem</h3>
-          <p>Treasury grants fuel APIs, integrations, and tooling for BSC-native applications.</p>
-        </div>
-        <div class="feature-card fade-in-up">
-          <div class="feature-icon">📈</div>
-          <h3>Mathematical Growth</h3>
-          <p>Deflation + treasury operations = compounding value creation for all holders.</p>
-        </div>
-        <div class="feature-card fade-in-up">
-          <div class="feature-icon">🌐</div>
-          <h3>BSC Native Power</h3>
-          <p>Sub-second confirmations, minimal fees, full DeFi composability.</p>
-        </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">⚙️</div>
+        <h3>Developer Ecosystem</h3>
+        <p>Treasury grants fuel APIs, integrations, and tooling for BSC-native applications.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">📈</div>
+        <h3>Mathematical Growth</h3>
+        <p>Deflation + treasury operations = compounding value creation for all holders.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">🌐</div>
+        <h3>BSC Native Power</h3>
+        <p>Sub-second confirmations, minimal fees, full DeFi composability.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="tokenomics" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Transparent Tokenomics</h2>
-        <p>Fair launch. 100% circulating. Mechanics engineered for exponential growth.</p>
-      </div>
-
-      <div class="tokenomics">
-        <div class="tokenomics-main fade-in-up">
-          <h3>Every Transaction Creates Value</h3>
-          <p style="font-size:18px; color:var(--slate-200); margin-bottom:30px; line-height:1.6; max-width:700px">
-            <strong>2% transfer tax:</strong> 1% <span style="color:var(--red-500)">burned forever</span> + 1% to <span style="color:var(--emerald-500)">treasury</span> for buybacks, liquidity, and ecosystem grants.
-          </p>
-
-          <div class="pie-container">
-            <div class="token-pie">
-              <svg class="pie-chart-svg" viewBox="0 0 360 360" role="img" aria-label="Token allocation chart">
-                <defs>
-                  <linearGradient id="liqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#1E40AF"/>
-                  </linearGradient>
-                  <linearGradient id="burnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#EF4444"/><stop offset="100%" stop-color="#DC2626"/>
-                  </linearGradient>
-                  <linearGradient id="treasuryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#059669"/>
-                  </linearGradient>
-                  <linearGradient id="feeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/>
-                  </linearGradient>
-                </defs>
-
-                <circle cx="180" cy="180" r="160" fill="none" stroke="#1E293B" stroke-width="35"/>
-                <circle cx="180" cy="180" r="160" fill="none" stroke="url(#liqGrad)" stroke-width="35" stroke-dasharray="1006 1006" stroke-dashoffset="1006" pathLength="1" />
-                <circle cx="180" cy="180" r="140" fill="none" stroke="url(#feeGrad)" stroke-width="25" stroke-dasharray="44.1 628.3" stroke-dashoffset="672.4" pathLength="1" />
-                <circle cx="180" cy="180" r="120" fill="none" stroke="url(#burnGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="314.15" pathLength="1" />
-                <circle cx="180" cy="180" r="100" fill="none" stroke="url(#treasuryGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="292.1" pathLength="1" />
-                <circle cx="180" cy="180" r="70" fill="url(#liqGrad)" opacity="0.15"/>
-              </svg>
-              <div class="pie-chart-center" aria-hidden="true">
-                <div class="pie-center-number">4,000,000</div>
-                <div class="pie-center-label">ASRD Total Supply</div>
-              </div>
-            </div>
-
-            <div class="allocations">
-              <div class="allocation-item">
-                <div class="allocation-label">💧 Liquidity & Market</div>
-                <div class="allocation-value">100%</div>
-              </div>
-              <div class="allocation-item">
-                <div class="allocation-label">⚙️ Transfer Tax</div>
-                <div class="allocation-value">2.00%</div>
-              </div>
-              <div class="allocation-item">
-                <div class="allocation-label">🔥 Burn</div>
-                <div class="allocation-value">1.00%</div>
-              </div>
-              <div class="allocation-item">
-                <div class="allocation-label">💎 Treasury</div>
-                <div class="allocation-value">1.00%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div style="background:linear-gradient(145deg, var(--glass), rgba(255,255,255,0.02)); padding:40px 30px; border-radius:var(--radius-2xl); border:1px solid rgba(255,255,255,0.15); height:fit-content; box-shadow:var(--shadow-xl)" class="fade-in-up">
-          <h3 style="font-size:24px; font-weight:900; margin-bottom:24px; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text">Key Facts</h3>
-          <div style="display:grid; gap:16px; font-size:15px; line-height:1.6">
-            <div><strong>Token:</strong> ASRD (BEP-20)</div>
-            <div><strong>Decimals:</strong> 06</div>
-            <div><strong>Launch:</strong> Fair - 100% unlocked</div>
-            <div><strong>LP:</strong> Burned & Locked</div>
-            <div style="margin-top:24px">
-              <a href="https://bscscan.com/token/0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB#code" class="btn btn-primary" style="width:100%; justify-content:center; text-decoration:none">View Contract →</a>
-              <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" style="width:100%; justify-content:center; margin-top:12px; text-decoration:none">📄 Read Whitepaper</a>
-            </div>
-          </div>
-        </div>
-      </div>
+<section id="tokenomics" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Transparent Tokenomics</h2>
+      <p>Fair launch. 100% circulating. Mechanics engineered for exponential growth.</p>
     </div>
-  </section>
 
-  <section class="cta-section" id="about">
-    <div class="container">
-      <div class="cta-content fade-in-up">
-        <h2>Ready to Power the Future?</h2>
-        <p style="font-size:20px; color:rgba(255,255,255,0.95); margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto">
-          Join thousands of builders creating the next digital economy with ASRD.
+    <div class="tokenomics">
+      <div class="tokenomics-main fade-in-up">
+        <h3>Every Transaction Creates Value</h3>
+        <p style="font-size:18px; color:var(--slate-200); margin-bottom:30px; line-height:1.6; max-width:700px">
+          <strong>2% transfer tax:</strong> 1% <span style="color:var(--red-500)">burned forever</span> + 1% to <span style="color:var(--emerald-500)">treasury</span> for buybacks, liquidity, and ecosystem grants.
         </p>
-        <div class="cta-buttons">
-          <a href="https://dexscreener.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:20px 40px; font-size:16px; text-decoration:none">🚀 Get Started</a>
-          <a href="#features" class="btn btn-secondary" style="padding:20px 40px; font-size:16px; text-decoration:none">Explore Features</a>
-          <a href="whitepaper.html" rel="noopener noreferrer" class="btn btn-gold" style="padding:20px 40px; font-size:16px; text-decoration:none">📄 Read Whitepaper</a>
+
+        <div class="pie-container">
+          <div class="token-pie">
+            <svg class="pie-chart-svg" viewBox="0 0 360 360" role="img" aria-label="Token allocation chart">
+              <defs>
+                <linearGradient id="liqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#1E40AF"/>
+                </linearGradient>
+                <linearGradient id="burnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#EF4444"/><stop offset="100%" stop-color="#DC2626"/>
+                </linearGradient>
+                <linearGradient id="treasuryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#059669"/>
+                </linearGradient>
+                <linearGradient id="feeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/>
+                </linearGradient>
+              </defs>
+
+              <circle cx="180" cy="180" r="160" fill="none" stroke="#1E293B" stroke-width="35"/>
+              <circle cx="180" cy="180" r="160" fill="none" stroke="url(#liqGrad)" stroke-width="35" stroke-dasharray="1006 1006" stroke-dashoffset="1006" pathLength="1" />
+              <circle cx="180" cy="180" r="140" fill="none" stroke="url(#feeGrad)" stroke-width="25" stroke-dasharray="44.1 628.3" stroke-dashoffset="672.4" pathLength="1" />
+              <circle cx="180" cy="180" r="120" fill="none" stroke="url(#burnGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="314.15" pathLength="1" />
+              <circle cx="180" cy="180" r="100" fill="none" stroke="url(#treasuryGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="292.1" pathLength="1" />
+              <circle cx="180" cy="180" r="70" fill="url(#liqGrad)" opacity="0.15"/>
+            </svg>
+            <div class="pie-chart-center" aria-hidden="true">
+              <div class="pie-center-number">4,000,000</div>
+              <div class="pie-center-label">ASRD Total Supply</div>
+            </div>
+          </div>
+
+          <div class="allocations">
+            <div class="allocation-item">
+              <div class="allocation-label">💧 Liquidity & Market</div>
+              <div class="allocation-value">100%</div>
+            </div>
+            <div class="allocation-item">
+              <div class="allocation-label">⚙️ Transfer Tax</div>
+              <div class="allocation-value">2.00%</div>
+            </div>
+            <div class="allocation-item">
+              <div class="allocation-label">🔥 Burn</div>
+              <div class="allocation-value">1.00%</div>
+            </div>
+            <div class="allocation-item">
+              <div class="allocation-label">💎 Treasury</div>
+              <div class="allocation-value">1.00%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tokenomics-sidebar fade-in-up">
+        <h3 style="font-size:24px; font-weight:900; margin-bottom:24px; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text; color:transparent;">Key Facts</h3>
+        <div style="display:grid; gap:16px; font-size:15px; line-height:1.6">
+          <div><strong>Token:</strong> ASRD (BEP-20)</div>
+          <div><strong>Decimals:</strong> 06</div>
+          <div><strong>Launch:</strong> Fair - 100% unlocked</div>
+          <div><strong>LP:</strong> Burned & Locked</div>
+          <div style="margin-top:24px">
+            <a href="https://bscscan.com/token/0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB#code" class="btn btn-primary" style="width:100%; justify-content:center; text-decoration:none">View Contract →</a>
+            <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" style="width:100%; justify-content:center; margin-top:12px; text-decoration:none">📄 Read Whitepaper</a>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer" id="contact">
-    <div class="container">
-      <div class="footer-content">
-        <div class="fade-in-up">
-          <h4 style="font-size:24px; font-weight:900; margin-bottom:20px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text">ASRD</h4>
-          <p style="color:var(--slate-400); margin-bottom:24px; max-width:300px">Powering sustainable digital infrastructure on BSC.</p>
-          <div class="social-links">
-            <a href="#" class="social-btn" aria-label="Telegram">📱</a>
-            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
-            <a href="#" class="social-btn" aria-label="Discord">💬</a>
-            <a href="#" class="social-btn" aria-label="GitHub">📂</a>
-          </div>
-          <div style="margin-top:16px">
-            <a href="whitepaper.html" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper" style="font-size:14px">Read Whitepaper (PDF)</a>
-          </div>
+<section class="cta-section" id="about">
+  <div class="container">
+    <div class="cta-content fade-in-up">
+      <h2>Ready to Power the Future?</h2>
+      <p style="font-size:20px; color:rgba(255,255,255,0.95); margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto">
+        Join thousands of builders creating the next digital economy with ASRD.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://clients.asrdcoin.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:20px 40px; font-size:16px; text-decoration:none"👤 Client Login</a>
+        <a href="#features" class="btn btn-secondary" style="padding:20px 40px; font-size:16px; text-decoration:none">Explore Features</a>
+        <a href="whitepaper.html" rel="noopener noreferrer" class="btn btn-gold" style="padding:20px 40px; font-size:16px; text-decoration:none">📄 Read Whitepaper</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="fade-in-up">
+        <h4 style="font-size:24px; font-weight:900; margin-bottom:20px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; color:transparent">ASRD</h4>
+        <p style="color:var(--slate-400); margin-bottom:24px; max-width:300px">Powering sustainable digital infrastructure on BSC.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Telegram">📱</a>
+          <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-btn" aria-label="Discord">💬</a>
+          <a href="#" class="social-btn" aria-label="GitHub">📂</a>
         </div>
-        <div class="fade-in-up" style="grid-column:1/-1">
-          <div style="text-align:center; color:var(--slate-400); font-size:13px; letter-spacing:0.025em; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px">
-            © 2025 ASRD. The utility token of the future. Not financial advice. DYOR.
-          </div>
+        <div style="margin-top:16px">
+          <a href="whitepaper.html" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper" style="font-size:14px">Read Whitepaper (PDF)</a>
+        </div>
+      </div>
+      <div class="fade-in-up" style="grid-column:1/-1">
+        <div style="text-align:center; color:var(--slate-400); font-size:13px; letter-spacing:0.025em; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px">
+          © 2025 ASRD. The utility token of the future. Not financial advice. DYOR.
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <a href="#deposit" id="floatingDeposit" class="floating-deposit" role="button" aria-label="Deposit USDT">
-    <span class="dot" aria-hidden="true"></span>
-    Deposit USDT
-  </a>
+<a href="#deposit" id="floatingDeposit" class="floating-deposit" role="button" aria-label="Deposit USDT">
+  <span class="dot" aria-hidden="true"></span>
+  Deposit USDT
+</a>
 
-  <div id="copyToast" class="copy-toast" role="status" aria-live="polite">Copied</div>
+<div id="copyToast" class="copy-toast" role="status" aria-live="polite">Copied</div>
 
-  <script src="assets/scripts/main.js"></script>
+<script src="assets/scripts/main.js"></script>
 </body>
 </html>
