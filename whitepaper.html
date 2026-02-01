@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ASRD Whitepaper — Powering the Next Digital Economy</title>
-  <meta name="description" content="Official technical whitepaper for ASRD utility token: Tokenomics, architecture, governance, and roadmap for the BEP-20 ecosystem token.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>ASRD — Tokenizing Real-World Assets</title>
+  <meta name="description" content="ASRD — Fractional ownership of institutional real-world assets. Invest in commercial real estate, private equity, and fine art with blockchain security." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/yellowtone.css">
   <!-- Favicon -->
@@ -18,714 +18,460 @@
   <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/favicon-16x16.png">
 </head>
 <body>
-  <div class="animated-bg">
-    <div class="bg-grid"></div>
-    <div class="floating-orb orb-1"></div>
-    <div class="floating-orb orb-2"></div>
-    <div class="floating-orb orb-3"></div>
+<div class="particles" id="particles" aria-hidden="true"></div>
+
+<header class="header" id="header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="ASRD home">
+        <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
+             alt="ASRD coin logo"
+             class="logo-img">
+        ASRD
+      </a>
+      <a href="https://clients.asrdcoin.com/login" class="nav-link">➜] Login</a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#features" class="nav-link">How It Works</a>
+        <a href="#tokenomics" class="nav-link">The Problem</a>
+        <a href="#about" class="nav-link">The Solution</a>
+        <a href="#contact" class="nav-link">Performance</a>
+        <a href="whitepaper.html" rel="noopener noreferrer" class="nav-whitepaper" aria-label="Read the ASRD whitepaper">📄 Whitepaper</a>
+        <a href="#deposit" class="nav-cta" aria-label="Invest Now">💰 Invest Now</a>
+        <a href="#stake" class="nav-cta" aria-label="Browse Investments">📊 Browse Investments</a>
+      </nav>
+
+      <button id="mobileMenuBtn" class="mobile-toggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
   </div>
+</header>
 
-  <header class="header" id="header">
-    <div class="container">
-      <div class="header-inner">
-        <a class="logo" href="index.html">
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="mobile-backdrop" id="mobileBackdrop" tabindex="-1"></div>
+  <div class="mobile-panel" id="mobilePanel" aria-labelledby="mobileMenuLabel" role="menu" tabindex="-1">
+    <div class="panel-inner">
+      <div class="mobile-menu-header">
+        <div class="mobile-logo">
           <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
-               alt="ASRD coin logo"
-               class="logo-img">
+               alt="ASRD logo"
+               class="logo-img logo-sm">
           <span>ASRD</span>
+        </div>
+        <button id="mobileClose" class="mobile-close" aria-label="Close menu">×</button>
+      </div>
+
+      <nav class="mobile-links" aria-label="Mobile navigation">
+        <a href="#features" class="mobile-nav-link" data-close>
+          <i class="fas fa-star"></i>
+          How It Works
         </a>
-        <a href="https://clients.asrdcoin.com/login" class="nav-link">➜] Login</a>
-        <nav class="desktop-nav">
-          <a href="index.html" class="nav-link">
-            <i class="fas fa-home"></i>
-            Home
-          </a>
-          <a href="#executive-summary" class="nav-link">
-            <i class="fas fa-file-alt"></i>
-            Whitepaper
-          </a>
-          <a href="#tokenomics" class="nav-link">
-            <i class="fas fa-chart-pie"></i>
-            Tokenomics
-          </a>
-          <a href="#roadmap" class="nav-link">
-            <i class="fas fa-map-marked-alt"></i>
-            Roadmap
-          </a>
-          <a href="index.html#deposit" class="nav-cta">
-            <i class="fas fa-wallet"></i>
-            ₮ Deposit USDT
-          </a>
-          <a href="#stake" class="nav-cta" aria-label="📈 Stake ASRD">Stake ASRD</a>
-        </nav>
+        <a href="#tokenomics" class="mobile-nav-link" data-close>
+          <i class="fas fa-chart-pie"></i>
+          The Problem
+        </a>
+        <a href="#about" class="mobile-nav-link" data-close>
+          <i class="fas fa-info-circle"></i>
+          The Solution
+        </a>
+        <a href="#contact" class="mobile-nav-link" data-close>
+          <i class="fas fa-envelope"></i>
+          Performance
+        </a>
+        <a href="whitepaper.html" class="mobile-nav-link" rel="noopener noreferrer" data-close>
+          <i class="fas fa-file-alt"></i>
+          Whitepaper
+        </a>
+        <a href="#stake" class="mobile-nav-link" data-close>
+          <i class="fas fa-coins"></i>
+          📊 Browse Investments
+        </a>
+        <a href="#deposit" class="mobile-cta" data-close>
+          <i class="fas fa-wallet"></i>
+          💰 Invest Now
+        </a>
+      </nav>
 
-        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle mobile menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+      <div class="mobile-disclaimer">
+        <strong>Informational Only</strong><br>
+        Read the whitepaper for technical & legal details.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hero Content Section -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+      <div style="margin-bottom:100px; display:flex; align-items:center; gap:80px;">
+        <!-- Empty div kept for spacing -->
+      </div>
+
+      <div class="hero-badge fade-in-up">WE DON'T SELL DREAMS — WE TOKENIZE REALITY</div>
+      <h1 class="fade-in-up">Institutional Real-World Assets<br>Now Accessible to Everyone</h1>
+      <p class="hero-subtitle fade-in-up">Fractional ownership starting from $100. Invest in commercial real estate, private equity, and fine art with blockchain security and complete transparency.</p>
+
+      <!-- Stats in Hero -->
+      <div class="hero-stats fade-in-up" style="display: flex; justify-content: space-between; max-width: 800px; margin: 60px auto;">
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--yellow-500);">100%</div>
+          <div style="color: var(--slate-300); font-size: 0.9rem;">Bank-Grade Security</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--emerald-500);">2,500+</div>
+          <div style="color: var(--slate-300); font-size: 0.9rem;">Active Investors</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--blue-500);">$85M+</div>
+          <div style="color: var(--slate-300); font-size: 0.9rem;">Assets Managed</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--purple-500);">12.8%</div>
+          <div style="color: var(--slate-300); font-size: 0.9rem;">Average ROI</div>
+        </div>
+      </div>
+
+      <!-- Video Section -->
+      <div style="margin: 40px 0; position: relative; z-index: 1;">
+        <div class="simple-video-container">
+          <div class="simple-video-wrapper">
+            <video
+                    id="asrdVideo"
+                    class="simple-video-element"
+                    controls
+                    playsinline
+                    autoplay
+                    loop
+                    preload="metadata"
+                    poster="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/video-poster.jpg"
+                    aria-label="ASRD promotional video showing digital economy concepts"
+            >
+              <source src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/vids/ASRD.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-buttons fade-in-up" role="group" aria-label="Primary actions">
+        <a href="https://clients.asrdcoin.com/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary">👤 Client Login</a>
+        <a href="#tokenomics" class="btn btn-secondary">View Investment Opportunities</a>
+        <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" aria-label="Read the ASRD whitepaper">📄 Read Whitepaper</a>
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <div class="mobile-backdrop" id="mobileBackdrop"></div>
-      <div class="mobile-panel" id="mobilePanel">
-        <div class="panel-inner">
-          <div class="mobile-menu-header">
-            <div class="mobile-logo">
-              <img src="https://raw.githubusercontent.com/asrdcoin/asrdcoin.github.io/refs/heads/main/assets/images/asrdyellow.svg"
-                   alt="ASRD logo"
-                   class="logo-img logo-sm">
-              <span>ASRD</span>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="floating-card fade-in-up">
+        <div class="floating-icon" style="background:var(--gradient-hero)">⚡</div>
+        <h4>From $100</h4>
+        <p>Start with as little as $100. Own a piece of institutional-grade assets.</p>
+      </div>
+      <div class="floating-card fade-in-up">
+        <div class="floating-icon" style="background:var(--gradient-emerald)">🔒</div>
+        <h4>100% Secure</h4>
+        <p>Every investment is tokenized and secured on blockchain with transparent ownership records.</p>
+      </div>
+      <div class="floating-card fade-in-up">
+        <div class="floating-icon" style="background:var(--gradient-gold)">📊</div>
+        <h4>12.8% Avg ROI</h4>
+        <p>Our team of experts manages the assets while you enjoy passive returns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deposit" class="deposit-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>How It Works</h2>
+      <p>Trusted by institutional investors worldwide</p>
+    </div>
+
+    <div class="deposit-wrap fade-in-up" role="region" aria-label="Investment Process">
+      <div class="deposit-grid">
+        <div class="deposit-qr" aria-hidden="true">
+          <div style="font-size: 4rem; text-align: center; color: var(--yellow-500);">1</div>
+        </div>
+
+        <div class="deposit-info" aria-live="polite">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+            <div>
+              <div style="font-weight:900; font-size:18px; margin-bottom:4px">Browse Investment Opportunities</div>
+              <div class="deposit-sub">Choose from hand-picked premium assets with verified track records</div>
             </div>
-            <button id="mobileClose" class="mobile-close">×</button>
           </div>
-          
-          <div class="mobile-links">
-            <a href="index.html" class="mobile-nav-link">
-              <i class="fas fa-home"></i>
-              Home
-            </a>
-            <a href="#executive-summary" class="mobile-nav-link">
-              <i class="fas fa-file-alt"></i>
-              Executive Summary
-            </a>
-            <a href="#tokenomics" class="mobile-nav-link">
-              <i class="fas fa-chart-pie"></i>
-              Tokenomics
-            </a>
-            <a href="#architecture" class="mobile-nav-link">
-              <i class="fas fa-code"></i>
-              Architecture
-            </a>
-            <a href="#roadmap" class="mobile-nav-link">
-              <i class="fas fa-map-marked-alt"></i>
-              Roadmap
-            </a>
-            <a href="index.html#deposit" class="mobile-cta">
-              <i class="fas fa-wallet"></i>
-              Deposit USDT
-            </a>
-            <a href="#stake" class="mobile-cta" data-close style="background: var(--gradient-emerald);">
-              <i class="fas fa-coins"></i>
-              📈 Stake ASRD
-            </a>
-          </div>
-          
-          <div class="mobile-disclaimer">
-            <strong>Informational Only</strong><br>
-            Read the whitepaper for technical & legal details.
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <section class="whitepaper-hero">
-    <div class="container">
-      <div class="hero-content animate-fade-in-up">
-        <div class="hero-badge-whitepaper animate-fade-in-up">
-          <i class="fas fa-file-contract"></i>
-          Official Technical Whitepaper • Version 1.0
-        </div>
-        
-        <h1 class="hero-title animate-fade-in-up">ASRD Whitepaper</h1>
-        
-        <p class="hero-subtitle animate-fade-in-up">
-          A comprehensive technical blueprint detailing the architecture, tokenomics, governance, 
-          and strategic roadmap of the ASRD ecosystem token on BNB Smart Chain.
-        </p>
-
-        <!-- Stats Section -->
-        <div class="whitepaper-stats animate-fade-in-up">
-          <div class="whitepaper-stat-card">
-            <div class="whitepaper-stat-number">4M</div>
-            <div class="whitepaper-stat-label">Total Supply</div>
-          </div>
-          <div class="whitepaper-stat-card">
-            <div class="whitepaper-stat-number">2%</div>
-            <div class="whitepaper-stat-label">Transfer Tax</div>
-          </div>
-          <div class="whitepaper-stat-card">
-            <div class="whitepaper-stat-number">BEP-20</div>
-            <div class="whitepaper-stat-label">Token Standard</div>
-          </div>
-          <div class="whitepaper-stat-card">
-            <div class="whitepaper-stat-number">100%</div>
-            <div class="whitepaper-stat-label">Circulating</div>
-          </div>
-        </div>
-
-        <div class="hero-actions animate-fade-in-up">
-          <a href="#executive-summary" class="btn btn-primary">
-            <i class="fas fa-book-open"></i>
-            Read Whitepaper
-          </a>
-          <a href="#tokenomics" class="btn btn-secondary">
-            <i class="fas fa-chart-pie"></i>
-            View Tokenomics
-          </a>
-          <a href="index.html" class="btn btn-outline">
-            <i class="fas fa-arrow-left"></i>
-            Back to Home
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <nav class="floating-nav">
-    <a href="#executive-summary" class="floating-nav-item">Summary</a>
-    <a href="#tokenomics" class="floating-nav-item">Tokenomics</a>
-    <a href="#architecture" class="floating-nav-item">Architecture</a>
-    <a href="#roadmap" class="floating-nav-item">Roadmap</a>
-  </nav>
-
-  <section id="executive-summary" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 1</span>
-        <h2 class="section-title">Executive Summary</h2>
-        <p class="section-subtitle">
-          Comprehensive overview of ASRD's mission, architecture, and value proposition
-        </p>
-      </div>
-
-      <div class="content-cards">
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-bullseye"></i>
-          </div>
-          <h3 class="card-title">What the Project Does</h3>
-          <div class="card-content">
-            <p>ASRD Coin is a utility token built on the BNB Smart Chain (BEP-20). Its primary function is to facilitate and incentivize participation within a decentralized ecosystem focused on supporting blockchain development and infrastructure.</p>
-            <p>The protocol implements a deflationary transaction tax mechanism to fund a treasury, which is used for ecosystem grants, strategic buybacks, and liquidity provision.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-question-circle"></i>
-          </div>
-          <h3 class="card-title">Why It Exists</h3>
-          <div class="card-content">
-            <p>The project addresses inefficiencies in sustaining long-term developer engagement and project liquidity within decentralized ecosystems.</p>
-            <p>Many utility tokens lack built-in, sustainable mechanisms for self-funded growth, often relying on inflationary rewards or unsustainable yields.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="card-title">Economic & Technical Viability</h3>
-          <div class="card-content">
-            <p><strong>Economic Rationale:</strong> The model aligns long-term token holder and ecosystem developer interests through a transaction fee structure that directly funds growth initiatives.</p>
-            <p><strong>Technical Foundation:</strong> Built on the established BNB Smart Chain, the project utilizes audited smart contracts to execute transparent, on-chain treasury operations and token burns.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="tokenomics" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 6</span>
-        <h2 class="section-title">Tokenomics</h2>
-        <p class="section-subtitle">
-          Supply model, fee structure, and economic mechanics
-        </p>
-      </div>
-
-      <div class="tokenomics-visual animate-fade-in-up">
-        <div class="visual-header">
-          <h3 class="visual-title">Token Distribution & Mechanics</h3>
-          <p class="visual-subtitle">
-            Fixed supply with deflationary mechanics designed for sustainable ecosystem growth
+          <p style="margin: 20px 0; color: var(--slate-300); line-height: 1.6;">
+            Select from our curated portfolio of institutional-grade assets including commercial real estate, private equity, and fine art. Each opportunity is thoroughly vetted for maximum returns.
           </p>
-        </div>
 
-        <div class="token-details">
-          <div class="token-detail animate-fade-in-left">
-            <div class="detail-label">Total Supply</div>
-            <div class="detail-value">4,000,000</div>
-          </div>
-          <div class="token-detail animate-fade-in-left">
-            <div class="detail-label">Decimals</div>
-            <div class="detail-value">06</div>
-          </div>
-          <div class="token-detail animate-fade-in-left">
-            <div class="detail-label">Network</div>
-            <div class="detail-value">BSC (BEP-20)</div>
-          </div>
-          <div class="token-detail animate-fade-in-left">
-            <div class="detail-label">Launch Model</div>
-            <div class="detail-value">Fair Launch</div>
-          </div>
-        </div>
-
-        <div class="fee-breakdown">
-          <div class="fee-card burn animate-fade-in-left">
-            <div class="fee-icon">
-              <i class="fas fa-fire"></i>
-            </div>
-            <div class="fee-percent">1.0%</div>
-            <h4 class="fee-title">Permanent Burn</h4>
-            <p class="fee-desc">
-              Irreversibly removed from total supply with each transaction, creating compounding scarcity and deflationary pressure over time.
-            </p>
-          </div>
-
-          <div class="fee-card treasury animate-fade-in-left">
-            <div class="fee-icon">
-              <i class="fas fa-vault"></i>
-            </div>
-            <div class="fee-percent">1.0%</div>
-            <h4 class="fee-title">Treasury Allocation</h4>
-            <p class="fee-desc">
-              Funds ecosystem development, strategic buybacks, liquidity provision, and community grants to ensure sustainable growth.
-            </p>
+          <div class="deposit-actions">
+            <a href="#tokenomics"
+               class="btn btn-primary"
+               style="padding:12px 18px; border-radius:12px; font-size:14px; text-decoration:none"
+               id="viewOnExplorer">View Opportunities</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="architecture" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 4</span>
-        <h2 class="section-title">Technical Architecture</h2>
-        <p class="section-subtitle">
-          Smart contract design, security measures, and system components
-        </p>
+<section id="stake" class="deposit-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>THE $70 TRILLION PROBLEM</h2>
+      <p>The Wealth Gap That's Been Engineered</p>
+    </div>
+
+    <div class="deposit-wrap fade-in-up" role="region" aria-label="Wealth Gap Problem">
+      <div class="deposit-warning" role="status">
+        ⚠️ For decades, the most lucrative investment opportunities were systematically reserved for institutions and ultra-wealthy individuals.
       </div>
 
-      <div class="content-cards">
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <h3 class="card-title">Smart Contract Architecture</h3>
-          <div class="card-content">
-            <p><strong>ASRD Token Contract (BEP-20):</strong> Manages token transfers, balances, and enforces the transfer tax logic.</p>
-            <p><strong>Treasury Contract:</strong> Receives and holds the treasury portion of transaction fees. Governed by a multi-signature wallet.</p>
-            <p><strong>Burn Address:</strong> A publicly verifiable, inaccessible address where burned tokens are sent.</p>
-          </div>
+      <div class="deposit-grid">
+        <div class="deposit-qr" aria-hidden="true">
+          <div style="font-size: 4rem; text-align: center; color: var(--red-500);">💰</div>
         </div>
 
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-cogs"></i>
+        <div class="deposit-info" aria-live="polite">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+            <div>
+              <div style="font-weight:900; font-size:18px; margin-bottom:4px">The 1% vs The 99%</div>
+              <div class="deposit-sub">Institutional & Ultra-Wealthy vs Everyone Else</div>
+            </div>
           </div>
-          <h3 class="card-title">Transfer Tax Mechanism</h3>
-          <div class="card-content">
-            <p>A 2% fee is applied to qualifying transfers with automatic split:</p>
-            <p><strong>1% Burn:</strong> Sent to burn address, irreversibly reducing total supply</p>
-            <p><strong>1% Treasury:</strong> Sent to treasury contract for ecosystem development</p>
-            <p><strong>Exemptions:</strong> Critical system addresses may be exempted to ensure smooth operation</p>
-          </div>
-        </div>
 
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-shield-alt"></i>
+          <div style="margin: 20px 0;">
+            <div style="background: var(--slate-800); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+              <div style="color: var(--emerald-400); font-weight: 700;">The 1% (Institutional & Ultra-Wealthy)</div>
+              <div style="color: var(--slate-300); margin-top: 10px;">
+                • Commercial Real Estate: 8-12% ROI<br>
+                • Private Equity: 15-25% ROI<br>
+                • Venture Capital: 20-40% ROI<br>
+                • Average Portfolio Performance: 18.5% ROI
+              </div>
+            </div>
+
+            <div style="background: var(--slate-800); padding: 20px; border-radius: 12px;">
+              <div style="color: var(--red-400); font-weight: 700;">The Performance Gap: 14.3% Difference in Average Returns</div>
+              <div style="color: var(--slate-300); margin-top: 10px;">
+                This inequality exists because the system was designed this way. We're building the bridge to close it.
+              </div>
+            </div>
           </div>
-          <h3 class="card-title">Security Framework</h3>
-          <div class="card-content">
-            <p><strong>Multiple Audits:</strong> Professional smart contract audits before deployment</p>
-            <p><strong>Multi-Signature Governance:</strong> Treasury controlled by distributed signers</p>
-            <p><strong>Timelock Upgrades:</strong> Protocol upgrades require community notice period</p>
-            <p><strong>Transparent Operations:</strong> All treasury actions publicly verifiable on-chain</p>
+
+          <div class="deposit-actions">
+            <a href="#about"
+               class="btn btn-secondary"
+               style="padding:12px 18px; border-radius:12px; font-size:14px; text-decoration:none"
+               id="viewOnExplorerStake">Discover The Solution</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="roadmap" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 10</span>
-        <h2 class="section-title">Strategic Roadmap</h2>
-        <p class="section-subtitle">
-          18-36 month development timeline for sustainable ecosystem growth
+<section id="features" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Democratizing Wealth Creation</h2>
+      <p>We're breaking down the barriers that have kept 99% of investors from accessing the world's best investment opportunities.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">💵</div>
+        <h3>From $100</h3>
+        <p>Start with as little as $100. Own a piece of institutional-grade assets previously requiring $250,000+.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">🔒</div>
+        <h3>100% Secure</h3>
+        <p>Every investment is tokenized and secured on blockchain with transparent ownership records.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">⚡</div>
+        <h3>24/7 Trading</h3>
+        <p>Trade your asset tokens on our secondary market. No more waiting years for returns.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">📊</div>
+        <h3>12.8% Avg ROI</h3>
+        <p>Our team of experts manages the assets while you enjoy passive returns.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">🗳️</div>
+        <h3>Community Governance</h3>
+        <p>Vote on platform decisions and asset acquisitions through our DAO structure.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon">🌍</div>
+        <h3>Global Access</h3>
+        <p>Invest in assets worldwide from your phone. No geographic restrictions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tokenomics" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Featured Investment Opportunities</h2>
+      <p>Hand-picked premium assets with verified track records and exceptional returns. Start investing from just $100.</p>
+    </div>
+
+    <div class="tokenomics">
+      <div class="tokenomics-main fade-in-up">
+        <h3>Luxury Waterfront Apartments with Marina Views</h3>
+        <p style="font-size:18px; color:var(--slate-200); margin-bottom:30px; line-height:1.6; max-width:700px">
+          Exclusive collection of 3 luxury towers in the heart of Dubai Marina featuring 1-4 bedroom apartments with private balconies overlooking the marina.
         </p>
+
+        <div class="pie-container">
+          <div class="token-pie">
+            <!-- Keep existing pie chart but change labels -->
+            <svg class="pie-chart-svg" viewBox="0 0 360 360" role="img" aria-label="Investment returns chart">
+              <!-- Same SVG structure as before -->
+              <defs>
+                <linearGradient id="liqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#1E40AF"/>
+                </linearGradient>
+                <linearGradient id="burnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#EF4444"/><stop offset="100%" stop-color="#DC2626"/>
+                </linearGradient>
+                <linearGradient id="treasuryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#059669"/>
+                </linearGradient>
+                <linearGradient id="feeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/>
+                </linearGradient>
+              </defs>
+
+              <circle cx="180" cy="180" r="160" fill="none" stroke="#1E293B" stroke-width="35"/>
+              <circle cx="180" cy="180" r="160" fill="none" stroke="url(#liqGrad)" stroke-width="35" stroke-dasharray="1006 1006" stroke-dashoffset="1006" pathLength="1" />
+              <circle cx="180" cy="180" r="140" fill="none" stroke="url(#feeGrad)" stroke-width="25" stroke-dasharray="44.1 628.3" stroke-dashoffset="672.4" pathLength="1" />
+              <circle cx="180" cy="180" r="120" fill="none" stroke="url(#burnGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="314.15" pathLength="1" />
+              <circle cx="180" cy="180" r="100" fill="none" stroke="url(#treasuryGrad)" stroke-width="25" stroke-dasharray="22.05 314.15" stroke-dashoffset="292.1" pathLength="1" />
+              <circle cx="180" cy="180" r="70" fill="url(#liqGrad)" opacity="0.15"/>
+            </svg>
+            <div class="pie-chart-center" aria-hidden="true">
+              <div class="pie-center-number">34%</div>
+              <div class="pie-center-label">Projected ROI</div>
+            </div>
+          </div>
+
+          <div class="allocations">
+            <div class="allocation-item">
+              <div class="allocation-label">📍 Location</div>
+              <div class="allocation-value">Dubai</div>
+            </div>
+            <div class="allocation-item">
+              <div class="allocation-label">📅 Duration</div>
+              <div class="allocation-value">48 Months</div>
+            </div>
+            <div class="allocation-item">
+              <div class="allocation-label">📈 ROI</div>
+              <div class="allocation-value">34%</div>
+            </div>
+            <div class="allocation-item">
+              <div class="allocation-label">💰 Min. Invest</div>
+              <div class="allocation-value">$100</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="interactive-roadmap animate-fade-in-up">
-        <div class="roadmap-line"></div>
-
-        <div class="roadmap-phase">
-          <div class="phase-marker">1</div>
-          <div class="phase-content">
-            <div class="phase-header">
-              <h3 class="phase-title">Foundation & Stability</h3>
-              <span class="phase-period">Months 1-12</span>
-            </div>
-            <div class="phase-details">
-              <div class="phase-detail">
-                <div class="detail-category">Technical</div>
-                <div class="detail-text">Successful contract deployment and audit publication. Establishment of secure multi-sig treasury.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Ecosystem</div>
-                <div class="detail-text">Launch of initial community and developer outreach. First governance discussions on treasury use.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Compliance</div>
-                <div class="detail-text">Ongoing monitoring of regulatory developments in the digital asset space.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="roadmap-phase">
-          <div class="phase-marker">2</div>
-          <div class="phase-content">
-            <div class="phase-header">
-              <h3 class="phase-title">Ecosystem Growth</h3>
-              <span class="phase-period">Months 13-24</span>
-            </div>
-            <div class="phase-details">
-              <div class="phase-detail">
-                <div class="detail-category">Technical</div>
-                <div class="detail-text">Development and audit of a dedicated on-chain governance module.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Product</div>
-                <div class="detail-text">Funding and delivery of first developer grants for ecosystem tools and integrations.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Community</div>
-                <div class="detail-text">Formalization of a grant proposal and review process managed by the community.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="roadmap-phase">
-          <div class="phase-marker">3</div>
-          <div class="phase-content">
-            <div class="phase-header">
-              <h3 class="phase-title">Sustained Development</h3>
-              <span class="phase-period">Months 25-36</span>
-            </div>
-            <div class="phase-details">
-              <div class="phase-detail">
-                <div class="detail-category">Technical</div>
-                <div class="detail-text">Implementation and activation of on-chain token holder voting for treasury allocations.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Ecosystem</div>
-                <div class="detail-text">Expansion of grant program to support more complex integrations and applications.</div>
-              </div>
-              <div class="phase-detail">
-                <div class="detail-category">Sustainability</div>
-                <div class="detail-text">Assessment of model performance and community-led iteration on grant focus areas.</div>
-              </div>
-            </div>
+      <div class="tokenomics-sidebar fade-in-up">
+        <h3 style="font-size:24px; font-weight:900; margin-bottom:24px; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text; color:transparent;">Investment Details</h3>
+        <div style="display:grid; gap:16px; font-size:15px; line-height:1.6">
+          <div><strong>Risk Level:</strong> Medium</div>
+          <div><strong>Funding Progress:</strong> 85%</div>
+          <div><strong>Asset Type:</strong> Commercial Real Estate</div>
+          <div><strong>Location:</strong> Dubai Marina</div>
+          <div style="margin-top:24px">
+            <a href="https://clients.asrdcoin.com/login" class="btn btn-primary" style="width:100%; justify-content:center; text-decoration:none">Invest Now →</a>
+            <a href="whitepaper.html" class="btn btn-gold" rel="noopener noreferrer" style="width:100%; justify-content:center; margin-top:12px; text-decoration:none">📄 View Details</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="governance" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 7</span>
-        <h2 class="section-title">Governance Framework</h2>
-        <p class="section-subtitle">
-          Decentralized decision-making and community participation mechanisms
-        </p>
+<section class="cta-section" id="about">
+  <div class="container">
+    <div class="cta-content fade-in-up">
+      <h2>Platform Performance</h2>
+      <p style="font-size:20px; color:rgba(255,255,255,0.95); margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto">
+        Trusted by thousands of investors with proven track record and transparent reporting
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 40px;">
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--yellow-500);">$485M+</div>
+          <div style="color: var(--slate-300);">Assets Under Management</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--emerald-500);">4,850+</div>
+          <div style="color: var(--slate-300);">Total Investors</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--blue-500);">32.6%</div>
+          <div style="color: var(--slate-300);">Average ROI</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+          <div style="font-size: 2.5rem; font-weight: 900; color: var(--purple-500);">$112.0M+</div>
+          <div style="color: var(--slate-300);">Total Returns</div>
+        </div>
       </div>
 
-      <div class="content-cards">
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-vote-yea"></i>
-          </div>
-          <h3 class="card-title">Treasury Governance</h3>
-          <div class="card-content">
-            <p><strong>Multi-Signature Control:</strong> Treasury funds are managed by a 3-of-5 multi-signature wallet requiring consensus from multiple parties.</p>
-            <p><strong>Transparent Proposals:</strong> All treasury spending proposals are publicly documented and discussed before execution.</p>
-            <p><strong>Community Input:</strong> Key decisions incorporate feedback from token holders through informal signaling votes.</p>
-          </div>
-        </div>
+      <div class="cta-buttons">
+        <a href="https://clients.asrdcoin.com/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:20px 40px; font-size:16px; text-decoration:none">👤 Begin in Minutes</a>
+        <a href="#features" class="btn btn-secondary" style="padding:20px 40px; font-size:16px; text-decoration:none">Explore Features</a>
+        <a href="whitepaper.html" rel="noopener noreferrer" class="btn btn-gold" style="padding:20px 40px; font-size:16px; text-decoration:none">📄 Read Whitepaper</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <h3 class="card-title">Community Participation</h3>
-          <div class="card-content">
-            <p><strong>Grant Program:</strong> Developers can submit proposals for ecosystem funding through a structured application process.</p>
-            <p><strong>Governance Discussions:</strong> Regular community calls and forum discussions to gather feedback on protocol direction.</p>
-            <p><strong>Transparency Reports:</strong> Quarterly reports detailing treasury activities, burn metrics, and ecosystem development.</p>
-          </div>
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="fade-in-up">
+        <h4 style="font-size:24px; font-weight:900; margin-bottom:20px; background:var(--gradient-hero); -webkit-background-clip:text; background-clip:text; color:transparent">ASRD</h4>
+        <p style="color:var(--slate-400); margin-bottom:24px; max-width:300px">Democratizing institutional-grade investments through blockchain technology.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Telegram">📱</a>
+          <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-btn" aria-label="Discord">💬</a>
+          <a href="#" class="social-btn" aria-label="GitHub">📂</a>
         </div>
-
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-sync-alt"></i>
-          </div>
-          <h3 class="card-title">Protocol Upgrades</h3>
-          <div class="card-content">
-            <p><strong>Timelock Implementation:</strong> All smart contract upgrades require a minimum notice period before activation.</p>
-            <p><strong>Backward Compatibility:</strong> Protocol changes maintain compatibility with existing integrations and user positions.</p>
-            <p><strong>Emergency Procedures:</strong> Clearly defined processes for addressing critical security issues or protocol vulnerabilities.</p>
-          </div>
+        <div style="margin-top:16px">
+          <a href="whitepaper.html" rel="noopener noreferrer" class="nav-link" aria-label="Read ASRD whitepaper" style="font-size:14px">Read Whitepaper (PDF)</a>
+        </div>
+      </div>
+      <div class="fade-in-up" style="grid-column:1/-1">
+        <div style="text-align:center; color:var(--slate-400); font-size:13px; letter-spacing:0.025em; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); margin-top:20px">
+          © 2025 ASRD. Tokenizing real-world assets for everyone. Not financial advice. DYOR.
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <section id="use-cases" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 3</span>
-        <h2 class="section-title">Utility & Use Cases</h2>
-        <p class="section-subtitle">
-          Practical applications and value accrual mechanisms
-        </p>
-      </div>
+<a href="https://clients.asrdcoin.com/login" id="floatingDeposit" class="floating-deposit" role="button" aria-label="Login to Dashboard">
+  <span class="dot" aria-hidden="true"></span>
+  👤 Dashboard Login
+</a>
 
-      <div class="content-cards">
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-hand-holding-usd"></i>
-          </div>
-          <h3 class="card-title">Transaction Medium</h3>
-          <div class="card-content">
-            <p><strong>DeFi Integration:</strong> ASRD serves as a transaction medium within supported decentralized applications and protocols.</p>
-            <p><strong>Cross-Platform Utility:</strong> Token functionality extends across multiple platforms and services within the BSC ecosystem.</p>
-            <p><strong>Low-Fee Transactions:</strong> BSC network enables cost-effective transfers suitable for micro-transactions and frequent usage.</p>
-          </div>
-        </div>
+<div id="copyToast" class="copy-toast" role="status" aria-live="polite">Copied</div>
 
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-seedling"></i>
-          </div>
-          <h3 class="card-title">Ecosystem Development</h3>
-          <div class="card-content">
-            <p><strong>Grant Funding:</strong> Treasury allocates funds to developers building tools, integrations, and applications that enhance ASRD utility.</p>
-            <p><strong>Liquidity Provision:</strong> Strategic allocation of treasury resources to deepen market liquidity and reduce volatility.</p>
-            <p><strong>Partnership Incentives:</strong> Resources allocated to foster strategic partnerships and ecosystem collaborations.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3 class="card-title">Value Accrual</h3>
-          <div class="card-content">
-            <p><strong>Deflationary Mechanics:</strong> Permanent burn mechanism creates compounding scarcity as transaction volume increases.</p>
-            <p><strong>Treasury Backing:</strong> Growing treasury provides resources for value-enhancing activities like strategic buybacks.</p>
-            <p><strong>Network Effects:</strong> Increasing adoption creates positive feedback loops that enhance token utility and demand.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="conclusion" class="section">
-    <div class="container">
-      <div class="section-header animate-fade-in-up">
-        <span class="section-tag">Chapter 12</span>
-        <h2 class="section-title">Conclusion & Future Vision</h2>
-        <p class="section-subtitle">
-          Long-term vision and strategic objectives for sustainable ecosystem growth
-        </p>
-      </div>
-
-      <div class="content-cards">
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-flag-checkered"></i>
-          </div>
-          <h3 class="card-title">Strategic Objectives</h3>
-          <div class="card-content">
-            <p><strong>Sustainable Ecosystem:</strong> Build a self-funding ecosystem that can support long-term development without external funding.</p>
-            <p><strong>Developer Adoption:</strong> Attract and retain talented developers through meaningful grant programs and supportive infrastructure.</p>
-            <p><strong>Token Holder Value:</strong> Create sustainable value for token holders through transparent operations and value-accruing mechanisms.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </div>
-          <h3 class="card-title">Expansion Opportunities</h3>
-          <div class="card-content">
-            <p><strong>Cross-Chain Integration:</strong> Explore bridges and interoperability solutions to expand utility beyond BSC.</p>
-            <p><strong>Additional Use Cases:</strong> Develop new utility applications and integration points as the ecosystem matures.</p>
-            <p><strong>Governance Evolution:</strong> Transition toward more decentralized governance models as community participation grows.</p>
-          </div>
-        </div>
-
-        <div class="content-card animate-fade-in-left">
-          <div class="card-icon">
-            <i class="fas fa-shield-check"></i>
-          </div>
-          <h3 class="card-title">Commitment to Principles</h3>
-          <div class="card-content">
-            <p><strong>Transparency:</strong> Maintain open communication about protocol operations, treasury management, and strategic direction.</p>
-            <p><strong>Sustainability:</strong> Prioritize long-term stability over short-term gains in all protocol decisions and developments.</p>
-            <p><strong>Community Focus:</strong> Center development around community needs and feedback, ensuring the protocol serves its users.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section fade-in-up">
-          <h4>ASRD Ecosystem</h4>
-          <p style="color: var(--slate-300); margin-bottom: 24px; line-height: 1.6;">
-            Powering sustainable digital infrastructure on BNB Smart Chain through transparent tokenomics and community-driven development.
-          </p>
-          <div class="social-links">
-            <a href="#" class="social-link" aria-label="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Telegram">
-              <i class="fab fa-telegram"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="Discord">
-              <i class="fab fa-discord"></i>
-            </a>
-            <a href="#" class="social-link" aria-label="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="footer-section fade-in-up">
-          <h4>Whitepaper</h4>
-          <ul class="footer-links">
-            <li class="footer-link">
-              <a href="#executive-summary">
-                <i class="fas fa-chevron-right"></i>
-                Executive Summary
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#tokenomics">
-                <i class="fas fa-chevron-right"></i>
-                Tokenomics
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#architecture">
-                <i class="fas fa-chevron-right"></i>
-                Architecture
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#roadmap">
-                <i class="fas fa-chevron-right"></i>
-                Roadmap
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#use-cases">
-                <i class="fas fa-chevron-right"></i>
-                Use Cases
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="#risks">
-                <i class="fas fa-chevron-right"></i>
-                Risk Analysis
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-section fade-in-up">
-          <h4>Resources</h4>
-          <ul class="footer-links">
-            <li class="footer-link">
-              <a href="index.html">
-                <i class="fas fa-chevron-right"></i>
-                Home
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="index.html#deposit">
-                <i class="fas fa-chevron-right"></i>
-                ₮ Deposit USDT
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="index.html#tokenomics">
-                <i class="fas fa-chevron-right"></i>
-                Tokenomics
-              </a>
-            </li>
-            <li class="footer-link">
-              <a href="https://clients.asrdcoin.com/login">
-                <i class="fas fa-chevron-right"></i>
-                Login
-              </a>
-            </li>
-          </ul>
-        </div>
-
-                <div class="footer-section fade-in-up">
-          <h4>Document Info</h4>
-          <div style="color: var(--light-text); width: 100%;">
-            <p><strong>Version:</strong> 1.0</p>
-            <p><strong>Network:</strong> BNB Smart Chain</p>
-            
-            <!-- Contract Address with Copy Button -->
-            <div class="contract-address-container">
-              <p style="margin-bottom: 8px;"><strong>Contract:</strong></p>
-              <div class="contract-address-wrapper">
-                <span class="contract-text" id="contractAddress">
-                  0x32BC...F74DB
-                </span>
-                <button class="contract-copy-btn" id="contractCopyBtn" 
-                        data-full-address="0x32BCB4f2dF7A4a8cfdE3E88dcd2a2ec76E7F74DB">
-                  📋
-                </button>
-              </div>
-              <small style="color: var(--medium-gray); font-size: 11px;">
-                First 5 and last 5 characters shown
-              </small>
-            </div>
-            
-            <p style="margin-top: 16px;"><strong>Website:</strong> asrdcoin.com</p>
-            <p><strong>Last Updated:</strong> January 2025</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom fade-in-up">
-        <p>© 2025 ASRD. The utility token of the future. Not financial advice. DYOR.</p>
-        <p style="margin-top: 8px; font-size: 12px; color: var(--slate-500);">
-          This whitepaper is for informational purposes only. Consult professional advice before making investment decisions.
-          Cryptocurrency investments involve significant risk. Past performance is not indicative of future results.
-        </p>
-        <p style="margin-top: 12px; font-size: 11px; color: var(--slate-600);">
-          ASRD is a utility token on the BNB Smart Chain. It is not a security and does not represent ownership or equity.
-          The protocol is experimental and subject to change. Users should only participate with funds they can afford to lose.
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <a href="#" class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
-  </a>
-
-  <script src="assets/scripts/main.js"></script>
+<script src="assets/scripts/main.js"></script>
 </body>
 </html>
