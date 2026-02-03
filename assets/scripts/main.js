@@ -725,89 +725,87 @@ function initInvestmentFilter() {
 
 // Initialize mobile menu based on current page structure
 function initMobileMenu() {
-  console.log('Initializing mobile menu...');
-
-  const menuBtn = document.getElementById('menuToggle') || document.getElementById('mobileMenuBtn');
+  const menuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
+  const mobileBackdrop = document.getElementById('mobileBackdrop');
+  const mobileClose = document.getElementById('mobileClose') || null;
+  const firstFocusableSelector = 'a, button, input, [tabindex]:not([tabindex="-1"])';
 
-  if (!menuBtn || !mobileMenu) {
-    console.warn('Mobile menu elements not found');
-    return;
+  if (!menuBtn || !mobileMenu) return;
+
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.addEventListener('click', openMenu);
+  if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+  if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMenu);
+
+  function trapFocus(container) {
+    const focusable = Array.from(container.querySelectorAll(firstFocusableSelector));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    function handleKey(e) {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMenu();
+      }
+    }
+
+    container.addEventListener('keydown', handleKey);
+    return () => container.removeEventListener('keydown', handleKey);
   }
 
-  console.log('Found mobile menu elements');
+  let removeTrap = null;
+  let lastFocused = null;
 
-  // Set initial ARIA state
-  menuBtn.setAttribute('aria-expanded', 'false');
-
-  // Open menu function
-  const openMenu = () => {
-    console.log('Opening menu');
+  function openMenu() {
+    lastFocused = document.activeElement;
     mobileMenu.classList.add('active');
     menuBtn.classList.add('active');
     menuBtn.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('menu-open'); // css hook to prevent scroll
+    // lock scroll
     document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-  };
+    // focus first meaningful element inside menu
+    const firstLink = mobileMenu.querySelector('a, button');
+    if (firstLink) firstLink.focus();
+    removeTrap = trapFocus(mobileMenu);
+  }
 
-  // Close menu function
-  const closeMenu = () => {
-    console.log('Closing menu');
+  function closeMenu() {
     mobileMenu.classList.remove('active');
     menuBtn.classList.remove('active');
     menuBtn.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('menu-open');
     document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
-  };
+    if (removeTrap) removeTrap();
+    // restore focus
+    if (lastFocused) lastFocused.focus();
+  }
 
-  // Toggle menu on button click
-  menuBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (mobileMenu.classList.contains('active')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+  // Close on any link with data-close attribute (so menu closes after navigation)
+  mobileMenu.querySelectorAll('[data-close]').forEach(el => {
+    el.addEventListener('click', closeMenu);
   });
 
-  // Close on close button
-  const closeBtn = document.getElementById('mobileClose');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeMenu();
-    });
-  }
-
-  // Close on backdrop click
-  const backdrop = document.getElementById('mobileBackdrop');
-  if (backdrop) {
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) {
-        closeMenu();
-      }
-    });
-  }
-
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+  // Close on resize to avoid odd states when switching between mobile/desktop
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
       closeMenu();
     }
   });
-
-  // Close menu when clicking on links
-  document.querySelectorAll('[data-close], .mobile-nav-link, .mobile-cta').forEach(link => {
-    link.addEventListener('click', () => {
-      setTimeout(closeMenu, 100);
-    });
-  });
-
-  console.log('Mobile menu initialized successfully');
 }
+
 
 // ========== VIDEO FIX FOR MOBILE ==========
 function fixVideoForMobile() {
